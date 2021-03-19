@@ -1,12 +1,17 @@
 <template>
-  <router-view />
+  <slot></slot>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-
 export default defineComponent({
-  name: 'App',
+  name: 'SiteLayout',
+  props: {
+    view: {
+      type: String,
+      //required: true,
+    },
+  },
 });
 </script>
 

@@ -1,65 +1,47 @@
 <template>
   <h1>{{ msg }}</h1>
-
-  <p>
-    Recommended IDE setup:
-    <a href="https://code.visualstudio.com/" target="_blank">VSCode</a>
-    +
-    <a
-      href="https://marketplace.visualstudio.com/items?itemName=octref.vetur"
-      target="_blank"
-    >Vetur</a>
-    or
-    <a href="https://github.com/johnsoncodehk/volar" target="_blank">Volar</a>
-    (if using
-    <code>&ltscript setup&gt;</code>)
-  </p>
-
-  <p>See <code>README.md</code> for more information.</p>
-
-  <p>
-    <a href="https://vitejs.dev/guide/features.html" target="_blank">Vite Docs</a> |
-    <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Docs</a>
-  </p>
-
-  <button @click="count++">count is: {{ count }}</button>
-  <p>
-    Edit
-    <code>components/HelloWorld.vue</code> to test hot module replacement.
-  </p>
+  <div>counter: {{ counter }}</div>
+  <div>doubledCounter: {{ doubledCounter }}</div>
+  <button class="btn" @click="getCounter">Increment Counter</button>
+  <div>
+    <button class="btn" @click="resetCounter">Reset Counter</button>
+  </div>
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue';
+import { useStore } from '../store';
+import AllMutationTypes from '../store/mutation-types';
+import AllActionTypes from '../store/action-types';
+
 export default defineComponent({
   name: 'HelloWorld',
   props: {
     msg: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
-  setup: () => {
-    const count = ref(0)
-    return { count }
-  }
-})
+  setup: (props) => {
+    const store = useStore();
+    const counter = computed(() => store.getters.counterValue);
+    const doubledCounter = computed(() => store.getters.doubledCounter);
+    function resetCounter() {
+      store.commit(AllMutationTypes.RESET_COUNTER);
+    }
+
+    async function getCounter() {
+      await store.dispatch(AllActionTypes.GET_COUNTER, 100);
+    }
+
+    return {
+      counter,
+      doubledCounter,
+      getCounter,
+      resetCounter,
+    };
+  },
+});
 </script>
 
-<style scoped>
-a {
-  color: #42b983;
-}
-
-label {
-  margin: 0 0.5em;
-  font-weight: bold;
-}
-
-code {
-  background-color: #eee;
-  padding: 2px 4px;
-  border-radius: 4px;
-  color: #304455;
-}
-</style>
+<style scoped></style>
