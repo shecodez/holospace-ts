@@ -14,6 +14,8 @@ export enum ActionTypes {
 
   SET_CREATE_Deck_MODAL = 'SET_CREATE_Deck_MODAL',
   SET_EDIT_Deck_MODAL = 'SET_EDIT_Deck_MODAL',
+  SET_ADD_OR_JOIN_Deck_MODAL = 'SET_ADD_OR_JOIN_Deck_MODAL',
+  SET_JOIN_Deck_MODAL = 'SET_JOIN_Deck_MODAL',
 }
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -34,5 +36,13 @@ export const actions: ActionTree<State, IRootState> & Actions = {
 
   [ActionTypes.SET_EDIT_Deck_MODAL]({ commit }) {
     commit(MutationTypes.SET_EDIT_Deck_MODAL, { isOpen: true, deckId: '1' });
+  },
+
+  [ActionTypes.SET_ADD_OR_JOIN_Deck_MODAL]({ commit }) {
+    commit(MutationTypes.SET_ADD_OR_JOIN_Deck_MODAL, true);
+  },
+
+  [ActionTypes.SET_JOIN_Deck_MODAL]({ commit }) {
+    commit(MutationTypes.SET_JOIN_Deck_MODAL, true);
   },
 };

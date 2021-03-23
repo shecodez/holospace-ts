@@ -6,5 +6,7 @@ export const state: State = {
   deckList: [],
   showCreateDeckModal: false,
   showEditDeckModal: false,
-  editModalDeckId: undefined,
+  showAddOrJoinDeckModal: false,
+  showJoinDeckModal: false,
+  editDeckId: undefined,
 };

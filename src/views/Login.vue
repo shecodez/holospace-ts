@@ -1,6 +1,8 @@
 <template>
   <Layout view="Login">
-    <h2>Hey, Welcome Back!</h2>
+    <div class="text-center mb-10">
+      <h1 class="font-bold text-xl">Hey, Welcome Back!</h1>
+    </div>
     <LoginForm />
     <p>
       Need an Account?

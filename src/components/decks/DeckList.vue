@@ -6,12 +6,14 @@
   >
     <DeckListItem v-bind="deck" />
   </ul>
+  <!-- <EditDeckModal v-show="showEditModal" :id="editDeckId" /> -->
 </template>
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
 import { useStore } from '../../store';
 import DeckListItem from './DeckListItem.vue';
+//import EditDeckModal from './EditDeckModal.vue';
 
 export default defineComponent({
   name: 'DeckList',
@@ -21,9 +23,10 @@ export default defineComponent({
 
     const decks = computed(() => store.state.decks.deckList);
 
+    //const showEditModal = computed(() => store.state.decks.showEditDeckModal);
+    //const editDeckId = computed(() => store.state.decks.editDeckId);
+
     return { decks };
   },
 });
 </script>
-
-<style></style>

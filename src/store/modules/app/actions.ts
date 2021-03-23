@@ -6,11 +6,14 @@ import {
   IAppActions as Actions,
   IBanner,
   IToast,
+  AppThemes,
 } from '../../interfaces';
 import { MutationTypes } from './mutations';
 
 export enum ActionTypes {
-  TOGGLE_IsDarkTheme = 'TOGGLE_IsDarkTheme',
+  INIT_Theme = 'INIT_Theme',
+  SET_Theme = 'SET_Theme',
+  TOGGLE_Theme = 'TOGGLE_Theme',
 
   SET_SHOW_Navbar = 'SET_SHOW_Navbar',
   SET_SHOW_Footer = 'SET_SHOW_Footer',
@@ -28,8 +31,29 @@ export enum ActionTypes {
 }
 
 export const actions: ActionTree<State, IRootState> & Actions = {
-  [ActionTypes.TOGGLE_IsDarkTheme]({ commit }) {
-    commit(MutationTypes.TOGGLE_IsDarkTheme);
+  [ActionTypes.INIT_Theme]({ commit }) {
+    const cachedTheme = localStorage.theme ? localStorage.theme : false;
+    //  `true` if the user has set theme to `dark` on browser/OS
+    const userPrefersDark = window.matchMedia('(prefers-color-scheme: dark)')
+      .matches;
+
+    if (cachedTheme) commit(MutationTypes.SET_Theme, cachedTheme);
+    else if (userPrefersDark) commit(MutationTypes.SET_Theme, AppThemes.DARK);
+    else commit(MutationTypes.SET_Theme, AppThemes.LIGHT);
+  },
+  [ActionTypes.SET_Theme]({ commit }, theme: AppThemes) {
+    commit(MutationTypes.SET_Theme, theme);
+  },
+  [ActionTypes.TOGGLE_Theme]({ commit }) {
+    switch (localStorage.theme) {
+      case AppThemes.LIGHT:
+        commit(MutationTypes.SET_Theme, AppThemes.DARK);
+        break;
+
+      default:
+        commit(MutationTypes.SET_Theme, AppThemes.LIGHT);
+        break;
+    }
   },
 
   [ActionTypes.SET_SHOW_Navbar]({ commit }, showNavbar) {

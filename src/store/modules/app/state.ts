@@ -1,7 +1,7 @@
 import { IAppState as State } from '../../interfaces';
 
 export const state: State = {
-  isDarkTheme: true,
+  theme: undefined,
   showNavBar: false,
   showFooter: false,
   //isPopOutSideDrawer: false,

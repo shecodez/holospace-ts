@@ -309,6 +309,11 @@ button:hover:before {
   border-radius: 10%;
   animation: borders 0.5s ease-in-out;
 }
+.f-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 @keyframes borders {
   0% {
     border-radius: 50%;

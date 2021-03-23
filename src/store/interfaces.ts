@@ -83,6 +83,11 @@ export enum AlertTypes {
   CUSTOM = 'CUSTOM',
 }
 
+export enum AppThemes {
+  DARK = 'dark',
+  LIGHT = 'light',
+}
+
 export interface IAlert {
   type: AlertTypes;
   text: string;
@@ -102,7 +107,7 @@ export interface IBanner extends IAlert {
 }
 
 export interface IAppState {
-  isDarkTheme: boolean;
+  theme: AppThemes | undefined;
   showNavBar: boolean;
   showFooter: boolean;
   //isPopOutSideDrawer: boolean,
@@ -113,7 +118,7 @@ export interface IAppState {
 }
 
 export interface IAppMutations<S = IAppState> {
-  [AppMTypes.TOGGLE_IsDarkTheme](state: S): void;
+  [AppMTypes.SET_Theme](state: S, payload: AppThemes): void;
 
   [AppMTypes.SET_SHOW_Navbar](state: S, payload: boolean): void;
   [AppMTypes.SET_SHOW_Footer](state: S, payload: boolean): void;
@@ -140,7 +145,12 @@ type AugmentedActionCtxApp  = Omit<ActionContext<IAppState, IRootState>, 'commit
 };
 
 export interface IAppActions {
-  [AppATypes.TOGGLE_IsDarkTheme]({ commit }: AugmentedActionCtxApp): void;
+  [AppATypes.INIT_Theme]({ commit }: AugmentedActionCtxApp): void;
+  [AppATypes.SET_Theme](
+    { commit }: AugmentedActionCtxApp,
+    payload: String
+  ): void;
+  [AppATypes.TOGGLE_Theme]({ commit }: AugmentedActionCtxApp): void;
 
   [AppATypes.SET_SHOW_Navbar](
     { commit }: AugmentedActionCtxApp,
@@ -179,9 +189,15 @@ export interface IAppActions {
 export interface IAppGetters {
   showBanner(state: IAppState): boolean;
   showToast(state: IAppState): boolean;
+  isDarkTheme(state: IAppState): boolean;
 }
 
 /************************ DECK MODULE TYPES **************************/
+export enum Regions {
+  US_EAST = 'US-East',
+  JP_ASIA = 'JP-Asia',
+}
+
 export type IDeck = {
   id: string; // guid
   name: string;
@@ -189,6 +205,7 @@ export type IDeck = {
   createdBy: string; // UserId - guid
   ids: string; // (Init Disk Space) Id - guid
   isEditing?: boolean;
+  hq: Regions;
   //members?: User[];
   //lastModBy: string; // UserId
   //createdAt: serverTimestamp;
@@ -201,7 +218,9 @@ export interface IDeckState {
   deckList: IDeck[];
   showCreateDeckModal: boolean;
   showEditDeckModal: boolean;
-  editModalDeckId: string | undefined;
+  editDeckId: string | undefined;
+  showAddOrJoinDeckModal: boolean;
+  showJoinDeckModal: boolean;
 }
 
 export interface IDeckMutations<S = IDeckState> {
@@ -227,10 +246,13 @@ export interface IDeckMutations<S = IDeckState> {
     state: S,
     payload: { isOpen: boolean; deckId: string | undefined }
   ): void;
+  [DeckMTypes.SET_ADD_OR_JOIN_Deck_MODAL](state: S, payload: boolean): void;
+  [DeckMTypes.SET_JOIN_Deck_MODAL](state: S, payload: boolean): void;
 }
 
 export interface IDeckGetters {
   totalDeckCount(state: IDeckState): number;
+  getDeckById(state: IDeckState): (id: string) => IDeck | undefined;
 }
 
 // prettier-ignore
@@ -246,6 +268,10 @@ export interface IDeckActions {
 
   [DeckATypes.SET_CREATE_Deck_MODAL]({ commit }: AugmentedActionCtxDeck): void;
   [DeckATypes.SET_EDIT_Deck_MODAL]({ commit }: AugmentedActionCtxDeck): void;
+  [DeckATypes.SET_ADD_OR_JOIN_Deck_MODAL]({
+    commit,
+  }: AugmentedActionCtxDeck): void;
+  [DeckATypes.SET_JOIN_Deck_MODAL]({ commit }: AugmentedActionCtxDeck): void;
 }
 
 /****************************** END **********************************/

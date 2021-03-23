@@ -6,7 +6,7 @@ import {
 } from '../../interfaces';
 
 export enum MutationTypes {
-  TOGGLE_IsDarkTheme = 'TOGGLE_IsDarkTheme',
+  SET_Theme = 'SET_Theme',
 
   SET_SHOW_Navbar = 'SET_SHOW_Navbar',
   SET_SHOW_Footer = 'SET_SHOW_Footer',
@@ -24,8 +24,9 @@ export enum MutationTypes {
 }
 
 export const mutations: MutationTree<State> & Mutations = {
-  [MutationTypes.TOGGLE_IsDarkTheme](state) {
-    state.isDarkTheme = !state.isDarkTheme;
+  [MutationTypes.SET_Theme](state, payload) {
+    state.theme = payload;
+    localStorage.theme = payload;
   },
 
   [MutationTypes.SET_SHOW_Navbar](state, payload) {

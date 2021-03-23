@@ -21,11 +21,3 @@ export default defineComponent({
   setup() {},
 });
 </script>
-
-<style>
-.f-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-</style>

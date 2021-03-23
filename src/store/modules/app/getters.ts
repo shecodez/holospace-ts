@@ -4,6 +4,7 @@ import {
   IRootState,
   IAppState as State,
   IAppGetters as Getters,
+  AppThemes,
 } from '../../interfaces';
 
 export const getters: GetterTree<State, IRootState> & Getters = {
@@ -12,5 +13,8 @@ export const getters: GetterTree<State, IRootState> & Getters = {
   },
   showToast: (state): boolean => {
     return !!state.toast;
+  },
+  isDarkTheme: (state): boolean => {
+    return state.theme === AppThemes.DARK ? true : false;
   },
 };

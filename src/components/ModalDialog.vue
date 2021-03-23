@@ -1,55 +1,76 @@
 <template>
-  <teleport to="body">
-    <transition
-      enter-active-class="transition ease-out duration-200 transform"
-      enter-from-class="opacity-0"
-      enter-to-class="opacity-100"
-      leave-active-class="transition ease-in duration-200 transform"
-      leave-from-class="opacity-100"
-      leave-to-class="opacity-0"
+  <!-- <teleport to="body"> -->
+  <div
+    class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center"
+    v-show="showModal"
+  >
+    <div
+      ref="modal-backdrop"
+      class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"
+    ></div>
+
+    <div
+      ref="modal"
+      class="modal-container bg-white w-11/12 md:max-w-lg mx-auto rounded shadow-lg z-50 overflow-y-auto"
+      role="dialog"
     >
-      <div
-        ref="modal-backdrop"
-        class="fixed z-10 inset-0 overflow-y-auto bg-black bg-opacity-50"
-        v-show="showModal"
+      <button
+        class="modal-close absolute top-0 right-0 flex flex-col items-center mt-4 mr-4 text-white text-sm z-50"
+        @click="closeModal"
       >
-        <div class="flex item-center justify-center">
-          <div
-            class="modal relative bg-white shadow-xl w-1/2 p-4 rounded-lg"
-            role="dialog"
-            ref="modal"
-          >
-            <button class="absolute right-2 top-2" @click="closeModal">
+        <icon-close />
+        <span class="text-sm">(Esc)</span>
+      </button>
+
+      <div class="modal-content py-4 text-left px-6">
+        <!-- header -->
+        <slot name="header">
+          <div v-show="title" class="flex justify-between items-center pb-3">
+            <p class="text-2xl font-bold">{{ title }}</p>
+            <button class="modal-close z-50" @click="closeModal">
               <icon-close />
             </button>
-            <slot></slot>
           </div>
-        </div>
+        </slot>
+
+        <!-- body -->
+        <slot></slot>
+
+        <!--Footer-->
+        <slot name="footer">
+          <!-- <div class="flex justify-end pt-2">
+            <button class="px-4 bg-transparent p-2 rounded text-indigo-500 hover:bg-gray-100 hover:text-indigo-400 mr-2">Action</button>
+            <button class="modal-close px-4 bg-indigo-500 p-2 rounded text-white hover:bg-indigo-400">Close</button>
+          </div> -->
+        </slot>
       </div>
-    </transition>
-  </teleport>
+    </div>
+  </div>
+  <!-- </teleport> -->
 </template>
 
-<script>
-import { watch, ref } from "vue";
-import IconClose from "/@vite-icons/mdi/close.vue";
-import useClickOutsite from "../composables/useClickOutside";
+<script lang="ts">
+import { watch, ref, defineComponent } from 'vue';
+import IconClose from '/@vite-icons/mdi/close.vue';
+import useClickOutsite from '../useables/useClickOutside';
 
-const props = {
-  isOpen: {
-    type: Boolean,
-    default: false,
+export default defineComponent({
+  name: 'ModalDialog',
+  props: {
+    isOpen: {
+      type: Boolean,
+      default: false,
+    },
+    onClose: {
+      type: Function,
+      required: true,
+    },
+    title: {
+      type: String,
+      required: false,
+    },
   },
-};
-
-const components = {
-  IconClose,
-};
-
-export default {
-  name: "ModalDialog",
-  props,
-  components,
+  components: { IconClose },
   setup(props) {
     const modal = ref(null);
     const showModal = ref(false);
@@ -64,6 +85,7 @@ export default {
 
     function closeModal() {
       showModal.value = false;
+      props.onClose();
     }
 
     onClickOutside(modal, () => {
@@ -74,7 +96,5 @@ export default {
 
     return { showModal, closeModal, modal };
   },
-};
+});
 </script>
-
-<style></style>

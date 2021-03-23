@@ -16,6 +16,8 @@ export enum MutationTypes {
   SET_LOADING_Decks = 'SET_LOADING_Decks',
   SET_CREATE_Deck_MODAL = 'SET_CREATE_Deck_MODAL',
   SET_EDIT_Deck_MODAL = 'SET_EDIT_Deck_MODAL',
+  SET_ADD_OR_JOIN_Deck_MODAL = 'SET_ADD_OR_JOIN_Deck_MODAL',
+  SET_JOIN_Deck_MODAL = 'SET_JOIN_Deck_MODAL',
 }
 
 export const mutations: MutationTree<State> & Mutations = {
@@ -60,6 +62,12 @@ export const mutations: MutationTree<State> & Mutations = {
   },
   [MutationTypes.SET_EDIT_Deck_MODAL](state, payload) {
     state.showEditDeckModal = payload.isOpen;
-    state.editModalDeckId = payload.deckId;
+    state.editDeckId = payload.deckId;
+  },
+  [MutationTypes.SET_ADD_OR_JOIN_Deck_MODAL](state, payload) {
+    state.showAddOrJoinDeckModal = payload;
+  },
+  [MutationTypes.SET_JOIN_Deck_MODAL](state, payload) {
+    state.showJoinDeckModal = payload;
   },
 };
