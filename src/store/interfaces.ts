@@ -8,6 +8,8 @@ import { MutationTypes as AppMTypes } from './modules/app/mutations';
 import { ActionTypes as AppATypes } from './modules/app/actions';
 import { MutationTypes as DeckMTypes } from './modules/decks/mutations';
 import { ActionTypes as DeckATypes } from './modules/decks/actions';
+import { MutationTypes as LocaleMTypes } from './modules/locale/mutations';
+import { ActionTypes as LocaleATypes } from './modules/locale/actions';
 
 export interface IRootState {
   root: boolean;
@@ -18,6 +20,7 @@ export interface IMergedState extends IRootState {
   counter: CounterStateTypes;
   app: IAppState;
   decks: IDeckState;
+  locale: ILocaleState;
 }
 
 export interface IRootMutations<S = IRootState> {
@@ -33,10 +36,7 @@ type AugmentedActionCtxRoot = Omit<ActionContext<IRootState, IRootState>, 'commi
 };
 
 export interface IRootActions {
-  [RootATypes.UPDATE_Version](
-    { commit }: AugmentedActionCtxRoot,
-    payload: string
-  ): void;
+  [RootATypes.UPDATE_Version]({ commit }: AugmentedActionCtxRoot, payload: string): void;
 }
 
 export interface IRootGetters {
@@ -68,10 +68,7 @@ export type AugmentedActionContextCounter = {
 } & Omit<ActionContext<CounterStateTypes, IRootState>, 'commit'>;
 
 export interface CounterActionsTypes {
-  [CounterATypes.GET_COUNTER](
-    { commit }: AugmentedActionContextCounter,
-    payload: number
-  ): void;
+  [CounterATypes.GET_COUNTER]({ commit }: AugmentedActionContextCounter, payload: number): void;
 }
 
 /************************* APP MODULE TYPES **************************/
@@ -146,43 +143,22 @@ type AugmentedActionCtxApp  = Omit<ActionContext<IAppState, IRootState>, 'commit
 
 export interface IAppActions {
   [AppATypes.INIT_Theme]({ commit }: AugmentedActionCtxApp): void;
-  [AppATypes.SET_Theme](
-    { commit }: AugmentedActionCtxApp,
-    payload: String
-  ): void;
+  [AppATypes.SET_Theme]({ commit }: AugmentedActionCtxApp, payload: String): void;
   [AppATypes.TOGGLE_Theme]({ commit }: AugmentedActionCtxApp): void;
 
-  [AppATypes.SET_SHOW_Navbar](
-    { commit }: AugmentedActionCtxApp,
-    payload: boolean
-  ): void;
-  [AppATypes.SET_SHOW_Footer](
-    { commit }: AugmentedActionCtxApp,
-    payload: boolean
-  ): void;
+  [AppATypes.SET_SHOW_Navbar]({ commit }: AugmentedActionCtxApp, payload: boolean): void;
+  [AppATypes.SET_SHOW_Footer]({ commit }: AugmentedActionCtxApp, payload: boolean): void;
 
-  [AppATypes.SET_SIDE_DRAWER_IsOpen](
-    { commit }: AugmentedActionCtxApp,
-    payload: boolean
-  ): void;
+  [AppATypes.SET_SIDE_DRAWER_IsOpen]({ commit }: AugmentedActionCtxApp, payload: boolean): void;
   [AppATypes.TOGGLE_Side_DRAWER]({ commit }: AugmentedActionCtxApp): void;
 
-  [AppATypes.SET_META_DRAWER_IsMini](
-    { commit }: AugmentedActionCtxApp,
-    payload: boolean
-  ): void;
+  [AppATypes.SET_META_DRAWER_IsMini]({ commit }: AugmentedActionCtxApp, payload: boolean): void;
   [AppATypes.TOGGLE_Meta_DRAWER]({ commit }: AugmentedActionCtxApp): void;
 
-  [AppATypes.SET_Banner](
-    { commit }: AugmentedActionCtxApp,
-    payload: IBanner
-  ): void;
+  [AppATypes.SET_Banner]({ commit }: AugmentedActionCtxApp, payload: IBanner): void;
   [AppATypes.CLEAR_Banner]({ commit }: AugmentedActionCtxApp): void;
 
-  [AppATypes.SET_Toast](
-    { commit }: AugmentedActionCtxApp,
-    payload: IToast
-  ): void;
+  [AppATypes.SET_Toast]({ commit }: AugmentedActionCtxApp, payload: IToast): void;
   [AppATypes.CLEAR_Toast]({ commit }: AugmentedActionCtxApp): void;
 }
 
@@ -193,6 +169,7 @@ export interface IAppGetters {
 }
 
 /************************ DECK MODULE TYPES **************************/
+
 export enum Regions {
   US_EAST = 'US-East',
   JP_ASIA = 'JP-Asia',
@@ -227,25 +204,13 @@ export interface IDeckMutations<S = IDeckState> {
   [DeckMTypes.SET_ACTIVE_Deck](state: S, payload: IDeck): void;
   [DeckMTypes.CREATE_Deck](state: S, payload: IDeck): void;
   [DeckMTypes.SET_AUTH_USER_Decks](state: S, payload: IDeck[]): void;
-  [DeckMTypes.EDIT_Deck](
-    state: S,
-    payload: Partial<IDeck> & { id: string }
-  ): void;
-  [DeckMTypes.UPDATE_Deck](
-    state: S,
-    payload: Partial<IDeck> & { id: string }
-  ): void;
-  [DeckMTypes.DELETE_Deck](
-    state: S,
-    payload: Partial<IDeck> & { id: string }
-  ): void;
+  [DeckMTypes.EDIT_Deck](state: S, payload: Partial<IDeck> & { id: string }): void;
+  [DeckMTypes.UPDATE_Deck](state: S, payload: Partial<IDeck> & { id: string }): void;
+  [DeckMTypes.DELETE_Deck](state: S, payload: Partial<IDeck> & { id: string }): void;
 
   [DeckMTypes.SET_LOADING_Decks](state: S, payload: boolean): void;
   [DeckMTypes.SET_CREATE_Deck_MODAL](state: S, payload: boolean): void;
-  [DeckMTypes.SET_EDIT_Deck_MODAL](
-    state: S,
-    payload: { isOpen: boolean; deckId: string | undefined }
-  ): void;
+  [DeckMTypes.SET_EDIT_Deck_MODAL](state: S, payload: { isOpen: boolean; deckId: string | undefined }): void;
   [DeckMTypes.SET_ADD_OR_JOIN_Deck_MODAL](state: S, payload: boolean): void;
   [DeckMTypes.SET_JOIN_Deck_MODAL](state: S, payload: boolean): void;
 }
@@ -268,22 +233,41 @@ export interface IDeckActions {
 
   [DeckATypes.SET_CREATE_Deck_MODAL]({ commit }: AugmentedActionCtxDeck): void;
   [DeckATypes.SET_EDIT_Deck_MODAL]({ commit }: AugmentedActionCtxDeck): void;
-  [DeckATypes.SET_ADD_OR_JOIN_Deck_MODAL]({
-    commit,
-  }: AugmentedActionCtxDeck): void;
+  [DeckATypes.SET_ADD_OR_JOIN_Deck_MODAL]({ commit }: AugmentedActionCtxDeck): void;
   [DeckATypes.SET_JOIN_Deck_MODAL]({ commit }: AugmentedActionCtxDeck): void;
+}
+
+/*********************** LOCALE MODULE TYPES *************************/
+
+export type ILocaleState = {
+  lang: string | undefined;
+  fallbackLocale: string;
+  supportedLocales: string[];
+};
+
+export interface ILocaleMutations<S = ILocaleState> {
+  [LocaleMTypes.SET_Locale](state: S, payload: string): void;
+}
+
+export interface ILocaleGetters {
+  totalSupportedLocalesCount(state: ILocaleState): number;
+}
+
+// prettier-ignore
+type AugmentedActionCtxLocale = Omit<ActionContext<ILocaleState, IRootState>, 'commit'> & {
+  commit<K extends keyof ILocaleMutations>(
+    key: K,
+    payload: Parameters<ILocaleMutations[K]>[1]
+  ): ReturnType<ILocaleMutations[K]>;
+};
+
+export interface ILocaleActions {
+  [LocaleATypes.INIT_Locale]({ commit }: AugmentedActionCtxLocale): void;
+  [LocaleATypes.SET_Locale]({ commit }: AugmentedActionCtxLocale, payload: String): void;
 }
 
 /****************************** END **********************************/
 
-export interface IStoreActions
-  extends IRootActions,
-    CounterActionsTypes,
-    IAppActions,
-    IDeckActions {}
+export interface IStoreActions extends IRootActions, CounterActionsTypes, IAppActions, ILocaleActions, IDeckActions {}
 
-export interface IStoreGetters
-  extends IRootGetters,
-    CounterGettersTypes,
-    IAppGetters,
-    IDeckGetters {}
+export interface IStoreGetters extends IRootGetters, CounterGettersTypes, IAppGetters, ILocaleGetters, IDeckGetters {}

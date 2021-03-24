@@ -98,6 +98,9 @@ export default defineComponent({
   border: none;
   background-color: white;
   border-radius: 50%;
-  padding: 5px;
+  padding: 5px 9px;
+}
+.dark .divider-text {
+  background-color: rgba(31, 41, 55);
 }
 </style>

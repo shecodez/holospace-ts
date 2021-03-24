@@ -12,8 +12,8 @@ import { useI18n } from 'vue-i18n';
 import IconTranslate from '/@vite-icons/mdi/translate';
 
 import Select from './SelectField.vue';
-//import { useStore } from '../store';
-//import AllMutationTypes from '../store/mutation-types';
+import { useStore } from '@/store';
+import AllMutationTypes from '@/store/mutation-types';
 
 export default defineComponent({
   name: 'SetLocaleLang',
@@ -21,7 +21,7 @@ export default defineComponent({
   setup: () => {
     const { locale } = useI18n();
 
-    //const store = useStore();
+    const store = useStore();
 
     const getLangList = ref([
       { id: 'en', name: 'English' },
@@ -30,8 +30,7 @@ export default defineComponent({
     watch(
       () => locale.value,
       (local) => {
-        console.log('SetLocal.vue > setLang', local);
-        //store.commit(AllMutationTypes.SET_Lang, local);
+        store.commit(AllMutationTypes.SET_Locale, local);
       }
     );
 

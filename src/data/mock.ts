@@ -1,7 +1,7 @@
 export const decks = [
-  { id: '1', name: 'Resume | NJN', ids: '1', createdBy: '1' },
-  { id: '2', name: '이거 매워요?', ids: '6', createdBy: '1' },
-  { id: '3', name: '見ぬが花', ids: '7', createdBy: '1' },
+  { id: '1', name: 'Resume | NJN', ids: '1', hq: 0, createdBy: '1' },
+  { id: '2', name: '이거 매워요?', ids: '6', hq: 0, createdBy: '1' },
+  { id: '3', name: '見ぬが花', ids: '7', hq: 0, createdBy: '1' },
   //, { id: "4", name: "Deck 4", ids: "1", createdBy: "1" },
   // { id: "5", name: "Deck 5", ids: "1", createdBy: "1" },
   // { id: "6", name: "Deck 6", ids: "1", createdBy: "1" },

@@ -34,6 +34,9 @@ module.exports = {
         secondary: colors.emerald, //'var(--color-secondary)',
         neutral: colors.gray,
         error: colors.red,
+        info: colors.blue,
+        success: colors.green,
+        warning: colors.yellow
       },
       borderWidth: {
         3: '3px',

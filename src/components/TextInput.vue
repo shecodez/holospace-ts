@@ -9,7 +9,7 @@
         <slot name="preIcon"></slot>
       </div>
       <input
-        class="block w-full rounded focus:ring-primary-500"
+        class="block w-full rounded dark:bg-gray-700 focus:ring-primary-500"
         :class="[padL, padR]"
         v-bind="$attrs"
         type="text"

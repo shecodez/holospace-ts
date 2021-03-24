@@ -8,7 +8,7 @@
 
   "HoloKey": "HoloKey",
   "HoloTag": "HoloTag",
-  "loading": "読み込み中...",
+  "loading...": "読み込み中...",
   "or": "又",
   "back": "バック",
   "add": "作成する",
@@ -23,6 +23,11 @@
     "english": "英語",
     "japanese": "日本語"
   },
+
+  "alerts": {
+    "confirm_email_reminder": "メールアドレスを確認してください。"
+  },
+
   "auth": {
     "username": "ユーザー名",
     "email": "Eメール",

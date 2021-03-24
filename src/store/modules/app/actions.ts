@@ -32,7 +32,7 @@ export enum ActionTypes {
 
 export const actions: ActionTree<State, IRootState> & Actions = {
   [ActionTypes.INIT_Theme]({ commit }) {
-    const cachedTheme = localStorage.theme ? localStorage.theme : false;
+    const cachedTheme = localStorage.holospaceTheme ? localStorage.holospaceTheme : false;
     //  `true` if the user has set theme to `dark` on browser/OS
     const userPrefersDark = window.matchMedia('(prefers-color-scheme: dark)')
       .matches;
@@ -45,7 +45,7 @@ export const actions: ActionTree<State, IRootState> & Actions = {
     commit(MutationTypes.SET_Theme, theme);
   },
   [ActionTypes.TOGGLE_Theme]({ commit }) {
-    switch (localStorage.theme) {
+    switch (localStorage.holospaceTheme) {
       case AppThemes.LIGHT:
         commit(MutationTypes.SET_Theme, AppThemes.DARK);
         break;

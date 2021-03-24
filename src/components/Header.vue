@@ -25,12 +25,12 @@
           <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
             <div class="grid grid-flow-col gap-4">
               <ToggleTheme />
-              <div class="btn border rounded-full">
-                <router-link to="/d/1/1">{{ t('Header.open_app') }}</router-link>
-              </div>
-              <div class="btn btn-primary">
-                <router-link to="/login">{{ t('Header.login') }}</router-link>
-              </div>
+              <router-link to="/d/1/1">
+                <div class="btn border rounded-full">{{ t('Header.open_app') }}</div>
+              </router-link>
+              <router-link to="/login">
+                <div class="btn btn-primary">{{ t('Header.login') }}</div>
+              </router-link>
               <SetLocaleLang />
             </div>
           </div>

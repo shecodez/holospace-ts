@@ -5,7 +5,7 @@
 
     <div
       ref="modal"
-      class="modal-container bg-white w-11/12 md:max-w-lg mx-auto rounded shadow-lg z-50 overflow-y-auto"
+      class="modal-container bg-white dark:bg-gray-800 w-11/12 md:max-w-lg mx-auto rounded shadow-lg z-50 overflow-y-auto"
       role="dialog"
     >
       <button

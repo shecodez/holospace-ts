@@ -9,12 +9,14 @@ import { getters } from './getters';
 import counter from '../counter';
 import app from '../app';
 import decks from '../decks';
+import locale from '../locale';
 
 // Modules
 const modules: ModuleTree<IMergedState> = {
   counter,
   app,
   decks,
+  locale
 };
 
 // Root Module

@@ -1,13 +1,15 @@
-import { ActionTypes as rootATypes } from './modules/root/actions';
+import { ActionTypes as RootATypes } from './modules/root/actions';
 import { ActionTypes as counterATypes } from './modules/counter/actions';
-import { ActionTypes as appATypes } from './modules/app/actions';
-import { ActionTypes as deckATypes } from './modules/decks/actions';
+import { ActionTypes as AppATypes } from './modules/app/actions';
+import { ActionTypes as DeckATypes } from './modules/decks/actions';
+import { ActionTypes as LocaleATypes } from './modules/locale/actions';
 
 const AllActionTypes = {
-  ...rootATypes,
+  ...RootATypes,
   ...counterATypes,
-  ...appATypes,
-  ...deckATypes,
+  ...AppATypes,
+  ...DeckATypes,
+  ...LocaleATypes,
 };
 
 export default AllActionTypes;

@@ -7,7 +7,9 @@
       </a>
     </div>
 
-    <div class="border-l md:border-t md:border-l-0 border-white border-opacity-10 m-2 sm:py-2 md:pt-2">
+    <div
+      class="border-l md:border-t md:border-l-0 border-black dark:border-white border-opacity-10 m-2 sm:py-2 md:pt-2"
+    >
       <span class="uppercase text-xs font-medium p-2">{{ t('deck', deckCnt) }}</span>
     </div>
 
@@ -17,7 +19,10 @@
     </div>
 
     <div class="sticky sm:right-0 md:bottom-0 p-2">
-      <button class="border-dashed hover-border-solid border-3 w-12 h-12 rounded-full f-center" @click="setModal">
+      <button
+        class="border-3 border-dashed hover-border-solid border-black dark:border-white w-12 h-12 rounded-full f-center"
+        @click="setModal"
+      >
         <icon-plus />
       </button>
     </div>

@@ -23,7 +23,9 @@
         <div class="relative border-4 rounded-full w-32 h-32 f-center" :style="`background-color: ${defBgColor}`">
           <span class="text-4xl text-white">{{ name.charAt(0) }}</span>
           <img v-show="isImage" class="rounded-full" :src="avatarUrl" alt="Deck Avatar" />
-          <button class="absolute right-0 bottom-0 bg-white border-2 border-dashed rounded-full w-9 h-9 f-center">
+          <button
+            class="absolute right-0 bottom-0 bg-white dark:bg-gray-700 border-2 border-dashed rounded-full w-9 h-9 f-center"
+          >
             <icon-upload />
           </button>
         </div>

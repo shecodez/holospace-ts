@@ -26,7 +26,7 @@ export enum MutationTypes {
 export const mutations: MutationTree<State> & Mutations = {
   [MutationTypes.SET_Theme](state, payload) {
     state.theme = payload;
-    localStorage.theme = payload;
+    localStorage.holospaceTheme = payload;
   },
 
   [MutationTypes.SET_SHOW_Navbar](state, payload) {

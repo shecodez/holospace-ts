@@ -23,6 +23,11 @@
     "english": "english",
     "japanese": "japanese"
   },
+
+  "alerts": {
+    "confirm_email_reminder": "Please, verify your email address."
+  },
+
   "auth": {
     "username": "Username",
     "email": "E-mail",

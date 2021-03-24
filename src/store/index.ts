@@ -6,13 +6,15 @@ import { RootStoreModuleTypes } from './modules/root/types';
 import { CounterStoreModuleTypes } from './modules/counter/types';
 import { AppStoreModuleTypes } from './modules/app/types';
 import { DeckStoreModuleTypes } from './modules/decks/types';
+import { LocaleStoreModuleTypes } from './modules/locale/types';
 
 import root from './modules/root';
 
 export type Store = RootStoreModuleTypes<Pick<IMergedState, 'root'>> &
   CounterStoreModuleTypes<Pick<IMergedState, 'counter'>> &
   AppStoreModuleTypes<Pick<IMergedState, 'app'>> &
-  DeckStoreModuleTypes<Pick<IMergedState, 'decks'>>;
+  DeckStoreModuleTypes<Pick<IMergedState, 'decks'>> &
+  LocaleStoreModuleTypes<Pick<IMergedState, 'locale'>>;
 
 // Plug in logger when in development environment
 const isDebug = process.env.NODE_ENV !== 'production';
