@@ -1,13 +1,7 @@
 <template>
   <!-- <teleport to="body"> -->
-  <div
-    class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center"
-    v-show="showModal"
-  >
-    <div
-      ref="modal-backdrop"
-      class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"
-    ></div>
+  <div class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center" v-show="showModal">
+    <div ref="modal-backdrop" class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
 
     <div
       ref="modal"
@@ -19,7 +13,7 @@
         @click="closeModal"
       >
         <icon-close />
-        <span class="text-sm">(Esc)</span>
+        <span class="text-sm">{{ t('ModalDialog.esc') }}</span>
       </button>
 
       <div class="modal-content py-4 text-left px-6">
@@ -51,8 +45,10 @@
 
 <script lang="ts">
 import { watch, ref, defineComponent } from 'vue';
-import IconClose from '/@vite-icons/mdi/close.vue';
-import useClickOutsite from '../useables/useClickOutside';
+import { useI18n } from 'vue-i18n';
+import IconClose from '/@vite-icons/mdi/close';
+
+import useClickOutsite from '@/useables/useClickOutside';
 
 export default defineComponent({
   name: 'ModalDialog',
@@ -72,6 +68,8 @@ export default defineComponent({
   },
   components: { IconClose },
   setup(props) {
+    const { t } = useI18n();
+
     const modal = ref(null);
     const showModal = ref(false);
     const { onClickOutside } = useClickOutsite();
@@ -94,7 +92,7 @@ export default defineComponent({
       }
     });
 
-    return { showModal, closeModal, modal };
+    return { t, showModal, closeModal, modal };
   },
 });
 </script>

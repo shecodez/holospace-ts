@@ -1,22 +1,12 @@
 <template>
   <form @submit.prevent="submitJoinDeckForm" class="c-secondary">
-    <TextInput
-      ref="inputKeyEl"
-      v-model="holoKey"
-      label="HoloKey"
-      preIcon
-      class="focus:ring-secondary-500"
-    >
+    <TextInput ref="inputKeyEl" v-model="holoKey" label="HoloKey" preIcon class="focus:ring-secondary-500">
       <template v-slot:preIcon>
         <icon-key class="text-secondary-500" />
       </template>
     </TextInput>
 
-    <button
-      class="btn btn-secondary rounded px-4 py-2 absolute right-0 bottom-2"
-      :disabled="!isValid"
-      type="submit"
-    >
+    <button class="btn btn-secondary rounded px-4 py-2 absolute right-0 bottom-2" :disabled="!isValid" type="submit">
       <span class="uppercase">Join</span>
     </button>
   </form>
@@ -24,7 +14,7 @@
 
 <script lang="ts">
 import { ref, defineComponent } from 'vue';
-import IconKey from '/@vite-icons/mdi/key-variant.vue';
+import IconKey from '/@vite-icons/mdi/key-variant';
 
 import TextInput from '../TextInput.vue';
 export default defineComponent({
@@ -45,7 +35,7 @@ export default defineComponent({
   },
   components: { TextInput, IconKey },
   computed: {
-    showJoinDeckModal() {
+    showJoinDeckModal(): boolean {
       return this.$store.state.decks.showJoinDeckModal;
     },
   },
@@ -58,8 +48,8 @@ export default defineComponent({
   },
   methods: {
     focusInput() {
-      this.$nextTick(function () {
-        this.$refs.inputKeyEl.$el.querySelector('input').focus();
+      this.$nextTick(() => {
+        (this.$refs.inputKeyEl as any).$el.querySelector('input').focus();
       });
     },
   },

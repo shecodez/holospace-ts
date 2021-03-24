@@ -1,12 +1,13 @@
 <template>
   <ModalDialog :isOpen="showModal" :onClose="closeModal">
-    <h1>Edit Deck</h1>
+    <h1>{{ t(`${l10n}.edit_deck`) }}</h1>
     <DeckForm :deck="editDeck" :onSubmit="updateDeck" :onClose="closeModal" />
   </ModalDialog>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 import ModalDialog from '../ModalDialog.vue';
 import DeckForm from './DeckForm.vue';
@@ -24,6 +25,9 @@ export default defineComponent({
     },
   },
   setup: (props) => {
+    const { t } = useI18n();
+    const l10n = 'decks.EditDeckModal';
+
     const store = useStore();
 
     const editDeck = computed(() => store.getters.getDeckById(props.id));
@@ -43,6 +47,8 @@ export default defineComponent({
     };
 
     return {
+      t,
+      l10n,
       editDeck,
       updateDeck,
       showModal,

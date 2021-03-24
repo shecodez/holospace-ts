@@ -1,27 +1,28 @@
 <template>
   <div v-show="showScreen" class="relative">
     <div class="flex justify-between items-center pb-3 text-primary-500">
-      <h3 class="text-xl font-bold">Add New Deck</h3>
+      <h3 class="text-xl font-bold">{{ t(`${l10n}.add_new_deck`) }}</h3>
       <button @click="closeScreen">
         <icon-close />
       </button>
     </div>
     <p class="p-4 text-center">
-      By creating a deck, you and your crew can access free VoIP, Text, & Holo
-      chat DiskSpaces. Welcome aboard Captain!
+      {{ t(`${l10n}.by_creating_a_deck_you_`) }}
     </p>
 
     <DeckForm :onSubmit="createDeck" :onClose="closeScreen" />
 
     <p class="text-xs mt-2">
-      By creating a deck, you agree to HoloSpace's
-      <a class="text-primary-500 font-bold">Crew Regs</a>.
+      {{ t(`${l10n}.by_creating_a_deck_you_agree_`) }}
+
+      <a class="text-primary-500 font-bold">{{ t(`${l10n}.crew_regs`) }}</a
+      >.
     </p>
 
     <div class="flex justify-between py-2">
       <button @click="closeScreen" class="py-2 font-semibold">
         <icon-back-arrow class="inline-block mr-2" />
-        <span>Back</span>
+        <span class="capitalize">{{ t('back') }}</span>
       </button>
     </div>
   </div>
@@ -29,8 +30,9 @@
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
-import IconClose from '/@vite-icons/mdi/close.vue';
-import IconBackArrow from '/@vite-icons/mdi/keyboard-backspace.vue';
+import { useI18n } from 'vue-i18n';
+import IconClose from '/@vite-icons/mdi/close';
+import IconBackArrow from '/@vite-icons/mdi/keyboard-backspace';
 
 import DeckForm from './DeckForm.vue';
 
@@ -41,6 +43,9 @@ export default defineComponent({
   name: 'AddDeckScreen',
   components: { DeckForm, IconClose, IconBackArrow },
   setup: () => {
+    const { t } = useI18n();
+    const l10n = 'decks.AddDeckScreen';
+
     const store = useStore();
 
     const createDeck = () => {
@@ -55,6 +60,8 @@ export default defineComponent({
     };
 
     return {
+      t,
+      l10n,
       createDeck,
       showScreen,
       closeScreen,

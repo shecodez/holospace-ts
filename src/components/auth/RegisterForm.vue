@@ -1,23 +1,30 @@
 <template>
   <form>
-    <input v-model="username" type="text" class="rounded text-pink-500" />
-    <input v-model="email" type="email" class="rounded text-pink-500" />
-    <input v-model="password" type="password" class="rounded text-pink-500" />
+    <TextInput v-model="username" label="auth.username" />
+    <TextInput v-model="email" label="auth.email" />
+    <TextInput v-model="password" label="auth.password" />
 
-    <input v-model="terms" type="terms" class="rounded text-pink-500" />
-    <button :disabled="!valid" @click="submitRegister">Register</button>
+    <input v-model="terms" type="checkbox" />
+    <button :disabled="!valid" @click="submitRegister">{{ t('auth.register') }}</button>
   </form>
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from "vue";
+import { ref, defineComponent } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+import TextInput from '@/components/TextInput.vue';
+
 export default defineComponent({
-  name: "RegisterForm",
+  components: { TextInput },
+  name: 'RegisterForm',
 
   setup: () => {
-    const username = ref("");
-    const email = ref("");
-    const password = ref("");
+    const { t } = useI18n();
+
+    const username = ref('');
+    const email = ref('');
+    const password = ref('');
     const terms = ref(false);
     const valid = ref(true);
 
@@ -25,7 +32,7 @@ export default defineComponent({
       console.log(`RegisterForm.vue > submitRegister ${username.value}`);
     };
 
-    return { username, email, password, terms, valid, submitRegister };
+    return { t, username, email, password, terms, valid, submitRegister };
   },
 });
 </script>

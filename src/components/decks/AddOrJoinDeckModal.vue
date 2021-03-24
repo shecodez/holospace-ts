@@ -2,28 +2,28 @@
   <ModalDialog :isOpen="showModal" :onClose="closeModal">
     <div v-show="!isBg" class="relative grid grid-cols-2 divide-x">
       <div class="text-center p-4">
-        <h3 class="m-4 font-bold text-xl text-indigo-500 uppercase">Add</h3>
+        <h3 class="m-4 font-bold text-xl text-indigo-500 uppercase">{{ t('add') }}</h3>
         <icon-add class="m-auto text-7xl" />
-        <p class="py-4">Add a new Deck and invite your crew. It's free! 😉</p>
+        <p class="py-4">{{ t(`${l10n}.add_a_new_deck_and_`) }}</p>
         <button
           class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-2 py-2 font-semibold"
           @click="showAddDeck"
         >
-          <span class="uppercase">Add A Deck</span>
+          <span class="uppercase">{{ t(`${l10n}.add_a_deck`) }}</span>
         </button>
       </div>
 
-      <div class="divider-text">OR</div>
+      <div class="divider-text uppercase">{{ t('or') }}</div>
 
       <div class="text-center p-4">
-        <h3 class="m-4 font-bold text-xl text-green-500 uppercase">Join</h3>
+        <h3 class="m-4 font-bold text-xl text-green-500 uppercase">{{ t('join') }}</h3>
         <icon-join class="m-auto text-7xl" />
-        <p class="py-4">Enter a HoloKey 🔑 and join your crew On-Deck.</p>
+        <p class="py-4">{{ t(`${l10n}.enter_a_holokey_and_`) }}</p>
         <button
           class="block w-full max-w-xs mx-auto bg-green-500 hover:bg-green-700 focus:bg-green-700 text-white rounded-lg px-2 py-2 font-semibold"
           @click="showJoinDeck"
         >
-          <span class="uppercase">Join A Deck</span>
+          <span class="uppercase">{{ t(`${l10n}.join_a_deck`) }}</span>
         </button>
       </div>
     </div>
@@ -35,8 +35,9 @@
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
-import IconAdd from '/@vite-icons/mdi/layers-plus.vue';
-import IconJoin from '/@vite-icons/mdi/account-multiple-plus.vue';
+import { useI18n } from 'vue-i18n';
+import IconAdd from '/@vite-icons/mdi/layers-plus';
+import IconJoin from '/@vite-icons/mdi/account-multiple-plus';
 
 import ModalDialog from '../ModalDialog.vue';
 import AddDeckScreen from './AddDeckScreen.vue';
@@ -49,15 +50,15 @@ export default defineComponent({
   name: 'AddJoinDeckModal',
   components: { IconAdd, IconJoin, ModalDialog, AddDeckScreen, JoinDeckScreen },
   setup: () => {
+    const { t } = useI18n();
+    const l10n = 'decks.AddOrJoinDeckModal';
+
     const store = useStore();
 
     const showModal = computed(() => store.state.decks.showAddOrJoinDeckModal);
 
     const isBg = computed(() => {
-      if (
-        store.state.decks.showCreateDeckModal ||
-        store.state.decks.showJoinDeckModal
-      ) {
+      if (store.state.decks.showCreateDeckModal || store.state.decks.showJoinDeckModal) {
         return true;
       }
       return false;
@@ -76,6 +77,8 @@ export default defineComponent({
     };
 
     return {
+      t,
+      l10n,
       showModal,
       isBg,
       closeModal,

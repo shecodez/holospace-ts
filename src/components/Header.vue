@@ -2,48 +2,34 @@
   <header>
     <div class="relative bg-white dark:bg-gray-800">
       <div class="max-w-7xl mx-auto px-4 sm:px-6">
-        <div
-          class="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10"
-        >
+        <div class="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
           <div class="flex justify-start lg:w-0 lg:flex-1">
-            <a href="/">
+            <router-link to="/">
               <span class="sr-only">HoloSpace Brand</span>
-              <img
-                class="h-14 w-auto svg-img-primary"
-                src="../assets/hs-cube.svg"
-                alt="HoloSpace Brand"
-              />
-            </a>
+              <img class="h-14 w-auto svg-img-primary" src="../assets/hs-cube.svg" alt="HoloSpace Brand" />
+            </router-link>
           </div>
 
-          <nav class="hidden md:flex space-x-10">
-            <a
-              href="#"
-              class="text-base font-medium text-gray-500 hover:text-gray-900"
-            >
-              About
-            </a>
-            <a
-              href="#"
-              class="text-base font-medium text-gray-500 hover:text-gray-900"
-            >
-              Pricing
-            </a>
-            <a
-              href="#"
-              class="text-base font-medium text-gray-500 hover:text-gray-900"
-            >
-              Blog
-            </a>
+          <nav>
+            <ul class="hidden md:flex space-x-10">
+              <li v-for="route in routes" :key="route.path">
+                <router-link :to="route.to" :class="{ active: isActive(route.to) }">
+                  <div class="text-base font-medium text-gray-500 hover:text-gray-900">
+                    {{ t(`Header.nav.${route.text}`) }}
+                  </div>
+                </router-link>
+              </li>
+            </ul>
           </nav>
+
           <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
             <div class="grid grid-flow-col gap-4">
               <ToggleTheme />
               <div class="btn border rounded-full">
-                <router-link to="/d/1/1">Open App</router-link>
+                <router-link to="/d/1/1">{{ t('Header.open_app') }}</router-link>
               </div>
               <div class="btn btn-primary">
-                <router-link to="/login">Login</router-link>
+                <router-link to="/login">{{ t('Header.login') }}</router-link>
               </div>
               <SetLocaleLang />
             </div>
@@ -66,7 +52,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { computed, defineComponent } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { useRoute } from 'vue-router';
 
 import SetLocaleLang from './SetLocaleLang.vue';
 import ToggleTheme from './ToggleTheme.vue';
@@ -74,17 +62,33 @@ import ToggleTheme from './ToggleTheme.vue';
 export default defineComponent({
   name: 'Header',
   components: { ToggleTheme, SetLocaleLang },
+  setup: () => {
+    const { t } = useI18n();
+
+    const routes = [
+      { to: '/about', text: 'About' },
+      { to: '/blog', text: 'Blog' },
+      { to: '/contact', text: 'Contact' },
+    ];
+    const router = useRoute();
+
+    const currentLocation = computed(() => {
+      const { matched, ...rest } = router;
+      return rest;
+    });
+
+    const isActive = (path: string) => path === currentLocation.value.path;
+    return { t, routes, isActive };
+  },
 });
 </script>
 
 <style>
 /* filter: https://codepen.io/sosuke/pen/Pjoqqp */
 .svg-img-primary {
-  filter: invert(39%) sepia(77%) saturate(734%) hue-rotate(206deg)
-    brightness(93%) contrast(103%);
+  filter: invert(39%) sepia(77%) saturate(734%) hue-rotate(206deg) brightness(93%) contrast(103%);
 }
 .svg-img-secondary {
-  filter: invert(70%) sepia(47%) saturate(6253%) hue-rotate(122deg)
-    brightness(95%) contrast(87%);
+  filter: invert(70%) sepia(47%) saturate(6253%) hue-rotate(122deg) brightness(95%) contrast(87%);
 }
 </style>

@@ -1,13 +1,11 @@
 <template>
   <div class="select-ctrl-group relative">
-    <label v-show="label" class="text-xs font-medium ml-2" :for="label">
-      {{ label }}
+    <label v-show="label && !noLabel" class="text-xs font-medium ml-2" :for="label">
+      {{ t(`${label}`) }}
       <span v-if="required" class="text-red-500">*</span>
     </label>
     <div class="relative">
-      <div
-        class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
-      >
+      <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
         <slot name="preIcon"></slot>
       </div>
       <select
@@ -35,6 +33,7 @@
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 export default defineComponent({
   name: 'SelectField',
@@ -66,12 +65,19 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    noLabel: {
+      type: Boolean,
+      default: false,
+    },
     //post-icon
   },
   setup: (props) => {
+    const { t } = useI18n();
+
     const pl = computed(() => (props.preIcon ? 'pl-10' : ''));
 
     return {
+      t,
       pl,
     };
   },

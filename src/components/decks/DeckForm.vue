@@ -2,84 +2,53 @@
   <form @submit.prevent="submitDeckForm">
     <div class="grid grid-cols-2 gap-4">
       <div class="l-col">
-        <TextInput
-          ref="inputNameEl"
-          v-model="name"
-          label="Deck Name"
-          :max="64"
-          preIcon
-          required
-        >
+        <TextInput ref="inputNameEl" v-model="name" :label="`${l10n}.deck_name`" :max="64" preIcon required>
           <template v-slot:preIcon>
             <IconDeck class="text-primary-500" />
           </template>
         </TextInput>
 
-        <Select v-model="hq" label="Deck HQ" :options="getRegionList" preIcon>
+        <Select v-model="hq" :label="`${l10n}.deck_hq`" :options="getRegionList" preIcon>
           <template v-slot:preIcon>
             <IconForFlag :flagFor="getRegionFlag" />
           </template>
           <template v-slot:hint>
-            Recommended: <b>{{ getRegionByIP }}</b>
+            {{ t('recommended') }}: <b>{{ getRegionByIP }}</b>
           </template>
         </Select>
       </div>
       <div class="text-center m-auto">
         <!-- <TextInput v-model="avatarUrl" label="Icon" /> -->
         <!-- if image error add border-red-500 to class -->
-        <div
-          class="relative border-4 rounded-full w-32 h-32 f-center"
-          :style="`background-color: ${defBgColor}`"
-        >
+        <div class="relative border-4 rounded-full w-32 h-32 f-center" :style="`background-color: ${defBgColor}`">
           <span class="text-4xl text-white">{{ name.charAt(0) }}</span>
-          <img
-            v-show="isImage"
-            class="rounded-full"
-            :src="avatarUrl"
-            alt="Deck Avatar"
-          />
-          <button
-            class="absolute right-0 bottom-0 bg-white border-2 border-dashed rounded-full w-9 h-9 f-center"
-          >
+          <img v-show="isImage" class="rounded-full" :src="avatarUrl" alt="Deck Avatar" />
+          <button class="absolute right-0 bottom-0 bg-white border-2 border-dashed rounded-full w-9 h-9 f-center">
             <icon-upload />
           </button>
         </div>
 
         <span class="text-xs leading-3">
           <!-- if image error add text-red-500 to class -->
-          <span class="">Min: <b>128</b> ~ Max: <b>1024</b></span>
-          <span v-if="imgError" class="text-error-500 block">{{
-            imgError
-          }}</span>
-          <span v-else class="hint block">Recommended: <b>512</b></span>
+          <span class="capitalize">{{ t('min') }}: <b>128</b> ~ {{ t('max') }}: <b>1024</b></span>
+          <span v-if="imgError" class="text-error-500 block">{{ imgError }}</span>
+          <span v-else class="hint block">{{ t('recommended') }}: <b>512</b></span>
         </span>
       </div>
     </div>
 
-    <button
-      class="btn btn-primary rounded px-4 py-2 absolute right-0 bottom-2"
-      :disabled="!isValid"
-      type="submit"
-    >
-      <span v-if="deck" class="uppercase">Update Deck</span>
-      <span v-else class="uppercase">Add</span>
+    <button class="btn btn-primary rounded px-4 py-2 absolute right-0 bottom-2" :disabled="!isValid" type="submit">
+      <span v-if="deck" class="uppercase">{{ t(`${l10n}.update_deck`) }}</span>
+      <span v-else class="uppercase">{{ t('add') }}</span>
     </button>
   </form>
 </template>
 
 <script lang="ts">
-import {
-  ref,
-  defineComponent,
-  reactive,
-  onMounted,
-  toRefs,
-  watch,
-  computed,
-  toRef,
-} from 'vue';
-import IconUpload from '/@vite-icons/mdi/arrow-up-bold-hexagon-outline.vue';
-import IconDeck from '/@vite-icons/mdi/layers-outline.vue';
+import { ref, defineComponent, reactive, onMounted, toRefs, watch, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
+import IconUpload from '/@vite-icons/mdi/arrow-up-bold-hexagon-outline';
+import IconDeck from '/@vite-icons/mdi/layers-outline';
 
 import IconForFlag from '../IconForFlag.vue';
 import TextInput from '../TextInput.vue';
@@ -108,11 +77,11 @@ export default defineComponent({
   },
   components: { TextInput, Select, IconUpload, IconDeck, IconForFlag },
   computed: {
-    showCreateModal() {
+    showCreateModal(): boolean {
       return this.$store.state.decks.showCreateDeckModal;
     },
-    showEditModal() {
-      return this.$store.state.decks.showEditModal;
+    showEditModal(): boolean {
+      return this.$store.state.decks.showEditDeckModal;
     },
   },
   watch: {
@@ -129,8 +98,8 @@ export default defineComponent({
   },
   methods: {
     focusInput() {
-      this.$nextTick(function () {
-        this.$refs.inputNameEl.$el.querySelector('input').focus();
+      this.$nextTick(() => {
+        (this.$refs.inputNameEl as any).$el.querySelector('input').focus();
       });
     },
   },
@@ -138,6 +107,9 @@ export default defineComponent({
   //   this.focusInput();
   // },
   setup: (props) => {
+    const { t } = useI18n();
+    const l10n = 'decks.DeckForm';
+
     const isValid = ref(true);
     const state = reactive({
       name: '',
@@ -209,6 +181,8 @@ export default defineComponent({
     );
 
     return {
+      t,
+      l10n,
       isValid,
       ...toRefs(state),
       submitDeckForm,

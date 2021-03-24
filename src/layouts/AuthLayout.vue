@@ -1,4 +1,5 @@
 <template>
+  <Header />
   <div class="min-w-screen min-h-screen flex items-center justify-center">
     <div
       class="bg-gray-800 bg-opacity-50 text-gray-100 rounded-2xl shadow-xl w-full overflow-hidden"
@@ -18,8 +19,10 @@
 </template>
 
 <script lang="ts">
+import Header from '@/components/Header.vue';
 import { defineComponent } from 'vue';
 export default defineComponent({
+  components: { Header },
   name: 'AuthLayout',
   props: {
     view: {

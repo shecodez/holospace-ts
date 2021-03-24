@@ -1,13 +1,11 @@
 <template>
   <div class="input-ctrl-group relative">
     <label v-show="label" class="text-xs font-medium ml-2" :for="label">
-      {{ label }}
+      {{ t(`${label}`) }}
       <span v-if="required" class="text-red-500">*</span>
     </label>
     <div class="input-wrapper relative">
-      <div
-        class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
-      >
+      <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
         <slot name="preIcon"></slot>
       </div>
       <input
@@ -19,9 +17,7 @@
         :required="required"
         autocomplete="off"
       />
-      <div
-        class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"
-      >
+      <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
         <slot name="postIcon"></slot>
       </div>
     </div>
@@ -39,6 +35,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, ref, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 export default defineComponent({
   name: 'TextInput',
@@ -71,6 +68,8 @@ export default defineComponent({
     },
   },
   setup: (props, context) => {
+    const { t } = useI18n();
+
     const cLen = ref(0);
 
     const localValue = computed({
@@ -94,6 +93,7 @@ export default defineComponent({
     const padR = computed(() => (props.postIcon ? 'pr-10' : ''));
 
     return {
+      t,
       localValue,
       cLen,
       lenError,

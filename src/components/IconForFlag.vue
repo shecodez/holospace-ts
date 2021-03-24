@@ -5,8 +5,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import IconUnitedStates from '/@vite-icons/emojione-v1/flag-for-united-states.vue';
-import IconJapan from '/@vite-icons/emojione-v1/flag-for-japan.vue';
+import IconUnitedStates from '/@vite-icons/emojione-v1/flag-for-united-states';
+import IconJapan from '/@vite-icons/emojione-v1/flag-for-japan';
 
 export default defineComponent({
   name: 'IconForFlag',

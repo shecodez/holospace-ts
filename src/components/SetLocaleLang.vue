@@ -1,5 +1,5 @@
 <template>
-  <Select v-model="lang" :options="getLangList" preIcon>
+  <Select ref="selectLocaleEl" v-model="locale" label="language" :options="getLangList" preIcon noLabel>
     <template v-slot:preIcon>
       <icon-translate />
     </template>
@@ -8,7 +8,8 @@
 
 <script lang="ts">
 import { defineComponent, ref, watch } from 'vue';
-import IconTranslate from '/@vite-icons/mdi/translate.vue';
+import { useI18n } from 'vue-i18n';
+import IconTranslate from '/@vite-icons/mdi/translate';
 
 import Select from './SelectField.vue';
 //import { useStore } from '../store';
@@ -18,23 +19,24 @@ export default defineComponent({
   name: 'SetLocaleLang',
   components: { IconTranslate, Select },
   setup: () => {
+    const { locale } = useI18n();
+
     //const store = useStore();
 
-    const lang = ref('en'); //store.state.locale.lang
     const getLangList = ref([
       { id: 'en', name: 'English' },
       { id: 'ja', name: '日本語' },
     ]);
     watch(
-      () => lang.value,
-      (lang) => {
-        console.log('SetLocal.vue > setLang', lang);
-        //store.commit(AllMutationTypes.SET_Lang, lang);
+      () => locale.value,
+      (local) => {
+        console.log('SetLocal.vue > setLang', local);
+        //store.commit(AllMutationTypes.SET_Lang, local);
       }
     );
 
     return {
-      lang,
+      locale,
       getLangList,
     };
   },

@@ -15,21 +15,19 @@ export default defineComponent({
 
     onBeforeMount(() => store.dispatch(AllActionTypes.INIT_Theme));
 
-    const isDark = computed(() => {
-      return store.getters.isDarkTheme;
+    const theme = computed(() => {
+      return store.state.app.theme;
     });
     watch(
-      () => isDark.value,
-      (isDark) => {
+      () => theme.value,
+      (theme) => {
         let html = document.querySelector<HTMLElement>('html');
-        isDark
-          ? html?.classList.add(AppThemes.DARK)
-          : html?.classList.remove(AppThemes.DARK);
+        theme === AppThemes.DARK ? html?.classList.add(AppThemes.DARK) : html?.classList.remove(AppThemes.DARK);
       }
     );
 
     return {
-      isDark,
+      theme,
     };
   },
 });

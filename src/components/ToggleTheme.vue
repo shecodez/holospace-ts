@@ -7,11 +7,10 @@
 
 <script lang="ts">
 import { computed, defineComponent, ref, watch } from 'vue';
-import IconLight from '/@vite-icons/mdi/brightness-5.vue';
-import IconDark from '/@vite-icons/mdi/weather-night.vue';
+import IconLight from '/@vite-icons/mdi/brightness-5';
+import IconDark from '/@vite-icons/mdi/weather-night';
 import { useStore } from '../store';
 import AllActionTypes from '../store/action-types';
-import { AppThemes } from '../store/interfaces';
 
 export default defineComponent({
   name: 'ToggleTheme',
