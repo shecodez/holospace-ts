@@ -6,7 +6,7 @@
           <div class="flex justify-start lg:w-0 lg:flex-1">
             <router-link to="/">
               <span class="sr-only">HoloSpace Brand</span>
-              <img class="h-14 w-auto svg-img-primary" src="../assets/hs-cube.svg" alt="HoloSpace Brand" />
+              <img class="h-14 w-auto svg-img-primary" src="@/assets/hs-cube.svg" alt="HoloSpace Brand" />
             </router-link>
           </div>
 

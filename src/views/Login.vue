@@ -1,12 +1,12 @@
 <template>
   <Layout view="Login">
     <div class="text-center mb-10">
-      <h1 class="font-bold text-xl">{{ t('views.Login.hey_welcome_back') }}</h1>
+      <h2 class="font-bold text-xl">{{ t('views.Login.hey_welcome_back') }}</h2>
     </div>
     <LoginForm />
-    <p>
+    <p class="text-center font-medium">
       {{ t('views.Login.need_an_account') }}
-      <router-link to="/register">{{ t('auth.register') }}</router-link>
+      <router-link class="text-primary-500" to="/register">{{ t('auth.register') }}</router-link>
     </p>
   </Layout>
 </template>

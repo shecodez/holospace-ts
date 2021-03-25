@@ -9,7 +9,7 @@
         <slot name="preIcon"></slot>
       </div>
       <select
-        class="block w-full dark:bg-gray-700 rounded"
+        class="block w-full bg-transparent rounded"
         :class="pl"
         v-bind="$attrs"
         :value="modelValue"

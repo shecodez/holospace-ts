@@ -1,5 +1,5 @@
 <template>
-  <div class="input-ctrl-group relative">
+  <div class="input-ctrl-group relative mb-2">
     <label v-show="label" class="text-xs font-medium ml-2" :for="label">
       {{ t(`${label}`) }}
       <span v-if="required" class="text-red-500">*</span>
@@ -9,7 +9,7 @@
         <slot name="preIcon"></slot>
       </div>
       <input
-        class="block w-full rounded dark:bg-gray-700 focus:ring-primary-500"
+        class="block w-full rounded bg-transparent focus:ring-primary-500"
         :class="[padL, padR]"
         v-bind="$attrs"
         type="text"
@@ -17,7 +17,7 @@
         :required="required"
         autocomplete="off"
       />
-      <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+      <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
         <slot name="postIcon"></slot>
       </div>
     </div>

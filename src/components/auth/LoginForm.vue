@@ -1,15 +1,19 @@
 <template>
   <form>
     <TextInput v-model="email" label="auth.email" />
-    <TextInput v-model="password" label="auth.password" />
-    <button @click="submitForgot">{{ t('auth.forgot_password') }}</button>
+    <PasswordInput v-model="password" label="auth.password" />
 
-    <div class="flex">
-      <div class="w-full mb-5">
-        <button class="block w-full btn btn-primary px-2 py-2" :disabled="!valid" @click="submitLogin">
-          {{ t('auth.login') }}
-        </button>
-      </div>
+    <div
+      class="uppercase font-medium text-sm my-4 text-right cursor-pointer text-gray-300 hover:text-white"
+      @click="submitForgot"
+    >
+      {{ t('auth.forgot_password') }}
+    </div>
+
+    <div class="mb-4">
+      <button class="block w-full btn btn-primary px-2 py-2" :disabled="!valid" @click="submitLogin">
+        {{ t('auth.login') }}
+      </button>
     </div>
   </form>
 </template>
@@ -17,11 +21,13 @@
 <script lang="ts">
 import { ref, defineComponent, onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
+
 import TextInput from '@/components/TextInput.vue';
+import PasswordInput from '../PasswordInput.vue';
 
 export default defineComponent({
   name: 'LoginForm',
-  components: { TextInput },
+  components: { TextInput, PasswordInput },
   setup: () => {
     const { t } = useI18n();
 
