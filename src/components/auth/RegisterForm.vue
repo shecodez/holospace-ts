@@ -1,11 +1,11 @@
 <template>
-  <form>
+  <form @submit.prevent="submitRegister">
     <TextInput v-model="username" label="auth.username" />
-    <TextInput v-model="email" label="auth.email" />
-    <PasswordInput v-model="password" label="auth.password" />
+    <TextInput v-model="email" label="auth.email" type="email" />
+    <PasswordInput v-model="password" label="auth.password" showStrMeter />
 
     <div class="mt-6 mb-4">
-      <button class="block w-full btn btn-primary px-2 py-2" :disabled="!valid" @click="submitRegister">
+      <button class="block w-full btn btn-primary px-2 py-2" :disabled="!valid" type="submit">
         {{ t('auth.register') }}
       </button>
     </div>
@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from 'vue';
+import { ref, defineComponent, reactive, toRefs } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 import TextInput from '@/components/TextInput.vue';
@@ -26,17 +26,19 @@ export default defineComponent({
   setup: () => {
     const { t } = useI18n();
 
-    const username = ref('');
-    const email = ref('');
-    const password = ref('');
-    const terms = ref(false);
+    const user = reactive({
+      username: '',
+      email: '',
+      password: '',
+    });
+    //const terms = ref(false);
     const valid = ref(true);
 
     const submitRegister = () => {
-      console.log(`RegisterForm.vue > submitRegister ${username.value}`);
+      console.log(`RegisterForm.vue > submitRegister ${user.password}`);
     };
 
-    return { t, username, email, password, terms, valid, submitRegister };
+    return { t, ...toRefs(user), valid, submitRegister };
   },
 });
 </script>

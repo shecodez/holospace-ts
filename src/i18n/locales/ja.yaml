@@ -1,0 +1,73 @@
+---
+message:
+  language: 日本語
+  greeting: こんにちは、世界
+  hello: こんにちは、{0}!
+  hello2: こんにちは、は {company}!
+HoloKey: HoloKey
+HoloTag: HoloTag
+loading...: 読み込み中...
+or: 又
+back: バック
+add: 作成する
+join: 参加する
+recommended: お勧めします
+deck: デッキ
+min: 最小
+max: 最大
+language: 言語
+languages:
+  english: 英語
+  japanese: 日本語
+alerts:
+  confirm_email_reminder: メールアドレスを確認してください。
+auth:
+  username: ユーザー名
+  email: Eメール
+  password: パスワード
+  forgot_password: パスワードをお忘れですか？
+  login: ログイン
+  register: レジスタ
+  logout: ログアウト
+views:
+  Login:
+    hey_welcome_back: こんにちは、ようこそ！
+    need_an_account: アカウントが必要ですか？
+  Register:
+    create_an_account: アカウントを作成する
+    have_an_account: すでにアカウントをお持ちですか
+decks:
+  AddDeckScreen:
+    add_new_deck: 新しいデッキを追加する
+    by_creating_a_deck_you_:
+      デッキを作成することで、あなたとあなたの乗組員は無料のVoIP、テキスト、およびホロチャットディスクスペースにアクセスできます。
+      キャプテンにようこそ！
+    by_creating_a_deck_you_agree_: デッキを作成することで、HoloSpaceのルールに同意したことになります。
+    crew_regs: クルー規程
+  AddOrJoinDeckModal:
+    add_a_new_deck_and_: "新しいデッキを追加して、乗組員を招待します。 それは無料です！ \U0001F609"
+    add_a_deck: デッキを追加する
+    enter_a_holokey_and_: "HoloKey\U0001F511を入力して、クルーのオンデッキに参加してください。"
+    join_a_deck: デッキに参加する
+  DeckForm:
+    deck_name: デッキ名
+    deck_hq: デッキ本部
+    update_deck: 更新 {deck}
+  EditDeckModal:
+    edit_deck: '{deck}のデッキを編集する'
+  JoinDeckScreen:
+    join_a_deck: '@:decks.AddOrJoinDeckModal.join_a_deck'
+    enter_a_holokey_to_: HoloKeyを入力して、既存のデッキに参加します。 キーは次のようになります。
+Footer:
+  made_with_love: "で\U0001F970を込めて作られました"
+  crew_regs: '@:decks.AddDeckScreen.crew_regs'
+  privacy_policy: 個人情報保護方針
+Header:
+  nav:
+    About: だいたい
+    Blog: ブログ
+    Contact: 連絡先
+  open_app: アプリを開く
+  login: '@:auth.login'
+ModalDialog:
+  esc: '「出」'

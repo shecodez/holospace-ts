@@ -10,4 +10,7 @@ export const getters: GetterTree<State, IRootState> & Getters = {
   totalSupportedLocalesCount: (state) => {
     return state.supportedLocales.length;
   },
+  // isSupportedLocale: (state, locale) => {
+  //   return state.supportedLocales.includes(locale)
+  // }
 };

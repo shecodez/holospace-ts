@@ -1,0 +1,73 @@
+---
+message:
+  language: English
+  greeting: hello world!
+  hello: Hello {0}!
+  hello2: Hello from {company}!
+HoloKey: HoloKey
+HoloTag: HoloTag
+loading...: Loading...
+or: or
+back: back
+add: add
+join: join
+recommended: Recommended
+deck: deck | decks
+min: min
+max: max
+language: language
+languages:
+  english: english
+  japanese: japanese
+alerts:
+  confirm_email_reminder: Please, verify your email address.
+auth:
+  username: Username
+  email: E-mail
+  password: Password
+  forgot_password: Forgot Password?
+  login: Login
+  register: Register
+  logout: logout
+views:
+  Login:
+    hey_welcome_back: Hey, Welcome Back!
+    need_an_account: Need an Account?
+  Register:
+    create_an_account: Create an Account
+    have_an_account: Have an Account?
+decks:
+  AddDeckScreen:
+    add_new_deck: Add New Deck
+    by_creating_a_deck_you_: By creating a deck, you and your crew can access free
+      VoIP, Text, & Holo chat DiskSpaces. Welcome aboard Captain!
+    by_creating_a_deck_you_agree_: By creating a deck, you agree to HoloSpace's
+    crew_regs: Crew Regs
+  AddOrJoinDeckModal:
+    add_a_new_deck_and_: "Add a new Deck and invite your crew. It's free! \U0001F609"
+    add_a_deck: Add A Deck
+    enter_a_holokey_and_: "Enter a HoloKey \U0001F511 and join your crew On-Deck."
+    join_a_deck: Join A Deck
+  DeckForm:
+    deck_name: Deck Name
+    deck_hq: Deck HQ
+    update_deck: Update {deck}
+  EditDeckModal:
+    edit_deck: Edit {deck} Deck
+  JoinDeckScreen:
+    join_a_deck: '@:decks.AddOrJoinDeckModal.join_a_deck'
+    enter_a_holokey_to_: 'Enter a HoloKey to join an existing Deck. Your key should
+      look something like this:'
+Footer:
+  made_with_love: "made with \U0001F970 by"
+  crew_regs: '@:decks.AddDeckScreen.crew_regs'
+  privacy_policy: Privacy Policy
+Header:
+  nav:
+    About: About
+    Blog: Blog
+    Contact: Contact
+  open_app: Open App
+  login: '@:auth.login'
+ModalDialog:
+  esc: '(Esc)'

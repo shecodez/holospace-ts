@@ -7,6 +7,15 @@ export enum OnlineStatus {
   HIDE = 'HIDE',
 }
 
+export enum PasswordStrength {
+  VERY_WEAK = 'VERY_WEAK',
+  WEAK = 'WEAK',
+  MEDIUM = 'MEDIUM',
+  STRONG = 'STRONG',
+  VERY_STRONG = 'VERY_STRONG',
+  OVER_9000 = 'OVER_9000',
+}
+
 export type User = {
   id: string; // guid
   avatarUrl?: string;

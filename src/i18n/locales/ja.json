@@ -80,9 +80,9 @@
   },
   "Header": {
     "nav": {
-      "About": "お問い合わせ",
+      "About": "だいたい",
       "Blog": "ブログ",
-      "Contact": "お問い合わせ"
+      "Contact": "連絡先"
     },
     "open_app": "アプリを開く",
     "login": "@:auth.login"

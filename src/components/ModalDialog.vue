@@ -9,7 +9,7 @@
       role="dialog"
     >
       <button
-        class="modal-close absolute top-0 right-0 flex flex-col items-center mt-4 mr-4 text-white text-sm z-50"
+        class="modal-close absolute top-4 right-4 flex flex-col items-center mt-4 mr-4 text-white text-sm z-50"
         @click="closeModal"
       >
         <icon-close />

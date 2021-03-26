@@ -12,7 +12,7 @@
         class="block w-full rounded bg-transparent focus:ring-primary-500"
         :class="[padL, padR]"
         v-bind="$attrs"
-        type="text"
+        :type="type"
         v-model="localValue"
         :required="required"
         autocomplete="off"
@@ -43,6 +43,10 @@ export default defineComponent({
     label: {
       type: String,
       required: true,
+    },
+    type: {
+      type: String,
+      default: 'text',
     },
     modelValue: {
       type: [String, Number],

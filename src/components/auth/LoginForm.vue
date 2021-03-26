@@ -1,6 +1,6 @@
 <template>
-  <form>
-    <TextInput v-model="email" label="auth.email" />
+  <form @submit.prevent="submitLogin">
+    <TextInput v-model="email" label="auth.email" type="email" />
     <PasswordInput v-model="password" label="auth.password" />
 
     <div
@@ -11,7 +11,7 @@
     </div>
 
     <div class="mb-4">
-      <button class="block w-full btn btn-primary px-2 py-2" :disabled="!valid" @click="submitLogin">
+      <button class="block w-full btn btn-primary px-2 py-2" :disabled="!valid" type="submit">
         {{ t('auth.login') }}
       </button>
     </div>
@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import { ref, defineComponent, onMounted } from 'vue';
+import { ref, defineComponent, onMounted, reactive, toRefs } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 import TextInput from '@/components/TextInput.vue';
@@ -31,8 +31,10 @@ export default defineComponent({
   setup: () => {
     const { t } = useI18n();
 
-    const email = ref('');
-    const password = ref('');
+    const user = reactive({
+      email: '',
+      password: '',
+    });
     const valid = ref(true);
 
     onMounted(() => {
@@ -40,14 +42,14 @@ export default defineComponent({
     });
 
     const submitForgot = () => {
-      console.log(`LoginForm.vue > submitForgot ${email.value}`);
+      console.log(`LoginForm.vue > submitForgot ${user.email}`);
     };
 
     const submitLogin = () => {
-      console.log(`LoginForm.vue > submitLogin ${email.value}`);
+      console.log(`LoginForm.vue > submitLogin ${user}`);
     };
 
-    return { t, email, password, valid, submitForgot, submitLogin };
+    return { t, ...toRefs(user), valid, submitForgot, submitLogin };
   },
 });
 </script>
