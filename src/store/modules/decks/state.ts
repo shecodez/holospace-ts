@@ -4,6 +4,7 @@ export const state: State = {
   isLoading: false,
   activeDeck: undefined,
   deckList: [],
+  
   showCreateDeckModal: false,
   showEditDeckModal: false,
   showAddOrJoinDeckModal: false,

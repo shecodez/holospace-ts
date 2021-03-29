@@ -10,13 +10,15 @@ import counter from '../counter';
 import app from '../app';
 import decks from '../decks';
 import locale from '../locale';
+import diskSpaces from '../diskSpaces'
 
 // Modules
 const modules: ModuleTree<IMergedState> = {
   counter,
   app,
   decks,
-  locale
+  locale,
+  diskSpaces
 };
 
 // Root Module

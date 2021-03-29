@@ -12,12 +12,18 @@
   "or": "又",
   "back": "バック",
   "add": "作成する",
+  "create": "作る",
   "join": "参加する",
   "recommended": "お勧めします",
   "deck": "デッキ",
   "min": "最小",
   "max": "最大",
   "language": "言語",
+  "text": "テキスト",
+  "voip": "VoIP",
+  "holo": "ホロ",
+  "settings": "設定",
+  "init": "初期化",
 
   "languages": {
     "english": "英語",
@@ -71,6 +77,22 @@
     "JoinDeckScreen": {
       "join_a_deck": "@:decks.AddOrJoinDeckModal.join_a_deck",
       "enter_a_holokey_to_": "HoloKeyを入力して、既存のデッキに参加します。 キーは次のようになります。"
+    }
+  },
+  "diskSpaces": {
+    "CreateDiskSpaceModal": {
+      "create_disk_space": "ディスクスペースを作成します"
+    },
+    "DiskSpaceForm": {
+      "disk_space_name": "ディスクスペース名",
+      "disk_space_topic": "ディスクスペースのトピック",
+      "disk_space_type": "ディスクスペースタイプ",
+      "update_disk_space": "ディスクスペースの更新"
+    },
+    "DiskSpaceList": {
+      "TEXT_space": "テキストスペース",
+      "VOIP_space": "VoIP スペース",
+      "HOLO_space": "ホロスペース"
     }
   },
   "Footer": {

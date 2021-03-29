@@ -1,22 +1,21 @@
 <template>
   <FixedPanel>
     <div class="bg-primary-600 w-12 h-12 rounded-full m-2 f-center">
-      <a :href="route">
-        <icon-profile v-if="isSshChat" />
-        <icon-ssh-chat v-else />
-      </a>
+      <router-link to="/profile">
+        <icon-profile />
+        <!-- <icon-ssh-chat v-else /> -->
+      </router-link>
     </div>
 
     <div
-      class="border-l md:border-t md:border-l-0 border-black dark:border-white border-opacity-10 m-2 sm:py-2 md:pt-2"
+      class="border-l md:border-t md:border-l-0 border-black border-opacity-10 dark:border-white dark:border-opacity-10 m-2 sm:py-2 md:pt-2"
     >
       <span class="uppercase text-xs font-medium p-2">{{ t('deck', deckCnt) }}</span>
     </div>
 
     <div v-if="isLoading">{{ t('loading...') }}</div>
-    <div v-else>
-      <DeckList />
-    </div>
+    <!-- <DeckListSkeleton v-if="isLoading" /> -->
+    <DeckList v-else />
 
     <div class="sticky sm:right-0 md:bottom-0 p-2">
       <button
@@ -31,8 +30,9 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, ref, watch } from 'vue';
+import { computed, defineComponent, onBeforeMount, onMounted, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { useRoute } from 'vue-router';
 import IconSshChat from '/@vite-icons/mdi/mail-ru';
 import IconProfile from '/@vite-icons/mdi/account-circle';
 import IconPlus from '/@vite-icons/mdi/plus';
@@ -54,34 +54,32 @@ export default defineComponent({
     DeckList,
     AddOrJoinDeckModal,
   },
-  setup() {
+  setup: () => {
     const { t } = useI18n();
 
     const store = useStore();
 
-    const isSshChat = ref(false); //router.route.name === SshChat ? true : false
-    const route = ref('/ssh/d/');
+    const isLoading = computed(() => store.state.decks.isLoading);
+    onBeforeMount(() => store.dispatch(AllActionTypes.GET_AUTH_USER_Decks));
+
+    const route = useRoute();
 
     watch(
-      () => isSshChat,
-      (isSshChat) => {
-        route.value = isSshChat ? '/@me' : '/ssh/d/';
-      }
+      () => route.params,
+      (newParams) => {
+        store.dispatch(AllActionTypes.GET_ACTIVE_Deck, newParams.deckId as string);
+      },
+      { immediate: true }
     );
 
     const setModal = () => {
-      //store.commit(AllMutationTypes.SET_CREATE_Deck_MODAL, true);
       store.commit(AllMutationTypes.SET_ADD_OR_JOIN_Deck_MODAL, true);
     };
 
-    const isLoading = computed(() => store.state.decks.isLoading);
-    onMounted(() => store.dispatch(AllActionTypes.GET_AUTH_USER_Decks));
     const deckCnt = computed(() => store.getters.totalDeckCount);
 
     return {
       t,
-      isSshChat,
-      route,
       isLoading,
       setModal,
       deckCnt,
@@ -89,3 +87,27 @@ export default defineComponent({
   },
 });
 </script>
+
+<style>
+.deck.active:hover {
+  animation: none;
+}
+.deck:hover {
+  border-radius: 0.375rem; /*10%*/
+  animation: borders 0.5s ease-in-out;
+}
+@keyframes borders {
+  0% {
+    border-radius: 50%;
+  }
+  33% {
+    border-radius: 15%;
+  }
+  66% {
+    border-radius: 25%;
+  }
+  100% {
+    border-radius: 0.375rem; /*10%*/
+  }
+}
+</style>

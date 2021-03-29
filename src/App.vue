@@ -8,7 +8,7 @@ import { useI18n } from 'vue-i18n';
 
 import { useStore } from './store';
 import AllActionTypes from './store/action-types';
-import { AppThemes } from './store/interfaces';
+import { AppTheme } from './store/interfaces';
 
 export default defineComponent({
   name: 'App',
@@ -24,7 +24,7 @@ export default defineComponent({
       () => theme.value,
       (theme) => {
         let html = document.querySelector<HTMLElement>('html');
-        theme === AppThemes.DARK ? html?.classList.add(AppThemes.DARK) : html?.classList.remove(AppThemes.DARK);
+        theme === AppTheme.DARK ? html?.classList.add(AppTheme.DARK) : html?.classList.remove(AppTheme.DARK);
       }
     );
 

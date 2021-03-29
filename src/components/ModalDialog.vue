@@ -20,7 +20,7 @@
         <!-- header -->
         <slot name="header">
           <div v-show="title" class="flex justify-between items-center pb-3">
-            <p class="text-2xl font-bold">{{ title }}</p>
+            <h3 class="text-xl font-bold">{{ title }}</h3>
             <button class="modal-close z-50" @click="closeModal">
               <icon-close />
             </button>

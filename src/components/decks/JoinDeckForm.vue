@@ -7,13 +7,14 @@
     </TextInput>
 
     <button class="btn btn-secondary rounded px-4 py-2 absolute right-0 bottom-2" :disabled="!isValid" type="submit">
-      <span class="uppercase">Join</span>
+      <span class="uppercase">{{ t('join') }}</span>
     </button>
   </form>
 </template>
 
 <script lang="ts">
 import { ref, defineComponent } from 'vue';
+import { useI18n } from 'vue-i18n';
 import IconKey from '/@vite-icons/mdi/key-variant';
 
 import TextInput from '../TextInput.vue';
@@ -54,6 +55,7 @@ export default defineComponent({
     },
   },
   setup: (props) => {
+    const { t } = useI18n();
     const isValid = ref(true);
     const holoKey = ref('');
 
@@ -68,6 +70,7 @@ export default defineComponent({
     };
 
     return {
+      t,
       isValid,
       holoKey,
       submitJoinDeckForm,

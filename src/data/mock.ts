@@ -1,7 +1,9 @@
+import { Region, DiskSpaceType } from '@/store/interfaces';
+
 export const decks = [
-  { id: '1', name: 'Resume | NJN', ids: '1', hq: 0, createdBy: '1' },
-  { id: '2', name: '이거 매워요?', ids: '6', hq: 0, createdBy: '1' },
-  { id: '3', name: '見ぬが花', ids: '7', hq: 0, createdBy: '1' },
+  { id: '1', name: 'Resume | NJN', ids: '1', hq: Region.US_EAST, createdBy: '1' },
+  { id: '2', name: '이거 매워요?', ids: '6', hq: Region.US_EAST, createdBy: '1' },
+  { id: '3', name: '見ぬが花', ids: '7', hq: Region.JP_ASIA, createdBy: '1' },
   //, { id: "4", name: "Deck 4", ids: "1", createdBy: "1" },
   // { id: "5", name: "Deck 5", ids: "1", createdBy: "1" },
   // { id: "6", name: "Deck 6", ids: "1", createdBy: "1" },
@@ -16,20 +18,21 @@ export const decks = [
   // { id: "19", name: "Deck 19", ids: "1", createdBy: "1" }
 ];
 
-export const diskspaces = [
+export const diskSpaces = [
   {
     id: '1',
-    deckId: '1',
-    name: 'general',
+    ownerId: '1',
+    isSsh: false,
+    name: 'init',
     topic: 'rawr',
-    type: 'TEXT',
+    type: DiskSpaceType.TEXT, canDelete: false,
   },
-  { id: '2', deckId: '1', name: 'Education', type: 'TEXT' },
-  { id: '3', deckId: '1', name: 'Experience', type: 'TEXT' },
-  { id: '4', deckId: '1', name: 'The Voice', type: 'VOIP', children: [] },
-  { id: '5', deckId: '1', name: 'Holodeck 18', type: 'HOLO', children: [] },
-  { id: '6', deckId: '2', name: 'general', type: 'TEXT' },
-  { id: '7', deckId: '3', name: 'general', type: 'TEXT' },
+  { id: '2', ownerId: '1', isSsh: false, name: 'Education', type: DiskSpaceType.TEXT, canDelete: true },
+  { id: '3', ownerId: '1', isSsh: false, name: 'Experience', type: DiskSpaceType.TEXT, canDelete: true },
+  { id: '4', ownerId: '1', isSsh: false, name: 'The Voice', type: DiskSpaceType.VOIP, canDelete: true },
+  { id: '5', ownerId: '1', isSsh: false, name: 'Holodeck 18', type: DiskSpaceType.HOLO, canDelete: true },
+  { id: '6', ownerId: '2', isSsh: false, name: 'init', type: DiskSpaceType.TEXT, canDelete: false },
+  { id: '7', ownerId: '3', isSsh: false, name: 'init', type: DiskSpaceType.TEXT, canDelete: false },
 ];
 
 export const memberships = [];
@@ -137,8 +140,7 @@ export const events = [
   },
   {
     name: 'Large Event',
-    details:
-      'This starts in the middle of an event and spans over multiple events',
+    details: 'This starts in the middle of an event and spans over multiple events',
     start: '2018-12-31',
     end: '2019-01-04',
     color: 'deep-purple',

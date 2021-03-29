@@ -215,7 +215,10 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style scoped>
+.border-3 {
+  border-width: 3px;
+}
 button {
   position: relative;
 }
@@ -245,8 +248,7 @@ button:hover:before {
   top: 0;
   right: 0;
   height: 100%;
-  width: 0;
-  /* TODO: calc dynamic width w/ JS */
+  width: 0; /* TODO: calc dynamic height w/ JS */
   background: transparent;
   clip-path: polygon(50% 50%, 0 100%, 100% 100%);
   transform: rotate(270deg);
@@ -255,8 +257,8 @@ button:hover:before {
   width: 3rem;
   background: black;
 }
-.disk-space.active > .ribbon-tail:before {
-  width: 2.5rem;
+.disk-space.active .ribbon-tail:before {
+  width: 2.2rem;
   background: rgba(235, 235, 235, 0.1);
 }
 .disk-space .actions {
@@ -271,11 +273,6 @@ button:hover:before {
 .deck:hover {
   border-radius: 10%;
   animation: borders 0.5s ease-in-out;
-}
-.f-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 @keyframes borders {
   0% {

@@ -1,18 +1,13 @@
 <template>
   <div
-    class="flex flex-wrap md:flex-nowrap h-screen text-gray-800 dark:text-gray-200 bg-cyan-500 dark:bg-red-500 overflow-hidden"
+    class="flex flex-wrap md:flex-nowrap h-screen text-gray-800 dark:text-gray-200 bg-blue-500 dark:bg-red-500 overflow-hidden"
   >
     <slot name="FixedPanel"><DeckPanel /></slot>
-
     <div class="w-full h-full flex flex-col">
       <Banner />
       <div class="flex h-full">
-        <slot name="SidePanel">
-          <!-- <DiskPanel /> -->
-        </slot>
-
+        <slot name="SidePanel"><DiskSpacePanel /></slot>
         <slot></slot>
-
         <slot name="MetaPanel">
           <!-- <UserPanel /> -->
         </slot>
@@ -26,14 +21,15 @@ import { defineComponent, onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 import Banner from '@/components/Banner.vue';
-import DeckPanel from '../components/decks/DeckPanel.vue';
+import DeckPanel from '@/components/decks/DeckPanel.vue';
+import DiskSpacePanel from '@/components/diskspaces/DiskSpacePanel.vue';
 
 import { useStore } from '@/store';
 import AllActionTypes from '@/store/action-types';
 import { AlertTypes, IBanner } from '@/store/interfaces';
 
 export default defineComponent({
-  components: { Banner, DeckPanel },
+  components: { Banner, DeckPanel, DiskSpacePanel },
   name: 'MainLayout',
   props: {
     view: {
@@ -101,41 +97,11 @@ button:hover:before {
   width: 3rem;
   background: black;
 }
-.disk-space.active > .ribbon-tail:before {
-  width: 2.5rem;
-  background: rgba(235, 235, 235, 0.1);
-}
-.disk-space .actions {
-  visibility: hidden;
-}
-.disk-space:hover .actions {
-  visibility: visible;
-}
-.deck.active:hover {
-  animation: none;
-}
-.deck:hover {
-  border-radius: 10%;
-  animation: borders 0.5s ease-in-out;
-}
+
 .f-center {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-@keyframes borders {
-  0% {
-    border-radius: 50%;
-  }
-  33% {
-    border-radius: 15%;
-  }
-  66% {
-    border-radius: 25%;
-  }
-  100% {
-    border-radius: 10%;
-  }
 }
 .is-collapsedx .d-none {
   display: none;

@@ -11,6 +11,7 @@ import { decks } from '../../../data/mock';
 
 export enum ActionTypes {
   GET_AUTH_USER_Decks = 'GET_AUTH_USER_Decks',
+  GET_ACTIVE_Deck = 'GET_ACTIVE_Deck',
 
   SET_CREATE_Deck_MODAL = 'SET_CREATE_Deck_MODAL',
   SET_EDIT_Deck_MODAL = 'SET_EDIT_Deck_MODAL',
@@ -28,6 +29,18 @@ export const actions: ActionTree<State, IRootState> & Actions = {
 
     commit(MutationTypes.SET_LOADING_Decks, false);
     commit(MutationTypes.SET_AUTH_USER_Decks, decks);
+  },
+
+  async [ActionTypes.GET_ACTIVE_Deck]({ commit, state }, deckId) {
+    if (state.deckList.length) {
+      const deck = state.deckList.find((deck) => deck.id === deckId)
+      commit(MutationTypes.SET_ACTIVE_Deck, deck)
+    } else  {
+      // Fetch active deck from db
+      const deck = decks.find((deck) => deck.id === deckId)
+      await sleep(1000);
+      commit(MutationTypes.SET_ACTIVE_Deck, deck);
+    }
   },
 
   [ActionTypes.SET_CREATE_Deck_MODAL]({ commit }) {

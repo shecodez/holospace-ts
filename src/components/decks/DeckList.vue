@@ -1,10 +1,8 @@
 <template>
-  <ul
-    class="sm:overflow-x-auto md:overflow-y-auto flex md:flex-col"
-    v-for="deck in decks"
-    :key="deck.id"
-  >
-    <DeckListItem v-bind="deck" />
+  <ul class="sm:overflow-x-auto md:overflow-y-auto flex md:flex-col">
+    <li v-for="deck in decks" :key="deck.id" class="p-2">
+      <DeckListItem v-bind="deck" />
+    </li>
   </ul>
   <!-- <EditDeckModal v-show="showEditModal" :id="editDeckId" /> -->
 </template>

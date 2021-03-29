@@ -4,7 +4,7 @@
       <div class="l-col">
         <TextInput ref="inputNameEl" v-model="name" :label="`${l10n}.deck_name`" :max="64" preIcon required>
           <template v-slot:preIcon>
-            <IconDeck class="text-primary-500" />
+            <icon-deck class="text-primary-500" />
           </template>
         </TextInput>
 
@@ -20,7 +20,10 @@
       <div class="text-center m-auto">
         <!-- <TextInput v-model="avatarUrl" label="Icon" /> -->
         <!-- if image error add border-red-500 to class -->
-        <div class="relative border-4 rounded-full w-32 h-32 f-center" :style="`background-color: ${defBgColor}`">
+        <div
+          class="relative border-4 rounded-full w-32 h-32 f-center"
+          :style="`background-color: ${useHashColor(name)}`"
+        >
           <span class="text-4xl text-white">{{ name.charAt(0) }}</span>
           <img v-show="isImage" class="rounded-full" :src="avatarUrl" alt="Deck Avatar" />
           <button
@@ -55,7 +58,8 @@ import IconDeck from '/@vite-icons/mdi/layers-outline';
 import IconForFlag from '../IconForFlag.vue';
 import TextInput from '../TextInput.vue';
 import Select from '../SelectField.vue';
-import { getHashCode, intToHSL } from '../../utils';
+import { useHashColor } from '@/useables/useHashColor';
+import { Region } from '@/store/interfaces';
 
 export default defineComponent({
   name: 'DeckForm',
@@ -116,15 +120,17 @@ export default defineComponent({
     const state = reactive({
       name: '',
       avatarUrl: '',
-      hq: 0,
+      hq: Region.US_EAST,
     });
 
     const getRegionByIP = ref('US-East');
     const getRegionList = ref([
-      { id: 0, name: 'US-East', abbr: 'US' },
-      { id: 1, name: 'JP-Asia', abbr: 'JP' },
+      { id: Region.US_EAST, name: 'US-East', abbr: 'US' },
+      { id: Region.JP_ASIA, name: 'JP-Asia', abbr: 'JP' },
     ]);
-    const getRegionFlag = computed(() => getRegionList.value[state.hq].abbr);
+    const getRegionFlag = computed(
+      () => getRegionList.value[getRegionList.value.findIndex((x) => x.id === state.hq)].abbr
+    );
 
     const setFields = () => {
       if (props.deck) {
@@ -138,7 +144,7 @@ export default defineComponent({
 
     const resetForm = () => {
       state.name = '';
-      state.hq = 0;
+      state.hq = Region.US_EAST;
       state.avatarUrl = '';
     };
 
@@ -148,18 +154,6 @@ export default defineComponent({
       resetForm();
       props.onClose();
     };
-
-    const defBgColor = ref('var(--hs-primary)');
-    watch(
-      () => state.name,
-      (name) => {
-        if (name.length) {
-          defBgColor.value = intToHSL(getHashCode(name));
-        } else {
-          defBgColor.value = 'var(--hs-primary)';
-        }
-      }
-    );
 
     const isImage = ref(false);
     const imgError = ref('');
@@ -188,7 +182,7 @@ export default defineComponent({
       isValid,
       ...toRefs(state),
       submitDeckForm,
-      defBgColor,
+      useHashColor,
       isImage,
       imgError,
       getRegionByIP,

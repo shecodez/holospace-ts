@@ -6,7 +6,7 @@ import {
   IAppActions as Actions,
   IBanner,
   IToast,
-  AppThemes,
+  AppTheme,
 } from '../../interfaces';
 import { MutationTypes } from './mutations';
 
@@ -38,20 +38,20 @@ export const actions: ActionTree<State, IRootState> & Actions = {
       .matches;
 
     if (cachedTheme) commit(MutationTypes.SET_Theme, cachedTheme);
-    else if (userPrefersDark) commit(MutationTypes.SET_Theme, AppThemes.DARK);
-    else commit(MutationTypes.SET_Theme, AppThemes.LIGHT);
+    else if (userPrefersDark) commit(MutationTypes.SET_Theme, AppTheme.DARK);
+    else commit(MutationTypes.SET_Theme, AppTheme.LIGHT);
   },
-  [ActionTypes.SET_Theme]({ commit }, theme: AppThemes) {
+  [ActionTypes.SET_Theme]({ commit }, theme: AppTheme) {
     commit(MutationTypes.SET_Theme, theme);
   },
   [ActionTypes.TOGGLE_Theme]({ commit }) {
     switch (localStorage.holospaceTheme) {
-      case AppThemes.LIGHT:
-        commit(MutationTypes.SET_Theme, AppThemes.DARK);
+      case AppTheme.LIGHT:
+        commit(MutationTypes.SET_Theme, AppTheme.DARK);
         break;
 
       default:
-        commit(MutationTypes.SET_Theme, AppThemes.LIGHT);
+        commit(MutationTypes.SET_Theme, AppTheme.LIGHT);
         break;
     }
   },

@@ -12,12 +12,18 @@
   "or": "or",
   "back": "back",
   "add": "add",
+  "create": "Create",
   "join": "join",
   "recommended": "Recommended",
   "deck": "deck | decks",
   "min": "min",
   "max": "max",
   "language": "language",
+  "text": "Text",
+  "voip": "VoIP",
+  "holo": "Holo",
+  "settings": "Settings",
+  "init": "Init",
 
   "languages": {
     "english": "english",
@@ -71,6 +77,22 @@
     "JoinDeckScreen": {
       "join_a_deck": "@:decks.AddOrJoinDeckModal.join_a_deck",
       "enter_a_holokey_to_": "Enter a HoloKey to join an existing Deck. Your key should look something like this:"
+    }
+  },
+  "diskSpaces": {
+    "CreateDiskSpaceModal": {
+      "create_disk_space": "Create Disk Space"
+    },
+    "DiskSpaceForm": {
+      "disk_space_name": "DiskSpace Name",
+      "disk_space_topic": "DiskSpace Topic",
+      "disk_space_type": "DiskSpace Type",
+      "update_disk_space": "Update DiskSpace"
+    },
+    "DiskSpaceList": {
+      "TEXT_space": "Text Space",
+      "VOIP_space": "VoIP Space",
+      "HOLO_space": "Holo Space"
     }
   },
   "Footer": {

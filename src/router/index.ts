@@ -38,7 +38,7 @@ export function setupRouter(i18n: I18n): Router {
       component: Home,
     },
     {
-      path: '/d/:deckId/:diskspaceId',
+      path: '/d/:deckId/:diskSpaceId',
       name: 'Chat',
       component: Chat,
     },

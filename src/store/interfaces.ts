@@ -10,6 +10,8 @@ import { MutationTypes as DeckMTypes } from './modules/decks/mutations';
 import { ActionTypes as DeckATypes } from './modules/decks/actions';
 import { MutationTypes as LocaleMTypes } from './modules/locale/mutations';
 import { ActionTypes as LocaleATypes } from './modules/locale/actions';
+import { ActionTypes as DiskSpaceATypes } from './modules/diskSpaces/actions';
+import { MutationTypes as DiskSpaceMTypes } from './modules/diskSpaces/mutations';
 
 export interface IRootState {
   root: boolean;
@@ -21,6 +23,7 @@ export interface IMergedState extends IRootState {
   app: IAppState;
   decks: IDeckState;
   locale: ILocaleState;
+  diskSpaces: IDiskSpaceState;
 }
 
 export interface IRootMutations<S = IRootState> {
@@ -80,7 +83,7 @@ export enum AlertTypes {
   CUSTOM = 'CUSTOM',
 }
 
-export enum AppThemes {
+export enum AppTheme {
   DARK = 'dark',
   LIGHT = 'light',
 }
@@ -104,7 +107,7 @@ export interface IBanner extends IAlert {
 }
 
 export interface IAppState {
-  theme: AppThemes | undefined;
+  theme: AppTheme | undefined;
   showNavBar: boolean;
   showFooter: boolean;
   //isPopOutSideDrawer: boolean,
@@ -115,7 +118,7 @@ export interface IAppState {
 }
 
 export interface IAppMutations<S = IAppState> {
-  [AppMTypes.SET_Theme](state: S, payload: AppThemes): void;
+  [AppMTypes.SET_Theme](state: S, payload: AppTheme): void;
 
   [AppMTypes.SET_SHOW_Navbar](state: S, payload: boolean): void;
   [AppMTypes.SET_SHOW_Footer](state: S, payload: boolean): void;
@@ -170,7 +173,7 @@ export interface IAppGetters {
 
 /************************ DECK MODULE TYPES **************************/
 
-export enum Regions {
+export enum Region {
   US_EAST = 'US-East',
   JP_ASIA = 'JP-Asia',
 }
@@ -179,12 +182,12 @@ export type IDeck = {
   id: string; // guid
   name: string;
   avatarUrl?: string;
-  createdBy: string; // UserId - guid
-  ids: string; // (Init Disk Space) Id - guid
-  isEditing?: boolean;
-  hq: Regions;
+  captainId: string; // guid
+  //captain?: IUser;
+  idsId: string; // (Init Disk Space) Id - guid
+  hq: Region;
   //members?: User[];
-  //lastModBy: string; // UserId
+  //lastModById: string; // guid
   //createdAt: serverTimestamp;
   //updatedAt: null;
 };
@@ -201,7 +204,7 @@ export interface IDeckState {
 }
 
 export interface IDeckMutations<S = IDeckState> {
-  [DeckMTypes.SET_ACTIVE_Deck](state: S, payload: IDeck): void;
+  [DeckMTypes.SET_ACTIVE_Deck](state: S, payload: IDeck | undefined): void;
   [DeckMTypes.CREATE_Deck](state: S, payload: IDeck): void;
   [DeckMTypes.SET_AUTH_USER_Decks](state: S, payload: IDeck[]): void;
   [DeckMTypes.EDIT_Deck](state: S, payload: Partial<IDeck> & { id: string }): void;
@@ -230,6 +233,7 @@ type AugmentedActionCtxDeck = Omit<ActionContext<IDeckState, IRootState>, 'commi
 
 export interface IDeckActions {
   [DeckATypes.GET_AUTH_USER_Decks]({ commit }: AugmentedActionCtxDeck): void;
+  [DeckATypes.GET_ACTIVE_Deck]({ commit, state }: AugmentedActionCtxDeck, deckId: String):void;
 
   [DeckATypes.SET_CREATE_Deck_MODAL]({ commit }: AugmentedActionCtxDeck): void;
   [DeckATypes.SET_EDIT_Deck_MODAL]({ commit }: AugmentedActionCtxDeck): void;
@@ -237,6 +241,78 @@ export interface IDeckActions {
   [DeckATypes.SET_JOIN_Deck_MODAL]({ commit }: AugmentedActionCtxDeck): void;
 }
 
+/********************* DISKSPACE MODULE TYPES ************************/
+
+export enum DiskSpaceType {
+  TEXT = 'TEXT',
+  VOIP = 'VOIP',
+  HOLO = 'HOLO',
+}
+
+export type DiskSpace = {
+  id: string; // guid
+  name: string;
+  topic?: string;
+  type: DiskSpaceType;
+  holoSpaceId?: string; // if type = HOLO
+  isSsh: boolean; // default false
+  ownerId: string; // UserId | DeckId 
+  deck?: string; // User if UserId
+  user?: string; // Deck if DeckId
+  canDelete: boolean; // cannot delete IDS
+  //subscribers?: User[]; //if isSSH = true
+  //lastModById: string; // UserId
+  //createdAt: serverTimestamp;
+  //updatedAt: null;
+}
+
+export interface IDiskSpaceState {
+  isLoading: boolean;
+  activeDiskSpace: DiskSpace | undefined;
+  diskSpaceList: DiskSpace[];
+  
+  modalDiskSpaceType: DiskSpaceType | undefined;
+  showCreateDiskSpaceModal: boolean;
+  showEditDiskSpaceModal: boolean;
+  editDiskSpaceId: string | undefined;
+}
+
+export interface IDiskSpaceMutations<S = IDiskSpaceState> {
+  [DiskSpaceMTypes.SET_ACTIVE_DiskSpace](state: S, payload: DiskSpace | undefined): void;
+  [DiskSpaceMTypes.CREATE_DiskSpace](state: S, payload: DiskSpace): void;
+  [DiskSpaceMTypes.SET_DECK_DiskSpaces](state: S, payload: DiskSpace[]): void;
+  [DiskSpaceMTypes.EDIT_DiskSpace](state: S, payload: Partial<DiskSpace> & { id: string }): void;
+  [DiskSpaceMTypes.UPDATE_DiskSpace](state: S, payload: Partial<DiskSpace> & { id: string }): void;
+  [DiskSpaceMTypes.DELETE_DiskSpace](state: S, payload: Partial<DiskSpace> & { id: string }): void;
+
+  [DiskSpaceMTypes.SET_LOADING_DiskSpaces](state: S, payload: boolean): void;
+  [DiskSpaceMTypes.SET_MODAL_DiskSpace_Type](state: S, payload: DiskSpaceType | undefined): void;
+  [DiskSpaceMTypes.SET_CREATE_DiskSpace_MODAL](state: S, payload: boolean): void;
+  [DiskSpaceMTypes.SET_EDIT_DiskSpace_MODAL](state: S, payload: { isOpen: boolean; diskSpaceId: string | undefined }): void;
+}
+
+export interface IDiskSpaceGetters {
+  totalDiskSpaceCount(state: IDiskSpaceState): number;
+  getDiskSpaceById(state: IDiskSpaceState): (id: string) => DiskSpace | undefined;
+  getDiskSpacesByType(state: IDiskSpaceState): (type: DiskSpaceType) => DiskSpace[] | [];
+  getActiveDiskSpaceType(state: IDiskSpaceState): DiskSpaceType | undefined
+}
+
+// prettier-ignore
+type AugmentedActionCtxDiskSpace = Omit<ActionContext<IDiskSpaceState, IRootState>, 'commit'> & {
+  commit<K extends keyof IDiskSpaceMutations>(
+    key: K,
+    payload: Parameters<IDiskSpaceMutations[K]>[1]
+  ): ReturnType<IDiskSpaceMutations[K]>;
+};
+
+export interface IDiskSpaceActions {
+  [DiskSpaceATypes.GET_DECK_DiskSpaces]({ commit }: AugmentedActionCtxDiskSpace, deckId: string): void;
+  [DiskSpaceATypes.GET_ACTIVE_DiskSpace]({ commit, state }: AugmentedActionCtxDiskSpace, diskSpaceId: string):void;
+
+  [DiskSpaceATypes.SET_CREATE_DiskSpace_MODAL]({ commit }: AugmentedActionCtxDiskSpace): void;
+  [DiskSpaceATypes.SET_EDIT_DiskSpace_MODAL]({ commit }: AugmentedActionCtxDiskSpace, diskSpaceId: string): void;
+}
 /*********************** LOCALE MODULE TYPES *************************/
 
 export type ILocaleState = {
@@ -263,11 +339,11 @@ type AugmentedActionCtxLocale = Omit<ActionContext<ILocaleState, IRootState>, 'c
 
 export interface ILocaleActions {
   [LocaleATypes.INIT_Locale]({ commit }: AugmentedActionCtxLocale): void;
-  [LocaleATypes.SET_Locale]({ commit }: AugmentedActionCtxLocale, payload: String): void;
+  [LocaleATypes.SET_Locale]({ commit }: AugmentedActionCtxLocale, payload: string): void;
 }
 
 /****************************** END **********************************/
 
-export interface IStoreActions extends IRootActions, CounterActionsTypes, IAppActions, ILocaleActions, IDeckActions {}
+export interface IStoreActions extends IRootActions, CounterActionsTypes, IAppActions, ILocaleActions, IDeckActions, IDiskSpaceActions {}
 
-export interface IStoreGetters extends IRootGetters, CounterGettersTypes, IAppGetters, ILocaleGetters, IDeckGetters {}
+export interface IStoreGetters extends IRootGetters, CounterGettersTypes, IAppGetters, ILocaleGetters, IDeckGetters, IDiskSpaceGetters {}

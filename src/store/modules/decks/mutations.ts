@@ -36,7 +36,7 @@ export const mutations: MutationTree<State> & Mutations = {
 
     state.deckList[idx] = {
       ...state.deckList[idx],
-      isEditing: !state.deckList[idx].isEditing,
+      //isEditing: !state.deckList[idx].isEditing,
     };
   },
   [MutationTypes.UPDATE_Deck](state, payload) {
