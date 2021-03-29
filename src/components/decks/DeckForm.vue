@@ -4,7 +4,7 @@
       <div class="l-col">
         <TextInput ref="inputNameEl" v-model="name" :label="`${l10n}.deck_name`" :max="64" preIcon required>
           <template v-slot:preIcon>
-            <icon-deck class="text-primary-500" />
+            <i-mdi-layers-outline class="text-primary-500" />
           </template>
         </TextInput>
 
@@ -29,7 +29,7 @@
           <button
             class="absolute right-0 bottom-0 bg-white dark:bg-gray-700 border-2 border-dashed rounded-full w-9 h-9 f-center"
           >
-            <icon-upload />
+            <i-mdi-arrow-up-bold-hexagon-outline />
           </button>
         </div>
 
@@ -52,8 +52,6 @@
 <script lang="ts">
 import { ref, defineComponent, reactive, onMounted, toRefs, watch, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
-import IconUpload from '/@vite-icons/mdi/arrow-up-bold-hexagon-outline';
-import IconDeck from '/@vite-icons/mdi/layers-outline';
 
 import IconForFlag from '../IconForFlag.vue';
 import TextInput from '../TextInput.vue';
@@ -81,7 +79,7 @@ export default defineComponent({
       required: false,
     },
   },
-  components: { TextInput, Select, IconUpload, IconDeck, IconForFlag },
+  components: { TextInput, Select, IconForFlag },
   computed: {
     showCreateModal(): boolean {
       return this.$store.state.decks.showCreateDeckModal;

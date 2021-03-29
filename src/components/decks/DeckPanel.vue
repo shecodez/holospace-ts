@@ -2,8 +2,8 @@
   <FixedPanel>
     <div class="bg-primary-600 w-12 h-12 rounded-full m-2 f-center">
       <router-link to="/profile">
-        <icon-profile />
-        <!-- <icon-ssh-chat v-else /> -->
+        <i-mdi-account-circle />
+        <!-- <i-mdi-mail-ru v-else /> -->
       </router-link>
     </div>
 
@@ -22,7 +22,7 @@
         class="border-3 border-dashed hover-border-solid border-black dark:border-white w-12 h-12 rounded-full f-center"
         @click="setModal"
       >
-        <icon-plus />
+        <i-mdi-plus />
       </button>
     </div>
   </FixedPanel>
@@ -33,27 +33,16 @@
 import { computed, defineComponent, onBeforeMount, onMounted, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRoute } from 'vue-router';
-import IconSshChat from '/@vite-icons/mdi/mail-ru';
-import IconProfile from '/@vite-icons/mdi/account-circle';
-import IconPlus from '/@vite-icons/mdi/plus';
 
 import FixedPanel from '../panels/FixedPanel.vue';
 import DeckList from './DeckList.vue';
 import AddOrJoinDeckModal from './AddOrJoinDeckModal.vue';
-
 import { useStore } from '../../store';
 import AllActionTypes from '../../store/action-types';
 import AllMutationTypes from '../../store/mutation-types';
 
 export default defineComponent({
-  components: {
-    IconSshChat,
-    IconProfile,
-    IconPlus,
-    FixedPanel,
-    DeckList,
-    AddOrJoinDeckModal,
-  },
+  components: { FixedPanel, DeckList, AddOrJoinDeckModal },
   setup: () => {
     const { t } = useI18n();
 

@@ -2,7 +2,7 @@
   <form @submit.prevent="submitJoinDeckForm" class="c-secondary">
     <TextInput ref="inputKeyEl" v-model="holoKey" label="HoloKey" preIcon class="focus:ring-secondary-500">
       <template v-slot:preIcon>
-        <icon-key class="text-secondary-500" />
+        <i-mdi-key-variant class="text-secondary-500" />
       </template>
     </TextInput>
 
@@ -15,9 +15,9 @@
 <script lang="ts">
 import { ref, defineComponent } from 'vue';
 import { useI18n } from 'vue-i18n';
-import IconKey from '/@vite-icons/mdi/key-variant';
 
 import TextInput from '../TextInput.vue';
+
 export default defineComponent({
   name: 'JoinDeckForm',
   props: {
@@ -34,7 +34,7 @@ export default defineComponent({
       required: false,
     },
   },
-  components: { TextInput, IconKey },
+  components: { TextInput },
   computed: {
     showJoinDeckModal(): boolean {
       return this.$store.state.decks.showJoinDeckModal;

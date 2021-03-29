@@ -3,7 +3,7 @@
     <div v-show="!isBg" class="relative grid grid-cols-2 divide-x">
       <div class="text-center p-4">
         <h3 class="m-4 font-bold text-xl text-indigo-500 uppercase">{{ t('add') }}</h3>
-        <icon-add class="m-auto text-7xl" />
+        <i-mdi-layers-plus class="m-auto text-7xl" />
         <p class="py-4">{{ t(`${l10n}.add_a_new_deck_and_`) }}</p>
         <button
           class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-2 py-2 font-semibold"
@@ -17,7 +17,7 @@
 
       <div class="text-center p-4">
         <h3 class="m-4 font-bold text-xl text-green-500 uppercase">{{ t('join') }}</h3>
-        <icon-join class="m-auto text-7xl" />
+        <i-mdi-account-multiple-plus class="m-auto text-7xl" />
         <p class="py-4">{{ t(`${l10n}.enter_a_holokey_and_`) }}</p>
         <button
           class="block w-full max-w-xs mx-auto bg-green-500 hover:bg-green-700 focus:bg-green-700 text-white rounded-lg px-2 py-2 font-semibold"
@@ -36,19 +36,16 @@
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
 import { useI18n } from 'vue-i18n';
-import IconAdd from '/@vite-icons/mdi/layers-plus';
-import IconJoin from '/@vite-icons/mdi/account-multiple-plus';
 
-import ModalDialog from '../ModalDialog.vue';
+import ModalDialog from '@/components/ModalDialog.vue';
 import AddDeckScreen from './AddDeckScreen.vue';
 import JoinDeckScreen from './JoinDeckScreen.vue';
-
-import { useStore } from '../../store';
-import AllMutationTypes from '../../store/mutation-types';
+import { useStore } from '@/store';
+import AllMutationTypes from '@/store/mutation-types';
 
 export default defineComponent({
   name: 'AddJoinDeckModal',
-  components: { IconAdd, IconJoin, ModalDialog, AddDeckScreen, JoinDeckScreen },
+  components: { ModalDialog, AddDeckScreen, JoinDeckScreen },
   setup: () => {
     const { t } = useI18n();
     const l10n = 'decks.AddOrJoinDeckModal';

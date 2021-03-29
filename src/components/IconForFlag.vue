@@ -1,16 +1,13 @@
 <template>
-  <icon-united-states v-show="flagFor === 'US'" />
-  <icon-japan v-show="flagFor === 'JP'" />
+  <i-emojione-flag-for-united-states v-show="flagFor === 'US'" />
+  <i-emojione-flag-for-japan v-show="flagFor === 'JP'" />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import IconUnitedStates from '/@vite-icons/emojione-v1/flag-for-united-states';
-import IconJapan from '/@vite-icons/emojione-v1/flag-for-japan';
 
 export default defineComponent({
   name: 'IconForFlag',
-  components: { IconUnitedStates, IconJapan },
   props: {
     flagFor: {
       type: String,

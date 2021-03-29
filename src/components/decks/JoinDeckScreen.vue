@@ -3,7 +3,7 @@
     <div class="flex justify-between items-center pb-3 text-secondary-500">
       <h3 class="text-xl font-bold">{{ t(`${l10n}.join_a_deck`) }}</h3>
       <button @click="closeScreen">
-        <icon-close />
+        <i-mdi-close />
       </button>
     </div>
     <p class="p-4 text-center">
@@ -16,7 +16,7 @@
 
     <div class="flex justify-between py-2">
       <button @click="closeScreen" class="py-2 font-semibold">
-        <icon-back-arrow class="inline-block mr-2" />
+        <i-mdi-keyboard-backspace class="inline-block mr-2" />
         <span>{{ t('back') }}</span>
       </button>
     </div>
@@ -26,17 +26,14 @@
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
 import { useI18n } from 'vue-i18n';
-import IconClose from '/@vite-icons/mdi/close';
-import IconBackArrow from '/@vite-icons/mdi/keyboard-backspace';
 
 import JoinDeckForm from './JoinDeckForm.vue';
-
-import { useStore } from '../../store';
-import AllMutationTypes from '../../store/mutation-types';
+import { useStore } from '@/store';
+import AllMutationTypes from '@/store/mutation-types';
 
 export default defineComponent({
   name: 'JoinDeckScreen',
-  components: { JoinDeckForm, IconClose, IconBackArrow },
+  components: { JoinDeckForm },
   setup: () => {
     const { t } = useI18n();
     const l10n = 'decks.JoinDeckScreen';

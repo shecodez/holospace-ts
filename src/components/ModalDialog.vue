@@ -12,7 +12,7 @@
         class="modal-close absolute top-4 right-4 flex flex-col items-center mt-4 mr-4 text-white text-sm z-50"
         @click="closeModal"
       >
-        <icon-close />
+        <i-mdi-close />
         <span class="text-sm">{{ t('ModalDialog.esc') }}</span>
       </button>
 
@@ -22,7 +22,7 @@
           <div v-show="title" class="flex justify-between items-center pb-3">
             <h3 class="text-xl font-bold">{{ title }}</h3>
             <button class="modal-close z-50" @click="closeModal">
-              <icon-close />
+              <i-mdi-close />
             </button>
           </div>
         </slot>
@@ -46,7 +46,6 @@
 <script lang="ts">
 import { watch, ref, defineComponent } from 'vue';
 import { useI18n } from 'vue-i18n';
-import IconClose from '/@vite-icons/mdi/close';
 
 import useClickOutsite from '@/useables/useClickOutside';
 
@@ -66,7 +65,6 @@ export default defineComponent({
       required: false,
     },
   },
-  components: { IconClose },
   setup(props) {
     const { t } = useI18n();
 

@@ -1,7 +1,7 @@
 <template>
   <Select ref="selectLocaleEl" v-model="locale" label="language" :options="getLangList" preIcon noLabel>
     <template v-slot:preIcon>
-      <icon-translate />
+      <i-mdi-translate />
     </template>
   </Select>
 </template>
@@ -9,7 +9,6 @@
 <script lang="ts">
 import { defineComponent, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
-import IconTranslate from '/@vite-icons/mdi/translate';
 
 import Select from './SelectField.vue';
 import { useStore } from '@/store';
@@ -17,7 +16,7 @@ import AllMutationTypes from '@/store/mutation-types';
 
 export default defineComponent({
   name: 'SetLocaleLang',
-  components: { IconTranslate, Select },
+  components: { Select },
   setup: () => {
     const { locale } = useI18n();
 

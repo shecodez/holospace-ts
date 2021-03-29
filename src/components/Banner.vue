@@ -13,7 +13,7 @@
         <button v-show="onClickAction" class="px-2">{{ actionBtnText }}</button>
       </div>
       <button class="mr-6" v-show="isDismissible" @click="dismissBanner">
-        <icon-close :class="`text-${color}-600`" />
+        <i-mdi-close-circle :class="`text-${color}-600`" />
       </button>
     </div>
   </div>
@@ -22,7 +22,6 @@
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
 import { useI18n } from 'vue-i18n';
-import IconClose from '/@vite-icons/mdi/close-circle';
 
 import IconForAlert from './IconForAlert.vue';
 import { useStore } from '@/store';
@@ -30,7 +29,7 @@ import AllActionTypes from '@/store/action-types';
 
 export default defineComponent({
   name: 'Footer',
-  components: { IconForAlert, IconClose },
+  components: { IconForAlert },
   setup: () => {
     const { t } = useI18n();
 

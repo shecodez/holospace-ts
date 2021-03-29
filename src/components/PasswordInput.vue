@@ -2,8 +2,8 @@
   <TextInput ref="inputPasswordEl" v-model="localValue" :label="label" :type="type" postIcon>
     <template v-slot:postIcon>
       <div @click="toggleShowPassword" class="text-gray-300 hover:text-white cursor-pointer">
-        <icon-eye v-if="inputType === 'text'" />
-        <icon-eye-off v-else />
+        <i-mdi-eye v-if="inputType === 'text'" />
+        <i-mdi-eye-off v-else />
       </div>
     </template>
   </TextInput>
@@ -24,8 +24,6 @@
 
 <script lang="ts">
 import { computed, defineComponent, ref, watch } from 'vue';
-import IconEye from '/@vite-icons/mdi/eye';
-import IconEyeOff from '/@vite-icons/mdi/eye-off';
 
 import TextInput from '@/components/TextInput.vue';
 
@@ -64,7 +62,7 @@ export default defineComponent({
       default: false,
     },
   },
-  components: { IconEyeOff, IconEye, TextInput },
+  components: { TextInput },
   setup: (props, context) => {
     const localValue = computed({
       get: () => props.modelValue,
