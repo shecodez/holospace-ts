@@ -1,6 +1,6 @@
 <template>
   <div class="input-ctrl-group relative mb-2">
-    <label v-show="label" class="text-xs font-medium ml-2" :for="label">
+    <label v-show="label && !noLabel" class="text-xs font-medium ml-2" :for="label">
       {{ t(`${label}`) }}
       <span v-if="required" class="text-red-500">*</span>
     </label>
@@ -10,14 +10,18 @@
       </div>
       <input
         class="block w-full rounded bg-transparent focus:ring-primary-500"
-        :class="[padL, padR]"
+        :class="[padL, padR, setSize(size)]"
         v-bind="$attrs"
         :type="type"
         v-model="localValue"
         :required="required"
         autocomplete="off"
       />
+
       <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+        <button v-if="clearable && cLen" @click="clearInput">
+          <i-mdi-close />
+        </button>
         <slot name="postIcon"></slot>
       </div>
     </div>
@@ -70,6 +74,18 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    noLabel: {
+      type: Boolean,
+      default: false,
+    },
+    size: {
+      type: String,
+      default: '',
+    },
+    clearable: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup: (props, context) => {
     const { t } = useI18n();
@@ -80,6 +96,10 @@ export default defineComponent({
       get: () => props.modelValue,
       set: (value) => context.emit('update:modelValue', value),
     });
+
+    const clearInput = () => {
+      localValue.value = '';
+    };
 
     watch(
       () => props.modelValue,
@@ -96,13 +116,26 @@ export default defineComponent({
     const padL = computed(() => (props.preIcon ? 'pl-10' : ''));
     const padR = computed(() => (props.postIcon ? 'pr-10' : ''));
 
+    const setSize = (size: string) => {
+      switch (size) {
+        case 'lg':
+          return 'p-3';
+        case 'sm':
+          return 'p-1';
+        default:
+          return '';
+      }
+    };
+
     return {
       t,
       localValue,
+      clearInput,
       cLen,
       lenError,
       padL,
       padR,
+      setSize,
     };
   },
 });

@@ -1,24 +1,8 @@
-/*
-export type Message = {
-  id: number;
-  text?: string;
-  media?: string;
-  authorId: number; // User, DiskSpace
-  disk: number; // DiskSpace
-  //createdAt: serverTimestamp();
-  //updatedAt: null;
-};
-
-export type State = {
-  isLoading: boolean;
-  messages: Message[];
-  searchTerm: string;
-};
+import { IChatState as State } from '@/store/interfaces';
 
 export const state: State = {
   isLoading: false,
-  messages: [],
+  messageList: [],
   searchTerm: "",
 };
 
-*/

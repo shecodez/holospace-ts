@@ -11,6 +11,7 @@ import app from '../app';
 import decks from '../decks';
 import locale from '../locale';
 import diskSpaces from '../diskSpaces'
+import chat from '../chat'
 
 // Modules
 const modules: ModuleTree<IMergedState> = {
@@ -18,7 +19,8 @@ const modules: ModuleTree<IMergedState> = {
   app,
   decks,
   locale,
-  diskSpaces
+  diskSpaces,
+  chat
 };
 
 // Root Module

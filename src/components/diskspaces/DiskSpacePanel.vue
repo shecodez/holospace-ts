@@ -1,7 +1,7 @@
 <template>
-  <SidePanel>
+  <SideDrawer>
     <template v-slot:header>
-      <DeckPanelHeader />
+      <ActiveDeck />
     </template>
     <div class="flex-grow d-none">
       <div class="grid grid-cols-1 divide-y divide-white divide-opacity-10">
@@ -10,7 +10,7 @@
         <DiskSpaceList :type="type.HOLO" />
       </div>
     </div>
-  </SidePanel>
+  </SideDrawer>
 </template>
 
 <script lang="ts">
@@ -18,15 +18,15 @@ import { computed, defineComponent, onBeforeMount, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRoute } from 'vue-router';
 
-import DeckPanelHeader from '@/components/decks/DeckPanelHeader.vue';
-import SidePanel from '@/components/panels/SidePanel.vue';
+import ActiveDeck from '@/components/decks/ActiveDeck.vue';
+import SideDrawer from '@/components/panels/SideDrawer.vue';
 import DiskSpaceList from './DiskSpaceList.vue';
 import AllActionTypes from '@/store/action-types';
 import { useStore } from '@/store';
 import { DiskSpaceType } from '@/store/interfaces';
 
 export default defineComponent({
-  components: { SidePanel, DeckPanelHeader, DiskSpaceList },
+  components: { SideDrawer, ActiveDeck, DiskSpaceList },
   setup: () => {
     const { t } = useI18n();
 
@@ -69,9 +69,9 @@ export default defineComponent({
 .disk-space .actions {
   visibility: hidden;
 }
-.disk-space.active .actions {
+/* .disk-space.active .actions {
   visibility: visible;
-}
+} */
 .disk-space:hover .actions {
   visibility: visible;
 }

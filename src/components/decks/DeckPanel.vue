@@ -13,8 +13,8 @@
       <span class="uppercase text-xs font-medium p-2">{{ t('deck', deckCnt) }}</span>
     </div>
 
-    <div v-if="isLoading">{{ t('loading...') }}</div>
     <!-- <DeckListSkeleton v-if="isLoading" /> -->
+    <div v-if="isLoading">{{ t('loading...') }}</div>
     <DeckList v-else />
 
     <div class="sticky sm:right-0 md:bottom-0 p-2">
@@ -30,7 +30,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onBeforeMount, onMounted, ref, watch } from 'vue';
+import { computed, defineComponent, onBeforeMount, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRoute } from 'vue-router';
 

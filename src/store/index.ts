@@ -8,6 +8,7 @@ import { AppStoreModuleTypes } from './modules/app/types';
 import { DeckStoreModuleTypes } from './modules/decks/types';
 import { LocaleStoreModuleTypes } from './modules/locale/types';
 import { DiskSpaceStoreModuleTypes } from './modules/diskSpaces/types';
+import { ChatStoreModuleTypes } from './modules/chat/types';
 
 import root from './modules/root';
 
@@ -16,7 +17,8 @@ export type Store = RootStoreModuleTypes<Pick<IMergedState, 'root'>> &
   AppStoreModuleTypes<Pick<IMergedState, 'app'>> &
   DeckStoreModuleTypes<Pick<IMergedState, 'decks'>> &
   LocaleStoreModuleTypes<Pick<IMergedState, 'locale'>> &
-  DiskSpaceStoreModuleTypes<Pick<IMergedState, 'diskSpaces' >>;
+  DiskSpaceStoreModuleTypes<Pick<IMergedState, 'diskSpaces' >> &
+  ChatStoreModuleTypes<Pick<IMergedState, 'chat' >>;
 
 // Plug in logger when in development environment
 const isDebug = process.env.NODE_ENV !== 'production';

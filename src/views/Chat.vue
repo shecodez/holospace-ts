@@ -1,6 +1,6 @@
 <template>
   <Layout view="Chat">
-    <h1>Chat Message Area</h1>
+    <ChatPanel />
   </Layout>
 </template>
 
@@ -8,9 +8,11 @@
 import { defineComponent } from 'vue';
 import Layout from '../layouts/MainLayout.vue';
 
+import ChatPanel from '@/components/chat/ChatPanel.vue';
+
 export default defineComponent({
   name: 'Chat',
-  components: { Layout },
+  components: { Layout, ChatPanel },
 });
 </script>
 

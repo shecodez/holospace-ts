@@ -24,6 +24,7 @@
   "holo": "ホロ",
   "settings": "設定",
   "init": "初期化",
+  "edited": "「編集」",
 
   "languages": {
     "english": "英語",
@@ -51,6 +52,11 @@
     "Register": {
       "create_an_account": "アカウントを作成する",
       "have_an_account": "すでにアカウントをお持ちですか"
+    }
+  },
+  "chat": {
+    "MessageForm": {
+      "enter_message": "メッセージ{diskSpace}チャット"
     }
   },
   "decks": {

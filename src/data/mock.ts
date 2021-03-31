@@ -1,3 +1,5 @@
+import { subDays } from 'date-fns'
+
 import { Region, DiskSpaceType } from '@/store/interfaces';
 
 export const decks = [
@@ -23,7 +25,7 @@ export const diskSpaces = [
     id: '1',
     ownerId: '1',
     isSsh: false,
-    name: 'init',
+    name: 'Init Space',
     topic: 'rawr',
     type: DiskSpaceType.TEXT, canDelete: false,
   },
@@ -121,7 +123,152 @@ export const users = [
   },
 ];
 
-export const messages = [];
+const today = new Date();
+export const messages = [
+  {
+    id: "0",
+    authorId: "0",
+    author: {
+      name: "Guest",
+      avatarUrl: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
+    },
+    diskSpaceId: "1",
+    createdAt: subDays(today, 11),
+    text:
+      "I'll be in your neighborhood doing errands this weekend. Do you want to hang out?"
+  },
+  {
+    id: "1",
+    authorId: "1",
+    author: {
+      name: "Niico",
+      avatarUrl: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+    },
+    diskSpaceId: "1",
+    createdAt: subDays(today, 10),
+    text:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id cursus leo. Aenean condimentum dolor leo, id aliquet lorem consectetur in. Ut nec mattis odio. Suspendisse feugiat ex ac massa interdum posuere."
+  },
+  {
+    id: "2",
+    authorId: "2",
+    author: {
+      name: "龍ハヤブサ",
+      avatarUrl: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+    },
+    diskSpaceId: "1",
+    createdAt: subDays(today, 10),
+    text: "Do you have Paris recommendations? Have you ever been?"
+  },
+  {
+    id: "22",
+    authorId: "2",
+    author: {
+      name: "龍ハヤブサ",
+      avatarUrl: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+    },
+    diskSpaceId: "1",
+    createdAt: subDays(today, 9),
+    text: "Nvm, I'll just wing it. :)"
+  },
+  {
+    id: "3",
+    authorId: "3",
+    author: {
+      name: "Kai",
+      avatarUrl: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+    },
+    diskSpaceId: "1",
+    createdAt: subDays(today, 8),
+    updatedAt: subDays(today, 7),
+    text: "Have any ideas about what we should get Heidi for her birthday?"
+  },
+  {
+    id: "4",
+    authorId: "5",
+    author: {
+      name: "홍길동",
+    },
+    diskSpaceId: "1",
+    createdAt: subDays(today, 7),
+    text:
+      "`@Kai` We should eat this: Grate, Squash, Corn, and tomatillo Tacos. Also ~~The world is flat.~~",
+    isMarkup: true,
+  },
+  {
+    id: "5",
+    authorId: "4",
+    author: {
+      name: "WillIAm",
+      avatarUrl: "https://cdn.vuetifyjs.com/images/lists/5.jpg"
+    },
+    diskSpaceId: "1",
+    createdAt: subDays(today, 6),
+    updatedAt: subDays(today, 5),
+    text:
+      "`@홍길동`~~Hell~~ No",
+    isMarkup: true,
+  },
+  {
+    id: "6",
+    authorId: "1",
+    author: {
+      name: "Niico",
+      avatarUrl: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+    },
+    diskSpaceId: "1",
+    createdAt: subDays(today, 4),
+    text:
+      "This is great."
+  },
+  {
+    id: "7",
+    authorId: "1",
+    author: {
+      name: "Niico",
+      avatarUrl: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+    },
+    diskSpaceId: "1",
+    createdAt: subDays(today, 4),
+    text:
+      "Just Fantastic! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id cursus leo. Aenean condimentum dolor leo, id aliquet lorem consectetur in. Ut nec mattis odio. Suspendisse feugiat ex ac massa interdum posuere."
+  },
+  {
+    id: "8",
+    authorId: "3",
+    author: {
+      name: "Kai",
+      avatarUrl: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+    },
+    diskSpaceId: "1",
+    createdAt: subDays(today, 3),
+    text:
+      "<span class='text--primary'>@홍길동 </span> We should eat MEAT!!!!11 :d"
+  },
+  {
+    id: "9",
+    authorId: "3",
+    author: {
+      name: "Kai",
+      avatarUrl: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+    },
+    diskSpaceId: "1",
+    createdAt: subDays(today, 1),
+    text:
+      "I got some Kobe beef!!!"
+  },
+  {
+    id: "10",
+    authorId: "4",
+    author: {
+      name: "WillIAm",
+      avatarUrl: "https://cdn.vuetifyjs.com/images/lists/5.jpg"
+    },
+    diskSpaceId: "1",
+    createdAt: subDays(today, 0),
+    text: "`Thatz whatz up!",
+  },
+];
 
 export const events = [
   {

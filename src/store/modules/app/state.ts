@@ -4,7 +4,7 @@ export const state: State = {
   theme: undefined,
   showNavBar: false,
   showFooter: false,
-  //isPopOutSideDrawer: false,
+  //usePopOutSideDrawer: false,
   sideDrawerIsOpen: true,
   metaDrawerIsMini: false,
   toast: undefined,

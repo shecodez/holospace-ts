@@ -24,6 +24,7 @@
   "holo": "Holo",
   "settings": "Settings",
   "init": "Init",
+  "edited": "Edited",
 
   "languages": {
     "english": "english",
@@ -51,6 +52,11 @@
     "Register": {
       "create_an_account": "Create an Account",
       "have_an_account": "Have an Account?"
+    }
+  },
+  "chat": {
+    "MessageForm": {
+      "enter_message": "Message {diskSpace}"
     }
   },
   "decks": {
