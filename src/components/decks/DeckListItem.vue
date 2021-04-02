@@ -1,11 +1,12 @@
 <template>
   <router-link :to="`/d/${id}/${ids}`">
     <div
-      class="deck w-12 h-12 f-center text-white"
+      class="deck w-12 h-12 f-center text-white has-tooltip"
       :class="isActive(id) ? 'active rounded-md' : 'rounded-full'"
       :style="`background-color: ${useHashColor(name)}`"
     >
       <span>{{ name.charAt(0) }}</span>
+      <Tooltip>{{ name }}</Tooltip>
     </div>
   </router-link>
 </template>
@@ -15,9 +16,11 @@ import { defineComponent } from 'vue';
 import { useRoute } from 'vue-router';
 
 import { useHashColor } from '@/useables/useHashColor';
+import Tooltip from '../Tooltip.vue';
 
 export default defineComponent({
   name: 'DeckListItem',
+  components: { Tooltip },
   props: {
     id: { type: String, required: true },
     name: { type: String, required: true },

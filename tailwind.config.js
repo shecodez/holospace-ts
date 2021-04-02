@@ -49,7 +49,7 @@ module.exports = {
   plugins: [
     require('@tailwindcss/forms'),
     //require('tailwindcss-dark-mode')(),
-    plugin(function ({ addComponents }) {
+    plugin(function ({ addUtilities, addComponents }) {
       const buttons = {
         '.btn': {
           padding: '.5rem 1rem',
@@ -78,8 +78,19 @@ module.exports = {
           },
         },
       };
+      const overflow = {
+        '.overflow-y-overlay': {
+          overflowY: 'auto',
+          overflowY: 'overlay'
+        },
+        '.overflow-x-overlay': {
+          overflowX: 'auto',
+          overflowX: 'overlay'
+        }
+      }
 
       addComponents(buttons);
+      addUtilities(overflow);
     }),
   ],
 };

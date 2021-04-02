@@ -1,6 +1,6 @@
 <template>
-  <ul class="sm:overflow-x-auto md:overflow-y-auto flex md:flex-col">
-    <li v-for="deck in decks" :key="deck.id" class="p-2">
+  <ul class="sm-overflow-x-overlay md-overflow-y-overlay flex md:flex-col">
+    <li v-for="deck in decks" :key="deck.id" class="p-2 my-auto md:my-0 md:mx-auto">
       <DeckListItem v-bind="deck" />
     </li>
   </ul>
@@ -28,3 +28,18 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+@media (min-width: 768px) {
+  .md-overflow-y-overlay {
+    overflow-y: auto;
+    overflow-y: overlay;
+  }
+}
+@media (min-width: 640px) {
+  .sm-overflow-x-overlay {
+    overflow-x: auto;
+    overflow-x: overlay;
+  }
+}
+</style>

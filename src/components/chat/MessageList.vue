@@ -1,9 +1,11 @@
 <template>
-  <ul class="flex-grow m-4 overflow-y-auto">
-    <li class="grid" v-for="message in messages" :key="message.id">
-      <MessageListItem v-bind="message" />
-    </li>
-  </ul>
+  <div class="flex-1 overflow-y-overlay">
+    <ul class="m-6">
+      <li class="grid" v-for="message in messages" :key="message.id">
+        <MessageListItem v-bind="message" />
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script lang="ts">

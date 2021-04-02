@@ -113,7 +113,7 @@ export interface IAppState {
   theme: AppTheme | undefined;
   showNavBar: boolean;
   showFooter: boolean;
-  //isPopOutSideDrawer: boolean,
+  useSlideOutDrawer: boolean,
   sideDrawerIsOpen: boolean;
   metaDrawerIsMini: boolean;
   toast?: IToast | undefined;
@@ -125,6 +125,8 @@ export interface IAppMutations<S = IAppState> {
 
   [AppMTypes.SET_SHOW_Navbar](state: S, payload: boolean): void;
   [AppMTypes.SET_SHOW_Footer](state: S, payload: boolean): void;
+
+  [AppMTypes.SET_Use_SLIDE_OUT_DRAWER](state: S, payload: boolean): void;
 
   [AppMTypes.SET_SIDE_DRAWER_IsOpen](state: S, payload: boolean): void;
   [AppMTypes.TOGGLE_Side_DRAWER](state: S): void;
@@ -154,6 +156,8 @@ export interface IAppActions {
 
   [AppATypes.SET_SHOW_Navbar]({ commit }: AugmentedActionCtxApp, payload: boolean): void;
   [AppATypes.SET_SHOW_Footer]({ commit }: AugmentedActionCtxApp, payload: boolean): void;
+
+  [AppATypes.SET_Use_SLIDE_OUT_DRAWER]({ commit }: AugmentedActionCtxApp, payload: boolean): void;
 
   [AppATypes.SET_SIDE_DRAWER_IsOpen]({ commit }: AugmentedActionCtxApp, payload: boolean): void;
   [AppATypes.TOGGLE_Side_DRAWER]({ commit }: AugmentedActionCtxApp): void;

@@ -18,6 +18,8 @@ export enum ActionTypes {
   SET_SHOW_Navbar = 'SET_SHOW_Navbar',
   SET_SHOW_Footer = 'SET_SHOW_Footer',
 
+  SET_Use_SLIDE_OUT_DRAWER = 'SET_Use_SLIDE_OUT_DRAWER',
+
   SET_SIDE_DRAWER_IsOpen = 'SET_SIDE_DRAWER_IsOpen',
   TOGGLE_Side_DRAWER = 'TOGGLE_Side_DRAWER',
   SET_META_DRAWER_IsMini = 'SET_META_DRAWER_IsMini',
@@ -61,6 +63,10 @@ export const actions: ActionTree<State, IRootState> & Actions = {
   },
   [ActionTypes.SET_SHOW_Footer]({ commit }, showFooter) {
     commit(MutationTypes.SET_SHOW_Footer, showFooter);
+  },
+
+  [ActionTypes.SET_Use_SLIDE_OUT_DRAWER]({ commit }, useSlideOut) {
+    commit(MutationTypes.SET_Use_SLIDE_OUT_DRAWER, useSlideOut);
   },
 
   [ActionTypes.SET_SIDE_DRAWER_IsOpen]({ commit }, isOpen: boolean) {

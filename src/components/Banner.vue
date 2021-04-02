@@ -1,7 +1,7 @@
 <template>
-  <div v-show="showBanner" class="bg-white dark:bg-black max-h-14 overflow-hidden">
+  <div v-show="showBanner" class="bg-white dark:bg-black max-h-14 h-12 overflow-hidden">
     <div
-      class="banner ribbon-tail relative items-center flex max-h-full h-12 p-2 border-l-4 bg-opacity-30"
+      class="banner ribbon-tail relative items-center flex h-full p-2 border-l-4 bg-opacity-30"
       :class="`border-${color}-600 bg-${color}-700 text-${color}-600`"
     >
       <slot name="customIcon">

@@ -58,7 +58,7 @@ export const presence = [
 export const users = [
   {
     id: '0',
-    username: 'Guest',
+    name: 'Guest',
     pin: 1234,
     online: true,
     status: 'SHOW',
@@ -66,7 +66,7 @@ export const users = [
   },
   {
     id: '1',
-    username: 'Niico',
+    name: 'Niico',
     pin: 1337,
     online: true,
     status: 'SHOW',
@@ -74,7 +74,7 @@ export const users = [
   },
   {
     id: '2',
-    username: '龍ハヤブサ',
+    name: '龍ハヤブサ',
     pin: 6323,
     online: true,
     status: 'BUSY',
@@ -82,7 +82,7 @@ export const users = [
   },
   {
     id: '3',
-    username: 'Kai',
+    name: 'Kai',
     pin: 3469,
     online: true,
     status: 'HIDE',
@@ -90,7 +90,7 @@ export const users = [
   },
   {
     id: '4',
-    username: 'WillIAm',
+    name: 'WillIAm',
     pin: 2052,
     online: true,
     status: 'AWAY',
@@ -99,7 +99,7 @@ export const users = [
   },
   {
     id: '5',
-    username: '山田太郎',
+    name: '山田太郎',
     pin: 4284,
     online: false,
     status: 'SHOW',
@@ -107,7 +107,7 @@ export const users = [
   },
   {
     id: '6',
-    username: '홍길동',
+    name: '홍길동',
     pin: 9282,
     online: true,
     status: 'SHOW',
@@ -115,7 +115,7 @@ export const users = [
   },
   {
     id: '7',
-    username: 'IronMan',
+    name: 'IronMan',
     pin: 5353,
     online: false,
     status: 'SHOW',
@@ -130,7 +130,7 @@ export const messages = [
     authorId: "0",
     author: {
       name: "Guest",
-      avatarUrl: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
+      //avatarUrl: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
     },
     diskSpaceId: "1",
     createdAt: subDays(today, 11),
@@ -142,7 +142,7 @@ export const messages = [
     authorId: "1",
     author: {
       name: "Niico",
-      avatarUrl: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+      //avatarUrl: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
     },
     diskSpaceId: "1",
     createdAt: subDays(today, 10),
@@ -154,7 +154,7 @@ export const messages = [
     authorId: "2",
     author: {
       name: "龍ハヤブサ",
-      avatarUrl: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+      //avatarUrl: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
     },
     diskSpaceId: "1",
     createdAt: subDays(today, 10),
@@ -165,7 +165,7 @@ export const messages = [
     authorId: "2",
     author: {
       name: "龍ハヤブサ",
-      avatarUrl: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+      //avatarUrl: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
     },
     diskSpaceId: "1",
     createdAt: subDays(today, 9),
@@ -176,7 +176,7 @@ export const messages = [
     authorId: "3",
     author: {
       name: "Kai",
-      avatarUrl: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+      //avatarUrl: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
     },
     diskSpaceId: "1",
     createdAt: subDays(today, 8),
@@ -200,7 +200,7 @@ export const messages = [
     authorId: "4",
     author: {
       name: "WillIAm",
-      avatarUrl: "https://cdn.vuetifyjs.com/images/lists/5.jpg"
+      //avatarUrl: "https://cdn.vuetifyjs.com/images/lists/5.jpg"
     },
     diskSpaceId: "1",
     createdAt: subDays(today, 6),
@@ -214,7 +214,7 @@ export const messages = [
     authorId: "1",
     author: {
       name: "Niico",
-      avatarUrl: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+      //avatarUrl: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
     },
     diskSpaceId: "1",
     createdAt: subDays(today, 4),
@@ -226,7 +226,7 @@ export const messages = [
     authorId: "1",
     author: {
       name: "Niico",
-      avatarUrl: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+      //avatarUrl: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
     },
     diskSpaceId: "1",
     createdAt: subDays(today, 4),
@@ -238,7 +238,7 @@ export const messages = [
     authorId: "3",
     author: {
       name: "Kai",
-      avatarUrl: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+      //avatarUrl: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
     },
     diskSpaceId: "1",
     createdAt: subDays(today, 3),
@@ -250,7 +250,7 @@ export const messages = [
     authorId: "3",
     author: {
       name: "Kai",
-      avatarUrl: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+      //avatarUrl: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
     },
     diskSpaceId: "1",
     createdAt: subDays(today, 1),
@@ -262,7 +262,7 @@ export const messages = [
     authorId: "4",
     author: {
       name: "WillIAm",
-      avatarUrl: "https://cdn.vuetifyjs.com/images/lists/5.jpg"
+      //avatarUrl: "https://cdn.vuetifyjs.com/images/lists/5.jpg"
     },
     diskSpaceId: "1",
     createdAt: subDays(today, 0),

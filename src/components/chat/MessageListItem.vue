@@ -1,15 +1,18 @@
 <template>
-  <div class="flex m-4" :class="fromMe ? 'justify-self-end' : 'justify-self-start'">
-    <div v-if="!fromMe" class="w-10 h-10 rounded-full m-2 overflow-hidden">
+  <div class="flex mx-4 my-3" :class="fromMe ? 'justify-self-end flex-row-reverse' : 'justify-self-start'">
+    <div
+      class="w-10 h-10 rounded-full m-2 overflow-hidden flex-shrink-0 hidden md:block"
+      :class="fromMe ? 'invisible' : ''"
+    >
       <img v-if="author.avatarUrl" :src="author.avatarUrl" alt="Author Avatar" />
       <div v-else class="h-full f-center" :style="`background-color: ${useHashColor(author.name)}`">
         {{ author.name.charAt(0) }}
       </div>
     </div>
-    <div class="p-2 rounded max-w-7xl" :class="fromMe ? 'bg-gray-600' : 'bg-primary-500'">
+    <div class="p-2 rounded max-w-5xl" :class="fromMe ? 'bg-gray-600' : 'bg-primary-500'">
       <span class="font-medium mr-2">{{ author.name }}</span>
       <span class="text-xs text-gray-400">{{ formatDate(createdAt) }}</span>
-      <!-- <span v-if="updatedAt" class="text-xs">{{ t('edited') }}</span> -->
+      <span v-if="updatedAt" class="italic text-xs">{{ t('edited') }}</span>
       <p>{{ text }}</p>
     </div>
   </div>
@@ -27,7 +30,7 @@ export default defineComponent({
   props: {
     id: { type: String, required: true },
     text: { type: String, required: true },
-    authorId: { type: String, required: true },
+    authorId: { type: String },
     author: { type: Object, required: true },
     createdAt: { type: Date, required: true },
     updatedAt: { type: Date },

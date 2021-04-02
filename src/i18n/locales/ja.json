@@ -25,6 +25,10 @@
   "settings": "設定",
   "init": "初期化",
   "edited": "「編集」",
+  "on_deck": "オンライン",
+  "offline": "オフライン",
+  "crew": "クルー",
+  "friends": "友達",
 
   "languages": {
     "english": "英語",

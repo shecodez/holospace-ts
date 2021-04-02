@@ -1,14 +1,16 @@
 <template>
   <FixedPanel>
-    <div class="bg-primary-600 w-12 h-12 rounded-full m-2 f-center">
-      <router-link to="/profile">
-        <i-mdi-account-circle />
-        <!-- <i-mdi-mail-ru v-else /> -->
-      </router-link>
+    <div class="my-auto md:my-0 md:mx-auto">
+      <div class="bg-primary-600 w-12 h-12 rounded-full m-2 f-center">
+        <router-link to="/profile">
+          <i-mdi-account-circle />
+          <!-- <i-mdi-mail-ru v-else /> -->
+        </router-link>
+      </div>
     </div>
 
     <div
-      class="border-l md:border-t md:border-l-0 border-black border-opacity-10 dark:border-white dark:border-opacity-10 m-2 sm:py-2 md:pt-2"
+      class="border-l md:border-t md:border-l-0 border-black border-opacity-10 dark:border-white dark:border-opacity-10 my-auto md:my-0 md:mx-auto md:pt-2"
     >
       <span class="uppercase text-xs font-medium p-2">{{ t('deck', deckCnt) }}</span>
     </div>
@@ -17,7 +19,7 @@
     <div v-if="isLoading">{{ t('loading...') }}</div>
     <DeckList v-else />
 
-    <div class="sticky sm:right-0 md:bottom-0 p-2">
+    <div class="sticky right-0 md:bottom-0 p-2 my-auto md:my-0 md:mx-auto">
       <button
         class="border-3 border-dashed hover-border-solid border-black dark:border-white w-12 h-12 rounded-full f-center"
         @click="setModal"

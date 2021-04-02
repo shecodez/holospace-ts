@@ -11,6 +11,8 @@ export enum MutationTypes {
   SET_SHOW_Navbar = 'SET_SHOW_Navbar',
   SET_SHOW_Footer = 'SET_SHOW_Footer',
 
+  SET_Use_SLIDE_OUT_DRAWER = 'SET_Use_SLIDE_OUT_DRAWER',
+
   SET_SIDE_DRAWER_IsOpen = 'SET_SIDE_DRAWER_IsOpen',
   TOGGLE_Side_DRAWER = 'TOGGLE_Side_DRAWER',
   SET_META_DRAWER_IsMini = 'SET_META_DRAWER_IsMini',
@@ -34,6 +36,10 @@ export const mutations: MutationTree<State> & Mutations = {
   },
   [MutationTypes.SET_SHOW_Footer](state, payload) {
     state.showFooter = payload;
+  },
+
+  [MutationTypes.SET_Use_SLIDE_OUT_DRAWER](state, payload) {
+    state.useSlideOutDrawer = payload
   },
 
   [MutationTypes.SET_SIDE_DRAWER_IsOpen](state, payload) {

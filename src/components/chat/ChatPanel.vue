@@ -5,11 +5,11 @@
     </template>
 
     <!-- <MessageListSkeleton v-if="isLoading" /> -->
-    <!-- <div v-if="isLoading">{{ t('loading...') }}</div>
-    <div v-else> -->
-    <MessageList />
-    <MessageForm />
-    <!-- </div> -->
+    <div v-if="isLoading">{{ t('loading...') }}</div>
+    <div class="flex flex-col h-full overflow-hidden" v-else>
+      <MessageList />
+      <MessageForm />
+    </div>
   </StretchPanel>
 </template>
 

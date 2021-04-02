@@ -25,6 +25,10 @@
   "settings": "Settings",
   "init": "Init",
   "edited": "Edited",
+  "on_deck": "On Deck",
+  "offline": "Offline",
+  "crew": "Crew",
+  "friends": "friends",
 
   "languages": {
     "english": "english",

@@ -20,7 +20,7 @@ export default defineComponent({
   setup: () => {
     const store = useStore();
 
-    const sideDrawerIsOpen = computed(() => store.state.app.sideDrawerIsOpen); //&& !store.state.app.usePopOutSideDrawer
+    const sideDrawerIsOpen = computed(() => store.state.app.sideDrawerIsOpen && !store.state.app.useSlideOutDrawer);
 
     return {
       sideDrawerIsOpen,
