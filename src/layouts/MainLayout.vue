@@ -1,9 +1,9 @@
 <template>
   <div
-    class="flex flex-wrap md:flex-nowrap h-screen text-gray-800 dark:text-gray-200 bg-blue-500 dark:bg-red-500 overflow-hidden"
+    class="flex flex-wrap md:flex-nowrap flex-col md:flex-row h-screen text-gray-800 dark:text-gray-200 bg-blue-500 dark:bg-red-500 overflow-hidden"
   >
     <slot name="FixedPanel"><DeckPanel /></slot>
-    <div class="flex flex-col w-full h-full overflow-hidden">
+    <div class="flex flex-1 flex-col w-full h-full overflow-hidden">
       <Banner />
       <div class="nested flex h-full overflow-hidden">
         <slot name="SidePanel"><DiskSpacePanel /></slot>
@@ -13,7 +13,7 @@
     </div>
   </div>
   <SlideOutDrawer :isOpen="useSlideOutDrawer" :onClose="closeDrawer">
-    <h2>This is SlideOutDrawer</h2>
+    <DeckPanel />
   </SlideOutDrawer>
 </template>
 

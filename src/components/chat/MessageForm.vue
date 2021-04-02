@@ -1,5 +1,5 @@
 <template>
-  <div class="relative h-16 mt-3 mx-24">
+  <div class="relative h-16 mt-3 mx-10 md:mx-24">
     <form @submit.prevent="submitChatMessageForm">
       <div class="flex relative items-center justify-between">
         <div class="absolute left-2 grid">

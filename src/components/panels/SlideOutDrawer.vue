@@ -12,9 +12,7 @@
 
     <div ref="drawer" class="flex h-full flex-col w-60 bg-gray-300 dark:bg-gray-700 shadow-lg z-50 overflow-y-overlay">
       <div class="drawer-content">
-        <slot name="header"></slot>
         <slot></slot>
-        <slot name="footer"></slot>
       </div>
     </div>
   </div>
