@@ -6,7 +6,7 @@
       :style="`background-color: ${useHashColor(name)}`"
     >
       <span>{{ name.charAt(0) }}</span>
-      <Tooltip>{{ name }}</Tooltip>
+      <Tooltip position="-mb-24 md:mb-0 md:-mr-40">{{ name }}</Tooltip>
     </div>
   </router-link>
 </template>

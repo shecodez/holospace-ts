@@ -1,9 +1,10 @@
 <template>
-  <SideDrawer>
+  <!-- TODO: make this DRY -->
+  <SideDrawer v-if="useDrawer">
     <template v-slot:header>
       <ActiveDeck />
     </template>
-    <div class="flex-grow d-none overflow-y-overlay">
+    <div class="flex-grow overflow-y-overlay">
       <div class="grid grid-cols-1 divide-y divide-white divide-opacity-10">
         <DiskSpaceList :type="type.TEXT" />
         <DiskSpaceList :type="type.VOIP" />
@@ -11,6 +12,18 @@
       </div>
     </div>
   </SideDrawer>
+  <SidePanel v-else>
+    <template v-slot:header>
+      <ActiveDeck />
+    </template>
+    <div class="flex-grow overflow-y-overlay">
+      <div class="grid grid-cols-1 divide-y divide-white divide-opacity-10">
+        <DiskSpaceList :type="type.TEXT" />
+        <DiskSpaceList :type="type.VOIP" />
+        <DiskSpaceList :type="type.HOLO" />
+      </div>
+    </div>
+  </SidePanel>
 </template>
 
 <script lang="ts">
@@ -19,6 +32,7 @@ import { useI18n } from 'vue-i18n';
 import { useRoute } from 'vue-router';
 
 import ActiveDeck from '@/components/decks/ActiveDeck.vue';
+import SidePanel from '@/components/panels/SidePanel.vue';
 import SideDrawer from '@/components/panels/SideDrawer.vue';
 import DiskSpaceList from './DiskSpaceList.vue';
 import AllActionTypes from '@/store/action-types';
@@ -26,7 +40,14 @@ import { useStore } from '@/store';
 import { DiskSpaceType } from '@/store/interfaces';
 
 export default defineComponent({
-  components: { SideDrawer, ActiveDeck, DiskSpaceList },
+  name: 'DiskSpaceCtrl',
+  components: { SidePanel, SideDrawer, ActiveDeck, DiskSpaceList },
+  props: {
+    useDrawer: {
+      type: Boolean,
+      default: false,
+    },
+  },
   setup: () => {
     const { t } = useI18n();
 

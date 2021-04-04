@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onBeforeMount, onMounted, watch } from 'vue';
+import { computed, defineComponent, onBeforeMount, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 import { useStore } from '@/store';
@@ -54,7 +54,8 @@ export default defineComponent({
           //store.dispatch(AllActionTypes.SET_SIDE_DRAWER_IsOpen, true); // state.sideDrawerBeforeAutoCollapse
           store.dispatch(AllActionTypes.SET_META_DRAWER_IsMini, false); // state.metaDrawerBeforeAutoColapse
         }
-      }
+      },
+      { immediate: true }
     );
 
     return {

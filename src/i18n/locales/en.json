@@ -105,6 +105,27 @@
       "HOLO_space": "Holo Space"
     }
   },
+  "users": {
+    "my": {
+      "OnStatusList": {
+        "Show": "Show",
+        "Away": "Away",
+        "BRB": "BRB",
+        "Busy": "Busy",
+        "DND": "DND",
+        "Hide": "Hide",
+        "Available": "Available",
+        "Be_Right_Back": "Be Right Back",
+        "Do_NOT_Disturb": "Do NOT Disturb",
+        "Invisible": "Invisible"
+      }
+    },
+    "UserCard": {
+      "role": "Role",
+      "note": "Note",
+      "joined": "Joined"
+    }
+  },
   "Footer": {
     "made_with_love": "made with 🥰 by",
     "crew_regs": "@:decks.AddDeckScreen.crew_regs",

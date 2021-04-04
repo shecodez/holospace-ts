@@ -1,13 +1,13 @@
 <template>
   <div class="users flex-grow overflow-y-overlay">
-    <div class="ml-6 my-2">{{ t('on_deck') }}</div>
+    <div class="my-2 mx-2 md:ml-6 text-center md:text-justify">{{ t('on_deck') }}</div>
     <ul class="on-deck">
       <li v-for="user in usersOnDeck" :key="user.id">
         <UserListItem :user="user" />
       </li>
     </ul>
 
-    <div class="ml-6 my-2">{{ t('offline') }}</div>
+    <div class="my-2 mx-2 md:ml-6 text-center md:text-justify">{{ t('offline') }}</div>
     <ul class="offline">
       <li v-for="user in usersOffline" :key="user.id">
         <UserListItem :user="user" />

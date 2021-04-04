@@ -44,6 +44,7 @@ import AllActionTypes from '../../store/action-types';
 import AllMutationTypes from '../../store/mutation-types';
 
 export default defineComponent({
+  name: 'DeckCtrl',
   components: { FixedPanel, DeckList, AddOrJoinDeckModal },
   setup: () => {
     const { t } = useI18n();

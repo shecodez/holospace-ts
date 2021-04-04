@@ -1,46 +1,34 @@
 <template>
-  <!-- <teleport to="body"> -->
-  <div class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center" v-show="showModal">
-    <div ref="modal-backdrop" class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
-
-    <div
-      ref="modal"
-      class="modal-container bg-white dark:bg-gray-800 w-11/12 md:max-w-lg mx-auto rounded shadow-lg z-50 overflow-y-auto"
-      role="dialog"
-    >
+  <div v-show="showModal" class="fixed z-50 w-full h-full top-0 left-0 flex items-center justify-center">
+    <div ref="backdrop" class="absolute w-full h-full bg-gray-900 opacity-50">
       <button
-        class="modal-close absolute top-4 right-4 flex flex-col items-center mt-4 mr-4 text-white text-sm z-50"
+        class="modal-close absolute top-4 right-4 flex flex-col items-center mt-4 mr-4 text-white text-sm"
         @click="closeModal"
       >
         <i-mdi-close />
         <span class="text-sm">{{ t('ModalDialog.esc') }}</span>
       </button>
+    </div>
 
+    <div
+      ref="modal"
+      class="relative bg-white dark:bg-gray-800 w-11/12 md:max-w-lg mx-auto rounded shadow-lg overflow-y-auto"
+      role="dialog"
+    >
       <div class="modal-content py-4 text-left px-6">
-        <!-- header -->
         <slot name="header">
           <div v-show="title" class="flex justify-between items-center pb-3">
             <h3 class="text-xl font-bold">{{ title }}</h3>
-            <button class="modal-close z-50" @click="closeModal">
+            <button @click="closeModal">
               <i-mdi-close />
             </button>
           </div>
         </slot>
-
-        <!-- body -->
         <slot></slot>
-
-        <!--Footer-->
-        <slot name="footer">
-          <!-- <div class="flex justify-end pt-2">
-            <button class="px-4 bg-transparent p-2 rounded text-indigo-500 hover:bg-gray-100 hover:text-indigo-400 mr-2">Action</button>
-            <button class="modal-close px-4 bg-indigo-500 p-2 rounded text-white hover:bg-indigo-400">Close</button>
-          </div> -->
-        </slot>
+        <slot name="footer"></slot>
       </div>
     </div>
   </div>
-  <!-- </teleport> -->
 </template>
 
 <script lang="ts">

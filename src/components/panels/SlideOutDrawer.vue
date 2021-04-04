@@ -1,17 +1,20 @@
 <template>
-  <div v-show="showDrawer" class="fixed w-full h-full top-0 left-0 flex">
+  <div v-show="showDrawer" class="fixed z-50 w-full h-full top-0 left-0 flex">
     <div ref="backdrop" class="absolute w-full h-full bg-gray-900 opacity-50">
-      <button
-        class="drawer-close absolute top-4 right-4 flex flex-col items-center mt-4 mr-4 text-white text-sm z-50"
+      <!-- <button
+        class="drawer-close absolute top-4 right-4 flex flex-col items-center mt-4 mr-4 text-white text-sm"
         @click="closeDrawer"
       >
         <i-mdi-close />
         <span class="text-sm">{{ t('ModalDialog.esc') }}</span>
-      </button>
+      </button> -->
     </div>
 
-    <div ref="drawer" class="flex h-full flex-col w-60 bg-gray-300 dark:bg-gray-700 shadow-lg z-50 overflow-y-overlay">
-      <div class="drawer-content">
+    <div
+      ref="drawer"
+      class="relative flex h-full flex-col w-60 bg-gray-300 dark:bg-gray-700 shadow-lg overflow-hidden overflow-y-overlay"
+    >
+      <div class="drawer-content w-full h-full text-black dark:text-white">
         <slot></slot>
       </div>
     </div>

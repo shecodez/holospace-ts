@@ -366,6 +366,16 @@ export interface IChatActions {
   [ChatATypes.CREATE_Chat_Message]({ commit }: AugmentedActionCtxChat, message: IChatMessage): void;
 }
 
+/************************ USER MODULE TYPES **************************/
+export enum OnStatus {
+  SHOW = 'SHOW',
+  AWAY = 'AWAY',
+  BRB = 'BRB',
+  BUSY = 'BUSY',
+  DND = 'DND',
+  HIDE = 'HIDE',
+}
+
 /*********************** LOCALE MODULE TYPES *************************/
 
 export type ILocaleState = {

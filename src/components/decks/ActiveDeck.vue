@@ -1,5 +1,5 @@
 <template>
-  <div class="d-none bg-gray-300 dark:bg-gray-700 h-14">
+  <div class="bg-gray-300 dark:bg-gray-700 h-14">
     <div class="flex items-center h-full mx-4">
       <span v-if="deck" class="truncate flex-grow mr-2 font-medium text-base">{{ deck.name }}</span>
       <button class="p-2 rounded-full">

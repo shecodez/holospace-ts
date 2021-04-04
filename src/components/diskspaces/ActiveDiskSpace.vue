@@ -16,7 +16,7 @@
         <span class="font-thin pl-2">{{ diskSpace.topic }}</span>
       </div>
 
-      <div class="grid grid-flow-col grid-cols-3 gap-3 mr-4">
+      <div class="hidden md:grid grid-flow-col grid-cols-3 gap-3 mr-4">
         <button><i-mdi-magnify /></button>
         <button><i-mdi-bell /></button>
         <button><i-mdi-calendar-month /></button>

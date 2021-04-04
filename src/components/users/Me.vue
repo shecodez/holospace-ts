@@ -1,12 +1,17 @@
 <template>
-  <div class="bg-gray-200 dark:bg-gray-800 h-16">
+  <!-- <VoiceSetting /> -->
+  <div class="bg-gray-200 dark:bg-gray-800 h-14">
     <div class="flex items-center h-full px-4">
-      <div class="bg-purple-300 w-12 h-12 rounded-full m-auto flex-shrink-0"></div>
-      <div class="truncate flex-grow ml-4 d-none">
-        <span class="font-medium text-base">Me</span>
-        <span class="text-xs font-extralight">#1234</span>
+      <button @click="openMenu">
+        <UserAvatar v-bind="user" size="10" />
+      </button>
+
+      <div class="d-none truncate flex flex-col flex-grow ml-4">
+        <h3 class="font-medium">{{ user.name }}</h3>
+        <span class="text-xs font-extralight text-gray-400 -mt-1.5">#{{ user.pin }}</span>
       </div>
-      <div class="actions d-none grid grid-flow-col grid-cols-2 gap-3">
+
+      <div class="d-none grid grid-flow-col grid-cols-2 gap-3">
         <button>
           <i-mdi-chevron-up />
           <span class="sr-only">Options Menu</span>
@@ -18,20 +23,31 @@
       </div>
     </div>
   </div>
+  <OptionsMenu :isOpen="isOpen" />
+  <!-- <SettingsModal /> -->
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
+
+import UserAvatar from './UserAvatar.vue';
+import OptionsMenu from './my/OptionsMenu.vue';
+import SettingsModal from './my/SettingsModal.vue';
+
 //import { useStore } from '@/store';
+import { users } from '@/data/mock';
 
 export default defineComponent({
-  name: 'ActiveUser',
+  components: { OptionsMenu, UserAvatar, SettingsModal },
+  name: 'Me',
   setup: () => {
-    // const store = useStore();
-    // const user = computed(() => store.state.users.me);
-    // return {
-    //   user,
-    // };
+    //const store = useStore();
+    const user = users[1]; //computed(() => store.state.users.me);
+
+    const isOpen = ref(false);
+    const openMenu = () => (isOpen.value = !isOpen.value);
+
+    return { isOpen, openMenu, user };
   },
 });
 </script>

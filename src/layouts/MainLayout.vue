@@ -2,18 +2,18 @@
   <div
     class="flex flex-wrap md:flex-nowrap flex-col md:flex-row h-screen text-gray-800 dark:text-gray-200 bg-blue-500 dark:bg-red-500 overflow-hidden"
   >
-    <slot name="FixedPanel"><DeckPanel /></slot>
+    <slot name="FixedSlot"><DeckCtrl /></slot>
     <div class="flex flex-1 flex-col w-full h-full overflow-hidden">
       <Banner />
-      <div class="nested flex h-full overflow-hidden">
-        <slot name="SidePanel"><DiskSpacePanel /></slot>
+      <div class="flex h-full overflow-hidden">
+        <slot name="SideSlot"><DiskSpaceCtrl /></slot>
         <slot></slot>
-        <slot name="MetaPanel"><UserPanel /></slot>
+        <slot name="MetaSlot"><UserCtrl /></slot>
       </div>
     </div>
   </div>
   <SlideOutDrawer :isOpen="useSlideOutDrawer" :onClose="closeDrawer">
-    <DeckPanel />
+    <DiskSpaceCtrl useDrawer />
   </SlideOutDrawer>
 </template>
 
@@ -22,16 +22,16 @@ import { computed, defineComponent, onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 import Banner from '@/components/Banner.vue';
-import DeckPanel from '@/components/decks/DeckPanel.vue';
-import DiskSpacePanel from '@/components/diskspaces/DiskSpacePanel.vue';
-import UserPanel from '@/components/users/UserPanel.vue';
+import DeckCtrl from '@/components/decks/DeckCtrl.vue';
+import DiskSpaceCtrl from '@/components/diskspaces/DiskSpaceCtrl.vue';
+import UserCtrl from '@/components/users/UserCtrl.vue';
 import SlideOutDrawer from '@/components/panels/SlideOutDrawer.vue';
 import { useStore } from '@/store';
 import AllActionTypes from '@/store/action-types';
 import { AlertTypes, IBanner } from '@/store/interfaces';
 
 export default defineComponent({
-  components: { Banner, DeckPanel, DiskSpacePanel, UserPanel, SlideOutDrawer },
+  components: { Banner, DeckCtrl, DiskSpaceCtrl, UserCtrl, SlideOutDrawer },
   name: 'MainLayout',
   props: {
     view: {
@@ -71,11 +71,6 @@ export default defineComponent({
 </script>
 
 <style>
-/* @media (max-width: 960px) {
-  .nested {
-    max-height: calc(100vh - 112px); -fixed (64) - banner (48)
-  }
-} */
 /* Works on Firefox */
 * {
   scrollbar-width: thin;

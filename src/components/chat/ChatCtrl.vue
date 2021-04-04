@@ -26,7 +26,7 @@ import { useStore } from '../../store';
 import AllActionTypes from '../../store/action-types';
 
 export default defineComponent({
-  name: 'ChatPanel',
+  name: 'ChatCtrl',
   components: { StretchPanel, ActiveDiskSpace, MessageList, MessageForm },
   setup: () => {
     const { t } = useI18n();

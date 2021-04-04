@@ -1,5 +1,5 @@
 <template>
-  <div class="flex mx-4 my-3" :class="fromMe ? 'justify-self-end flex-row-reverse' : 'justify-self-start'">
+  <div class="flex mx-4 my-2" :class="fromMe ? 'justify-self-end flex-row-reverse' : 'justify-self-start'">
     <div
       class="w-10 h-10 rounded-full m-2 overflow-hidden flex-shrink-0 hidden md:block"
       :class="fromMe ? 'invisible' : ''"

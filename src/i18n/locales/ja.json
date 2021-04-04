@@ -105,6 +105,27 @@
       "HOLO_space": "ホロスペース"
     }
   },
+  "users": {
+    "my": {
+      "OnStatusList": {
+        "Show": "ここに",
+        "Away": "アウェイ",
+        "BRB": "BRB",
+        "Busy": "忙しい",
+        "DND": "DND",
+        "Hide": "隠す",
+        "Available": "利用可能",
+        "Be_Right_Back": "すぐに戻る",
+        "Do_NOT_Disturb": "邪魔しないでください",
+        "Invisible": "見えない"
+      }
+    },
+    "UserCard": {
+      "role": "役割",
+      "note": "ノート",
+      "joined": "参加しました"
+    }
+  },
   "Footer": {
     "made_with_love": "で🥰を込めて作られました",
     "crew_regs": "@:decks.AddDeckScreen.crew_regs",

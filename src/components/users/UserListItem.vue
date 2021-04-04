@@ -1,5 +1,5 @@
 <template>
-  <div class="user py-2 px-4 flex items-center hover:bg-gradient-to-r from-black">
+  <div class="user py-1 px-4 flex items-center hover:bg-gradient-to-r from-black">
     <!-- <div class="user-avatar bg-purple-300 w-10 h-10 rounded-full m-auto"></div> -->
     <UserAvatar v-bind="user" />
     <span class="truncate flex-grow ml-4 d-none">{{ user.name }}</span>
