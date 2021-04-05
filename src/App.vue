@@ -51,7 +51,7 @@ export default defineComponent({
           store.dispatch(AllActionTypes.SET_META_DRAWER_IsMini, true);
         } else {
           store.dispatch(AllActionTypes.SET_Use_SLIDE_OUT_DRAWER, false);
-          //store.dispatch(AllActionTypes.SET_SIDE_DRAWER_IsOpen, true); // state.sideDrawerBeforeAutoCollapse
+          store.dispatch(AllActionTypes.SET_SIDE_DRAWER_IsOpen, true); // state.sideDrawerBeforeAutoCollapse
           store.dispatch(AllActionTypes.SET_META_DRAWER_IsMini, false); // state.metaDrawerBeforeAutoColapse
         }
       },

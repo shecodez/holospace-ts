@@ -10,9 +10,9 @@
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
-import { useStore } from '../store';
-import AllMutationTypes from '../store/mutation-types';
-import AllActionTypes from '../store/action-types';
+import { useStore } from '../../store';
+import AllMutationTypes from '../../store/mutation-types';
+import AllActionTypes from '../../store/action-types';
 
 export default defineComponent({
   name: 'HelloWorld',

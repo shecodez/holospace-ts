@@ -1,5 +1,5 @@
 <template>
-  <footer>
+  <footer class="text-center">
     <span>{{ t('Footer.made_with_love') }} <span class="text-primary-500">shecodez</span> | NJN</span>
   </footer>
 </template>

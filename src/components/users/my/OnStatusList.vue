@@ -2,7 +2,7 @@
   <ul>
     <li v-for="status in onStatusList" :key="status.id" class="cursor-pointer">
       <div class="flex space-x-8 py-1 px-2 hover:bg-gray-600">
-        <IconForOnStatus :iconFor="status.id" :class="`text-${toStatusColor(status.id)}-500`" />
+        <IconForOnStatus :iconFor="status.id" class="text-sm my-1" :class="`text-${toStatusColor(status.id)}-500`" />
         <div>
           <b>{{ t(`${l10n}.${status.name}`) }}</b>
           <p v-if="status.description" class="text-gray-300">

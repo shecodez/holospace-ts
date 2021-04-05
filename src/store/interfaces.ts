@@ -190,7 +190,7 @@ export type IDeck = {
   name: string;
   avatarUrl?: string;
   captainId: string; // guid
-  //captain?: IUser;
+  //user?: IUser;
   idsId: string; // (Init Disk Space) Id - guid
   hq: Region;
   //members?: User[];
@@ -264,8 +264,8 @@ export type DiskSpace = {
   holoSpaceId?: string; // if type = HOLO
   isSsh: boolean; // default false
   ownerId: string; // UserId | DeckId
-  deck?: string; // User if UserId
-  user?: string; // Deck if DeckId
+  user?: string; // User if ownerId = UserId
+  deck?: string; // Deck if ownerId = DeckId
   canDelete: boolean; // cannot delete IDS
   //subscribers?: User[]; //if isSSH = true
   //lastModById: string; // UserId

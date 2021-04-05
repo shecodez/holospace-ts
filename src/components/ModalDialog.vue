@@ -2,7 +2,7 @@
   <div v-show="showModal" class="fixed z-50 w-full h-full top-0 left-0 flex items-center justify-center">
     <div ref="backdrop" class="absolute w-full h-full bg-gray-900 opacity-50">
       <button
-        class="modal-close absolute top-4 right-4 flex flex-col items-center mt-4 mr-4 text-white text-sm"
+        class="absolute top-4 right-4 flex flex-col items-center mt-4 mr-4 text-white text-sm"
         @click="closeModal"
       >
         <i-mdi-close />
@@ -15,7 +15,7 @@
       class="relative bg-white dark:bg-gray-800 w-11/12 md:max-w-lg mx-auto rounded shadow-lg overflow-y-auto"
       role="dialog"
     >
-      <div class="modal-content py-4 text-left px-6">
+      <div class="py-4 text-left px-6">
         <slot name="header">
           <div v-show="title" class="flex justify-between items-center pb-3">
             <h3 class="text-xl font-bold">{{ title }}</h3>
@@ -34,8 +34,7 @@
 <script lang="ts">
 import { watch, ref, defineComponent } from 'vue';
 import { useI18n } from 'vue-i18n';
-
-import useClickOutsite from '@/useables/useClickOutside';
+import { onClickOutside } from '@vueuse/core';
 
 export default defineComponent({
   name: 'ModalDialog',
@@ -53,13 +52,10 @@ export default defineComponent({
       required: false,
     },
   },
-  setup(props) {
+  setup: (props) => {
     const { t } = useI18n();
 
-    const modal = ref(null);
     const showModal = ref(false);
-    const { onClickOutside } = useClickOutsite();
-
     watch(
       () => props.isOpen,
       (isOpen) => {
@@ -67,11 +63,12 @@ export default defineComponent({
       }
     );
 
-    function closeModal() {
+    const closeModal = () => {
       showModal.value = false;
       props.onClose();
-    }
+    };
 
+    const modal = ref();
     onClickOutside(modal, () => {
       if (showModal.value === true) {
         closeModal();

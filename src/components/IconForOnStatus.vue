@@ -1,10 +1,8 @@
 <template>
-  <div class="text-sm my-1">
-    <i-mdi-check-circle v-if="iconFor === status.SHOW" />
-    <i-mdi-clock-outline v-else-if="iconFor === status.BRB" />
-    <i-mdi-minus-circle-outline v-else-if="iconFor === status.DND" />
-    <i-mdi-circle v-else />
-  </div>
+  <i-mdi-check-circle v-if="iconFor === status.SHOW" />
+  <i-mdi-clock-outline v-else-if="iconFor === status.BRB" />
+  <i-mdi-minus-circle-outline v-else-if="iconFor === status.DND" />
+  <i-mdi-circle v-else />
 </template>
 
 <script lang="ts">

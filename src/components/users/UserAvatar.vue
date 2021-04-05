@@ -6,17 +6,23 @@
         <span :class="toFontSize()">{{ name.charAt(0) }}</span>
       </div>
     </div>
-    <i-mdi-circle class="absolute bottom-0 right-0" :class="[`text-${toStatusColor()}-500`, toIconSize()]" />
+    <IconForOnStatus
+      :iconFor="online ? status : 'offline'"
+      class="absolute bottom-0 right-0"
+      :class="[`text-${toStatusColor()}-500`, toIconSize()]"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 
+import IconForOnStatus from '@/components/IconForOnStatus.vue';
 import { useHashColor } from '@/useables/useHashColor';
 
 export default defineComponent({
   name: 'UserAvatar',
+  components: { IconForOnStatus },
   props: {
     id: { type: String, required: true },
     name: { type: String, required: true },
