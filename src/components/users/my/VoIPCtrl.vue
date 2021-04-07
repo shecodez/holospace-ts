@@ -1,9 +1,13 @@
 <template>
   <div v-show="isVoIP" class="flex items-center px-4 py-1 bg-gray-200 dark:bg-gray-800 mb-0.5">
-    <IconForVoIPSignal :strength="getSignalStr" class="text-2xl mr-2" />
-
     <div class="d-none flex flex-col flex-1 font-medium overflow-hidden">
-      <h3 class="text-secondary-500">VoIP Comms: 200</h3>
+      <div class="truncate overflow-hidden">
+        <IconForVoIPSignal :strength="getSignalStr" class="inline mr-2" />
+        <span class="text-secondary-500">
+          {{ t(`${l10n}.voip_comms`) }}
+          <i-mdi-check-circle class="ml-1 inline text-sm" />
+        </span>
+      </div>
       <span class="italic text-xs text-gray-400 -mt-1 truncate">{{ activeDisk }} / {{ activeDeck }}</span>
     </div>
 
@@ -16,6 +20,7 @@
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 import IconForVoIPSignal from '@/components/IconForVoIPSignal.vue';
 import { useStore } from '@/store';
@@ -25,6 +30,9 @@ export default defineComponent({
   components: { IconForVoIPSignal },
   name: 'VoIPCtrl',
   setup: () => {
+    const { t } = useI18n();
+    const l10n = 'users.my.VoIPCtrl';
+
     const getSignalStr = 2;
     const inCall = false;
 
@@ -34,7 +42,7 @@ export default defineComponent({
     const activeDisk = computed(() => store.state.diskSpaces.activeDiskSpace?.name);
     const isVoIP = computed(() => store.getters.getActiveDiskSpaceType === DiskSpaceType.VOIP);
 
-    return { getSignalStr, inCall, activeDeck, activeDisk, isVoIP };
+    return { t, l10n, getSignalStr, inCall, activeDeck, activeDisk, isVoIP };
   },
 });
 </script>

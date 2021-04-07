@@ -15,11 +15,16 @@
       </div>
 
       <div class="d-none grid grid-flow-col grid-cols-2 gap-3">
-        <button>
-          <i-mdi-chevron-up />
-          <span class="sr-only">Options Menu</span>
-        </button>
-        <button>
+        <Popper placement="top-start">
+          <template v-slot:activator>
+            <button>
+              <i-mdi-chevron-up />
+              <span class="sr-only">Video Microphone Holo VR Control</span>
+            </button>
+          </template>
+          <VideoMicHoloCtrl />
+        </Popper>
+        <button @click="openSettings">
           <i-mdi-cog />
           <span class="sr-only">User Settings</span>
         </button>
@@ -27,7 +32,7 @@
     </div>
   </div>
 
-  <!-- <SettingsModal /> -->
+  <SettingsModal :showModal="showSettings" :closeModal="closeSettings" />
 </template>
 
 <script lang="ts">
@@ -38,18 +43,27 @@ import Popper from '../Popper.vue';
 import OptionsMenu from './my/OptionsMenu.vue';
 import SettingsModal from './my/SettingsModal.vue';
 import VoIPCtrl from './my/VoIPCtrl.vue';
+import VideoMicHoloCtrl from './my/VideoMicHoloCtrl.vue';
 
 //import { useStore } from '@/store';
 import { users } from '@/data/mock';
 
 export default defineComponent({
-  components: { OptionsMenu, UserAvatar, SettingsModal, Popper, VoIPCtrl },
+  components: { OptionsMenu, UserAvatar, SettingsModal, Popper, VoIPCtrl, VideoMicHoloCtrl },
   name: 'Me',
   setup: () => {
     //const store = useStore();
     const user = users[1]; //computed(() => store.state.users.me);
 
-    return { user };
+    const showSettings = ref(false);
+    const openSettings = () => {
+      showSettings.value = true;
+    };
+    const closeSettings = () => {
+      showSettings.value = false;
+    };
+
+    return { user, showSettings, openSettings, closeSettings };
   },
 });
 </script>

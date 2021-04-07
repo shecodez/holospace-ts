@@ -1,7 +1,7 @@
 <template>
   <div class="select-ctrl-group relative">
     <label v-show="label && !noLabel" class="text-xs font-medium ml-2" :for="label">
-      {{ t(`${label}`) }}
+      {{ label }}
       <span v-if="required" class="text-red-500">*</span>
     </label>
     <div class="relative">

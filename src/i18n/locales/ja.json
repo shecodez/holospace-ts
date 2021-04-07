@@ -29,6 +29,10 @@
   "offline": "オフライン",
   "crew": "クルー",
   "friends": "友達",
+  "search...": "探す...",
+  "name": "名前",
+  "email": "Eメール",
+  "bio": "バイオ",
 
   "languages": {
     "english": "英語",
@@ -107,6 +111,15 @@
   },
   "users": {
     "my": {
+      "settings": {
+        "ProfileSettings": {
+          "remove": "削除する",
+          "save": "保存する",
+          "delete_account": "アカウントを削除する",
+          "two_factor_authentication": "二要素認証",
+          "coming_soon": "近日公開..."
+        }
+      },
       "OnStatusList": {
         "Show": "ここに",
         "Away": "アウェイ",
@@ -118,6 +131,25 @@
         "Be_Right_Back": "すぐに戻る",
         "Do_NOT_Disturb": "邪魔しないでください",
         "Invisible": "見えない"
+      },
+      "SettingsModal": {
+        "account_settings": "アカウント設定",
+        "profile": "＠Me 「プロフィール」",
+        "captains_log": "キャプテンのログ",
+        "crew_regs": "@:decks.AddDeckScreen.crew_regs",
+        "subscriptions": "サブスクリプション",
+        "memberships": "メンバーシップ",
+        "app_settings": "アプリの設定",
+        "voice_&_visuals": "音声とビジュアル",
+        "notifications": "通知",
+        "appearance_&_themes": "外観とテーマ",
+        "language": "@:language",
+        "get_in_touch": "お問い合わせ",
+        "help_&_support": "ヘルプとサポート",
+        "send_feedback": "フィードバックを送信する"
+      },
+      "VoIPCtrl": {
+        "voip_comms": "VoIP通信"
       }
     },
     "UserCard": {

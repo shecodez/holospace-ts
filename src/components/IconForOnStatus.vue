@@ -11,7 +11,7 @@ import { defineComponent } from 'vue';
 import { OnStatus } from '@/store/interfaces';
 
 export default defineComponent({
-  name: 'IconOnStatus',
+  name: 'IconForOnStatus',
   props: {
     iconFor: {
       type: String,

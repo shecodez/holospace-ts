@@ -1,7 +1,7 @@
 <template>
   <div class="input-ctrl-group relative mb-2">
     <label v-show="label" class="text-xs font-medium ml-2" :for="label">
-      {{ t(`${label}`) }}
+      {{ label }}
       <span v-if="required" class="text-red-500">*</span>
     </label>
     <div class="input-wrapper relative">

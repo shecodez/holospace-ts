@@ -11,8 +11,7 @@
 <script lang="ts">
 import { defineComponent, ref, watch } from 'vue';
 import { createPopper } from '@popperjs/core';
-
-import useClickOutside from '@/useables/useClickOutside';
+import { onClickOutside } from '@vueuse/core';
 
 export default defineComponent({
   name: 'PopoverDemo',
@@ -37,7 +36,6 @@ export default defineComponent({
       showPopper.value = false;
     };
 
-    const { onClickOutside } = useClickOutside();
     onClickOutside(popper, () => {
       if (showPopper.value === true) {
         closePopper();
