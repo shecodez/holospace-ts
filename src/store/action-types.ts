@@ -5,6 +5,7 @@ import { ActionTypes as DeckATypes } from './modules/decks/actions';
 import { ActionTypes as LocaleATypes } from './modules/locale/actions';
 import { ActionTypes as DiskSpaceATypes } from './modules/diskSpaces/actions';
 import { ActionTypes as ChatATypes } from './modules/chat/actions'
+import { ActionTypes as UserATypes } from './modules/users/actions'
 
 const AllActionTypes = {
   ...RootATypes,
@@ -13,7 +14,8 @@ const AllActionTypes = {
   ...DeckATypes,
   ...LocaleATypes,
   ...DiskSpaceATypes,
-  ...ChatATypes
+  ...ChatATypes,
+  ...UserATypes
 };
 
 export default AllActionTypes;

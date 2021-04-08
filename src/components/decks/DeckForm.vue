@@ -2,13 +2,13 @@
   <form @submit.prevent="submitDeckForm">
     <div class="grid grid-cols-2 gap-4">
       <div class="l-col">
-        <TextInput ref="inputNameEl" v-model="name" :label="`${l10n}.deck_name`" :max="64" preIcon required>
+        <TextInput ref="inputNameEl" v-model="name" :label="t(`${l10n}.deck_name`)" :max="64" preIcon required>
           <template v-slot:preIcon>
             <i-mdi-layers-outline class="text-primary-500" />
           </template>
         </TextInput>
 
-        <Select v-model="hq" :label="`${l10n}.deck_hq`" :options="getRegionList" preIcon>
+        <Select v-model="hq" :label="t(`${l10n}.deck_hq`)" :options="getRegionList" preIcon>
           <template v-slot:preIcon>
             <IconForFlag :flagFor="getRegionFlag" />
           </template>

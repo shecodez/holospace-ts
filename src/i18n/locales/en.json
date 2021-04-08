@@ -174,5 +174,9 @@
   },
   "ModalDialog": {
     "esc": "(Esc)"
+  },
+  "UnderConstruction": {
+    "under_construction_message": "This content is under construction.",
+    "we_are_working_": "She's working on it..."
   }
 }

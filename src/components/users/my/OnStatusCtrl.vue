@@ -1,7 +1,12 @@
 <template>
   <ul>
-    <li v-for="status in onStatusList" :key="status.id" class="cursor-pointer">
-      <div class="flex space-x-8 py-1 px-2 hover:bg-gray-600">
+    <li
+      v-for="status in onStatusList"
+      :key="status.id"
+      class="cursor-pointer"
+      :class="isActive(status.id) ? 'bg-gray-600' : 'bg-transparent'"
+    >
+      <div class="flex space-x-8 py-1 px-2 hover:bg-gray-600" @click="setOnStatus(status.id)">
         <IconForOnStatus :iconFor="status.id" class="text-sm my-1" :class="`text-${toStatusColor(status.id)}-500`" />
         <div>
           <b>{{ t(`${l10n}.${status.name}`) }}</b>
@@ -15,11 +20,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-import { OnStatus } from '@/store/interfaces';
 import IconForOnStatus from '@/components/IconForOnStatus.vue';
+import { OnStatus } from '@/store/interfaces';
+import { users } from '@/data/mock';
 
 export default defineComponent({
   components: { IconForOnStatus },
@@ -56,7 +62,18 @@ export default defineComponent({
       }
     };
 
-    return { t, l10n, onStatusList, toStatusColor };
+    const meStatus = ref(users[1].status); //computed(() => store.state.me.status)
+
+    const isActive = (onStatus: OnStatus) => {
+      return meStatus.value === onStatus;
+    };
+
+    const setOnStatus = (onStatus: OnStatus) => {
+      // store.dispatch(AllActionTypes.setOnStatus(onStatus))
+      return (meStatus.value = onStatus);
+    };
+
+    return { t, l10n, onStatusList, toStatusColor, isActive, setOnStatus };
   },
 });
 </script>

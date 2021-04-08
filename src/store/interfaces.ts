@@ -14,6 +14,8 @@ import { ActionTypes as DiskSpaceATypes } from './modules/diskSpaces/actions';
 import { MutationTypes as DiskSpaceMTypes } from './modules/diskSpaces/mutations';
 import { ActionTypes as ChatATypes } from './modules/chat/actions';
 import { MutationTypes as ChatMTypes } from './modules/chat/mutations';
+import { ActionTypes as UserATypes } from './modules/users/actions';
+import { MutationTypes as UserMTypes } from './modules/users/mutations';
 
 export interface IRootState {
   root: boolean;
@@ -27,6 +29,7 @@ export interface IMergedState extends IRootState {
   locale: ILocaleState;
   diskSpaces: IDiskSpaceState;
   chat: IChatState;
+  users: IUserState;
 }
 
 export interface IRootMutations<S = IRootState> {
@@ -113,7 +116,7 @@ export interface IAppState {
   theme: AppTheme | undefined;
   showNavBar: boolean;
   showFooter: boolean;
-  useSlideOutDrawer: boolean,
+  useSlideOutDrawer: boolean;
   sideDrawerIsOpen: boolean;
   metaDrawerIsMini: boolean;
   toast?: IToast | undefined;
@@ -367,6 +370,7 @@ export interface IChatActions {
 }
 
 /************************ USER MODULE TYPES **************************/
+
 export enum OnStatus {
   SHOW = 'SHOW',
   AWAY = 'AWAY',
@@ -374,6 +378,80 @@ export enum OnStatus {
   BUSY = 'BUSY',
   DND = 'DND',
   HIDE = 'HIDE',
+}
+
+export type IUser = {
+  id: string; // guid
+  avatarUrl?: string;
+  name: string;
+  pin: number;
+  isOnline: boolean;
+  status: OnStatus;
+  //createdAt: serverTimestamp;
+  //updatedAt: null;
+};
+
+export interface IUserState {
+  isLoading: boolean;
+  members: IUser[]; // req active DeckId
+  subscribers: IUser[]; // req active SshDiskSpaceId
+  friends: IUser[];
+}
+
+export interface IUserMutations<S = IUserState> {
+  [UserMTypes.SET_DECK_Members](state: S, payload: IUser[]): void;
+  [UserMTypes.SET_DISKSPACE_Subscribers](state: S, payload: IUser[]): void;
+  [UserMTypes.SET_ME_Friends](state: S, payload: IUser[]): void;
+
+  [UserMTypes.SET_LOADING_Users](state: S, payload: boolean): void;
+}
+
+export interface IUserGetters {
+  totalMemberCount(state: IUserState): number;
+  membersOnDeck(state: IUserState): IUser[] | [];
+  membersOffline(state: IUserState): IUser[] | [];
+  // totalSubscribersCount(state: IUserState): number;
+  // totalFriendCount(state: IUserState): number;
+  // getMemberById(state: IUserState): (id: string) => IUser | undefined;
+  // getSubscriberById(state: IUserState): (id: string) => IUser | undefined;
+  // getFriendById(state: IUserState): (id: string) => IUser | undefined;
+}
+
+// prettier-ignore
+type AugmentedActionCtxUser = Omit<ActionContext<IUserState, IRootState>, 'commit'> & {
+  commit<K extends keyof IUserMutations>(
+    key: K,
+    payload: Parameters<IUserMutations[K]>[1]
+  ): ReturnType<IUserMutations[K]>;
+};
+
+export interface IUserActions {
+  [UserATypes.GET_DECK_Members]({ commit }: AugmentedActionCtxUser, deckId: string): void;
+  [UserATypes.GET_DISKSPACE_Subscribers]({ commit, state }: AugmentedActionCtxUser, diskSpaceId: String): void;
+  [UserATypes.GET_ME_Friends]({ commit }: AugmentedActionCtxUser): void;
+}
+
+/************************* ME MODULE TYPES ***************************/
+
+export interface IProfile extends IUser {
+  email: string;
+  friends: IUser[];
+  subscriptionIds: string[];
+  membershipIds: string[];
+  colorTheme: string;
+  backgroundImageUrl: string;
+  isDarkTheme: boolean;
+  language: string;
+}
+/************************* ME MODULE TYPES ***************************/
+
+export enum PasswordStrength {
+  VERY_WEAK = 'VERY_WEAK',
+  WEAK = 'WEAK',
+  MEDIUM = 'MEDIUM',
+  STRONG = 'STRONG',
+  VERY_STRONG = 'VERY_STRONG',
+  OVER_9000 = 'OVER_9000',
 }
 
 /*********************** LOCALE MODULE TYPES *************************/
@@ -414,7 +492,8 @@ export interface IStoreActions
     ILocaleActions,
     IDeckActions,
     IDiskSpaceActions,
-    IChatActions {}
+    IChatActions, 
+    IUserActions {}
 
 export interface IStoreGetters
   extends IRootGetters,
@@ -423,4 +502,5 @@ export interface IStoreGetters
     ILocaleGetters,
     IDeckGetters,
     IDiskSpaceGetters,
-    IChatGetters {}
+    IChatGetters, 
+    IUserGetters {}

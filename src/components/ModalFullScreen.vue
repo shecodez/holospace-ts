@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed w-full h-full top-0 left-0 flex items-center justify-center">
+  <div v-show="showModal" class="fixed w-full h-full top-0 left-0 flex items-center justify-center">
     <div ref="modal" class="fixed w-full h-full z-60 bg-black bg-opacity-80 overflow-y-auto">
       <slot name="header">
         <div v-show="title" class="flex justify-between items-center pb-3">

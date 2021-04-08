@@ -7,7 +7,7 @@
       </div>
     </div>
     <IconForOnStatus
-      :iconFor="online ? status : 'offline'"
+      :iconFor="isOnline ? status : 'offline'"
       class="absolute bottom-0 right-0"
       :class="[`text-${toStatusColor()}-500`, toIconSize()]"
     />
@@ -27,13 +27,13 @@ export default defineComponent({
     id: { type: String, required: true },
     name: { type: String, required: true },
     avatarUrl: { type: String }, //type: URL
-    online: { type: Boolean, required: true },
+    isOnline: { type: Boolean, required: true },
     status: { type: String, required: true }, // type: String as () => OnlineStatus
     size: { type: String, default: '9' },
   },
   setup: (props) => {
     const toStatusColor = () => {
-      const status = props.online ? props.status : 'offline';
+      const status = props.isOnline ? props.status : 'offline';
       switch (status.toLowerCase()) {
         case 'away':
         case 'brb':

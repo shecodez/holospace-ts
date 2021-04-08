@@ -9,7 +9,7 @@
         {{ author.name.charAt(0) }}
       </div>
     </div>
-    <div class="p-2 rounded max-w-5xl" :class="fromMe ? 'bg-gray-600' : 'bg-primary-500'">
+    <div class="p-2 rounded max-w-5xl bg-opacity-90" :class="fromMe ? 'bg-gray-600' : 'bg-primary-500 '">
       <span class="font-medium mr-2">{{ author.name }}</span>
       <span class="text-xs text-gray-400">{{ formatDate(createdAt) }}</span>
       <span v-if="updatedAt" class="italic text-xs">{{ t('edited') }}</span>

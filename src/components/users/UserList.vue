@@ -1,19 +1,10 @@
 <template>
-  <div class="users flex-grow overflow-y-overlay">
-    <div class="my-2 mx-2 md:ml-6 text-center md:text-justify">{{ t('on_deck') }}</div>
-    <ul class="on-deck">
-      <li v-for="user in usersOnDeck" :key="user.id">
-        <UserListItem :user="user" />
-      </li>
-    </ul>
-
-    <div class="my-2 mx-2 md:ml-6 text-center md:text-justify">{{ t('offline') }}</div>
-    <ul class="offline">
-      <li v-for="user in usersOffline" :key="user.id">
-        <UserListItem :user="user" />
-      </li>
-    </ul>
-  </div>
+  <div class="on-text my-2 ml-5 w-3/5">{{ t(forUsers) }}</div>
+  <ul class="user-ul" :class="forUsers">
+    <template v-for="user in users" :key="user.id">
+      <UserListItem :user="user" />
+    </template>
+  </ul>
 </template>
 
 <script lang="ts">
@@ -21,34 +12,32 @@ import { defineComponent } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 import UserListItem from './UserListItem.vue';
-//import { useStore } from '@/store';
-import { users } from '@/data/mock';
 
 export default defineComponent({
   name: 'UserList',
   components: { UserListItem },
+  props: {
+    users: {
+      type: Object,
+      required: true,
+    },
+    forUsers: {
+      type: String,
+      required: true,
+    },
+  },
   setup: () => {
     const { t } = useI18n();
 
-    //const store = useStore();
-    //const usersOnDeck = computed(() => store.getters.usersOnDeck);
-    //const usersOffline = computed(() => store.getters.usersOffline);
-    const usersOnDeck = users.filter((x) => x.online && x.status !== 'HIDE');
-    const usersOffline = users.filter((x) => !x.online || x.status === 'HIDE');
-
-    return { t, usersOnDeck, usersOffline };
+    return { t };
   },
 });
 </script>
 
-<style>
-.users .on-deck .user-avatar {
-  filter: none;
-}
-.users .offline .user-avatar {
-  filter: grayscale(100%);
-}
-.users .offline .user-avatar:hover {
-  filter: none;
+<style scoped>
+.is-mini .on-text {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 </style>

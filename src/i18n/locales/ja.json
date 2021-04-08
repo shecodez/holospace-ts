@@ -174,5 +174,9 @@
   },
   "ModalDialog": {
     "esc": "「出」"
+  },
+  "UnderConstruction": {
+    "under_construction_message": "このコンテンツは現在準備中です。",
+    "we_are_working_": "我々はそれに取り組んでいます..."
   }
 }

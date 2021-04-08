@@ -1,19 +1,19 @@
 <template>
   <form @submit.prevent="submitDiskSpaceForm" class="pt-4">
-    <TextInput ref="inputNameEl" v-model="name" :label="`${l10n}.disk_space_name`" :max="256" preIcon required>
+    <TextInput ref="inputNameEl" v-model="name" :label="t(`${l10n}.disk_space_name`)" :max="256" preIcon required>
       <template v-slot:preIcon>
         <i-carbon-vmdk-disk class="text-primary-500" />
       </template>
     </TextInput>
 
-    <TextArea v-model="topic" :label="`${l10n}.disk_space_topic`" :max="512" preIcon>
+    <TextArea v-model="topic" :label="t(`${l10n}.disk_space_topic`)" :max="512" preIcon>
       <template v-slot:preIcon>
         <i-mdi-note-text class="text-primary-500" />
       </template>
     </TextArea>
 
     <div class="w-1/2">
-      <Select v-model="type" :label="`${l10n}.disk_space_type`" :options="getDiskSpaceTypeList" preIcon required>
+      <Select v-model="type" :label="t(`${l10n}.disk_space_type`)" :options="getDiskSpaceTypeList" preIcon required>
         <template v-slot:preIcon>
           <IconForDiskType :iconFor="type" iconColor="text-primary-500" />
         </template>

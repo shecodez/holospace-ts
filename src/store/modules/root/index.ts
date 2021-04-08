@@ -10,17 +10,24 @@ import counter from '../counter';
 import app from '../app';
 import decks from '../decks';
 import locale from '../locale';
-import diskSpaces from '../diskSpaces'
-import chat from '../chat'
+import diskSpaces from '../diskSpaces';
+import chat from '../chat';
+import users from '../users'
 
 // Modules
 const modules: ModuleTree<IMergedState> = {
   counter,
+  //auth
   app,
   decks,
+  //memberships
   locale,
   diskSpaces,
-  chat
+  //subscriptions
+  chat,
+  users
+  //me
+  //socket
 };
 
 // Root Module
