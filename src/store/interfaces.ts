@@ -231,6 +231,7 @@ export interface IDeckMutations<S = IDeckState> {
 export interface IDeckGetters {
   totalDeckCount(state: IDeckState): number;
   getDeckById(state: IDeckState): (id: string) => IDeck | undefined;
+  getActiveDeckCaptainId(state: IDeckState): string | undefined;
 }
 
 // prettier-ignore
@@ -331,7 +332,7 @@ export interface IDiskSpaceActions {
 export type IChatMessage = {
   id: string; // guid
   text: string;
-  isMarkup?: boolean;
+  isMarkdown?: boolean;
   media?: string;
   authorId: string; // [UserId | DiskSpaceId] guid
   author?: {}; //IUser;

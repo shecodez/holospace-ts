@@ -2,23 +2,25 @@
   <form @submit.prevent="submitDeckForm">
     <div class="grid grid-cols-2 gap-4">
       <div class="l-col">
-        <TextInput ref="inputNameEl" v-model="name" :label="t(`${l10n}.deck_name`)" :max="64" preIcon required>
-          <template v-slot:preIcon>
+        <TextField ref="inputNameEl" v-model="name" :label="t(`${l10n}.deck_name`)" :max="64" required>
+          <template v-slot:prepend>
             <i-mdi-layers-outline class="text-primary-500" />
           </template>
-        </TextInput>
+        </TextField>
 
-        <Select v-model="hq" :label="t(`${l10n}.deck_hq`)" :options="getRegionList" preIcon>
-          <template v-slot:preIcon>
+        <Select v-model="hq" :label="t(`${l10n}.deck_hq`)" :options="getRegionList">
+          <template v-slot:prepend>
             <IconForFlag :flagFor="getRegionFlag" />
           </template>
           <template v-slot:hint>
-            {{ t('recommended') }}: <b>{{ getRegionByIP }}</b>
+            <span>
+              {{ t('recommended') }}: <b>{{ getRegionByIP }}</b>
+            </span>
           </template>
         </Select>
       </div>
       <div class="text-center m-auto">
-        <!-- <TextInput v-model="avatarUrl" label="Icon" /> -->
+        <!-- <TextField v-model="avatarUrl" label="Icon" /> -->
         <!-- if image error add border-red-500 to class -->
         <div
           class="relative border-4 rounded-full w-32 h-32 f-center"
@@ -53,9 +55,9 @@
 import { ref, defineComponent, reactive, onMounted, toRefs, watch, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
+import TextField from '@/components/inputs/TextField.vue';
+import Select from '@/components/inputs/Select.vue';
 import IconForFlag from '../IconForFlag.vue';
-import TextInput from '../TextInput.vue';
-import Select from '../SelectField.vue';
 import { useHashColor } from '@/useables/useHashColor';
 import { Region } from '@/store/interfaces';
 
@@ -79,7 +81,7 @@ export default defineComponent({
       required: false,
     },
   },
-  components: { TextInput, Select, IconForFlag },
+  components: { TextField, Select, IconForFlag },
   computed: {
     showCreateModal(): boolean {
       return this.$store.state.decks.showCreateDeckModal;

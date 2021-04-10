@@ -1,8 +1,8 @@
 <template>
   <form @submit.prevent="submitRegister">
-    <TextInput v-model="username" label="auth.username" />
-    <TextInput v-model="email" label="auth.email" type="email" />
-    <PasswordInput v-model="password" label="auth.password" showStrMeter />
+    <TextField v-model="username" :label="t('auth.username')" size="lg" />
+    <TextField v-model="email" :label="t('auth.email')" type="email" size="lg" />
+    <PasswordField v-model="password" :label="t('auth.password')" size="lg" showMeter />
 
     <div class="mt-6 mb-4">
       <button class="block w-full btn btn-primary px-2 py-2" :disabled="!valid" type="submit">
@@ -16,11 +16,11 @@
 import { ref, defineComponent, reactive, toRefs } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-import TextInput from '@/components/TextInput.vue';
-import PasswordInput from '@/components/PasswordInput.vue';
+import TextField from '@/components/inputs/TextField.vue';
+import PasswordField from '@/components/inputs/PasswordField.vue';
 
 export default defineComponent({
-  components: { TextInput, PasswordInput },
+  components: { TextField, PasswordField },
   name: 'RegisterForm',
 
   setup: () => {

@@ -1,6 +1,6 @@
 <template>
-  <Select ref="selectLocaleEl" v-model="locale" label="language" :options="getLangList" preIcon noLabel>
-    <template v-slot:preIcon>
+  <Select ref="selectLocaleEl" v-model="locale" :options="getLangList">
+    <template v-slot:prepend>
       <i-mdi-translate />
     </template>
   </Select>
@@ -10,7 +10,7 @@
 import { defineComponent, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-import Select from './SelectField.vue';
+import Select from '@/components/inputs/Select.vue';
 import { useStore } from '@/store';
 import AllMutationTypes from '@/store/mutation-types';
 

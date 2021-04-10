@@ -28,13 +28,13 @@
       </div>
 
       <div class="flex-1 p-4">
-        <TextInput v-model="name" :label="`${t('name')}`" />
-        <TextInput v-model="email" :label="t('email')" postIcon>
-          <template v-slot:postIcon>
+        <TextField v-model="name" :label="`${t('name')}`" />
+        <TextField v-model="email" :label="t('email')">
+          <template v-slot:append>
             <i-mdi-alert class="text-warning-500" />
           </template>
-        </TextInput>
-        <TextArea v-model="bio" :label="t('bio')" />
+        </TextField>
+        <Textarea v-model="bio" :label="t('bio')" />
 
         <div class="text-right mt-4">
           <button class="btn bg-success-500">{{ t(`${l10n}.save`) }}</button>
@@ -57,12 +57,12 @@
 import { defineComponent, onMounted, reactive, ref, toRefs } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-import TextInput from '@/components/TextInput.vue';
+import TextField from '@/components/inputs/TextField.vue';
+import Textarea from '@/components/inputs/Textarea.vue';
 import { useHashColor } from '@/useables/useHashColor';
-import TextArea from '@/components/TextArea.vue';
 
 export default defineComponent({
-  components: { TextInput, TextArea },
+  components: { TextField, Textarea },
   name: 'ProfileSettings',
   props: {
     profile: {

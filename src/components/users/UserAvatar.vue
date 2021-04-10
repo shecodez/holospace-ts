@@ -1,11 +1,12 @@
 <template>
-  <div class="relative">
+  <div class="relative p-0.5">
     <div class="user-avatar m-auto rounded-full overflow-hidden" :class="`w-${size} h-${size}`">
       <img v-if="avatarUrl" :src="avatarUrl" alt="User Avatar" />
       <div v-else class="h-full f-center" :style="`background-color: ${useHashColor(name)}`">
         <span :class="toFontSize()">{{ name.charAt(0) }}</span>
       </div>
     </div>
+    <i-mdi-view-headline v-if="isCaptain" class="absolute left-0 top-0 text-yellow-500" :class="toIconSize()" />
     <IconForOnStatus
       :iconFor="isOnline ? status : 'offline'"
       class="absolute bottom-0 right-0"
@@ -15,10 +16,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { computed, defineComponent, watch, ref } from 'vue';
 
 import IconForOnStatus from '@/components/IconForOnStatus.vue';
 import { useHashColor } from '@/useables/useHashColor';
+import { useStore } from '@/store';
 
 export default defineComponent({
   name: 'UserAvatar',
@@ -32,6 +34,18 @@ export default defineComponent({
     size: { type: String, default: '9' },
   },
   setup: (props) => {
+    const store = useStore();
+
+    const captainId = computed(() => store.getters.getActiveDeckCaptainId);
+    const isCaptain = ref(false);
+    watch(
+      () => captainId.value,
+      (captainId) => {
+        isCaptain.value = props.id === captainId;
+      },
+      { immediate: true }
+    );
+
     const toStatusColor = () => {
       const status = props.isOnline ? props.status : 'offline';
       switch (status.toLowerCase()) {
@@ -67,7 +81,7 @@ export default defineComponent({
       }
     };
 
-    return { useHashColor, toStatusColor, toFontSize, toIconSize };
+    return { isCaptain, useHashColor, toStatusColor, toFontSize, toIconSize };
   },
 });
 </script>

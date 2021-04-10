@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-flow-col grid-cols-3 border rounded my-2 bg-gray-700">
+  <div class="grid grid-flow-col grid-cols-3">
     <button class="btn f-center" @click="toggleCam">
       <div class="relative">
         <i-mdi-camera-iris />

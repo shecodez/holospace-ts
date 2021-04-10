@@ -1,9 +1,9 @@
 <template>
   <div class="flex-1 overflow-y-overlay">
-    <ul class="m-6">
-      <li class="grid" v-for="message in messages" :key="message.id">
+    <ul class="mx-2 md:mx-6">
+      <template v-for="message in messages" :key="message.id">
         <MessageListItem v-bind="message" />
-      </li>
+      </template>
     </ul>
   </div>
 </template>

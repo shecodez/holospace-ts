@@ -38,7 +38,7 @@ import { computed, defineComponent, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 export default defineComponent({
-  name: 'TextArea',
+  name: 'TextArea-x',
   props: {
     label: {
       type: String,

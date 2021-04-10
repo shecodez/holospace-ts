@@ -144,7 +144,7 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style lang="postcss" scoped>
 .setting:hover {
   border-color: var(--hs-primary);
   background-image: linear-gradient(to right, var(--tw-gradient-stops));

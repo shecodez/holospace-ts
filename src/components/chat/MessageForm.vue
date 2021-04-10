@@ -1,5 +1,6 @@
 <template>
-  <div class="relative h-16 mt-3 mx-10 md:mx-24">
+  <div class="relative my-3 mx-6 md:mx-24">
+    <MarkdownMenu v-if="showMarkdownMenu" />
     <form @submit.prevent="submitChatMessageForm">
       <div class="flex relative items-center justify-between">
         <div class="absolute left-2 grid">
@@ -8,12 +9,16 @@
             <span class="sr-only">Upload File</span>
           </button>
         </div>
-        <input
-          class="py-3 pl-12 pr-28 w-full bg-gray-400 dark:bg-gray-600 border-none"
+
+        <textarea
+          v-if="isMultiline"
+          class="chat-box"
           v-model="message"
           :placeholder="t(`${l10n}.enter_message`)"
-          type="text"
+          :rows="3"
         />
+        <input v-else class="chat-box" v-model="message" :placeholder="t(`${l10n}.enter_message`)" type="text" />
+
         <button v-if="message.length" class="absolute right-20" @click="clearInput">
           <i-mdi-close />
           <span class="sr-only">Clear Message</span>
@@ -21,9 +26,9 @@
         <div
           class="absolute right-2 grid grid-cols-2 divide-x divide-black divide-opacity-10 dark:divide-white dark:divide-opacity-10"
         >
-          <button class="mx-2">
-            <i-mdi-emoticon-dead />
-            <span class="sr-only">Emoji Menu</span>
+          <button class="mx-2" @click="toggleMarkdownMenu">
+            <i-mdi-format-textbox />
+            <span class="sr-only">Toggle Markdown Menu</span>
           </button>
           <button class="text-primary-500 px-2" type="submit">
             <i-fa-paper-plane />
@@ -40,8 +45,11 @@
 import { defineComponent, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
+import MarkdownMenu from './MarkdownMenu.vue';
+
 export default defineComponent({
   name: 'MessageForm',
+  components: { MarkdownMenu },
   setup: () => {
     const { t } = useI18n();
     const l10n = 'chat.MessageForm';
@@ -58,13 +66,29 @@ export default defineComponent({
       message.value = '';
     };
 
+    const isMultiline = ref(false);
+    const showMarkdownMenu = ref(false);
+    const toggleMarkdownMenu = () => {
+      showMarkdownMenu.value = !showMarkdownMenu.value;
+      isMultiline.value = !isMultiline.value;
+    };
+
     return {
       t,
       l10n,
       message,
       submitChatMessageForm,
       clearInput,
+      isMultiline,
+      showMarkdownMenu,
+      toggleMarkdownMenu,
     };
   },
 });
 </script>
+
+<style lang="postcss">
+.chat-box {
+  @apply py-3 pl-12 pr-28 w-full bg-gray-400 dark:bg-gray-600 shadow-inner border-none;
+}
+</style>

@@ -1,5 +1,5 @@
 <template>
-  <div ref="menu" class="bg-gray-200 dark:bg-gray-700 text-black dark:text-white max-w-sm rounded py-2">
+  <Menu customize="max-w-sm py-2">
     <OnStatusCtrl />
 
     <div v-if="metaDrawerIsMini">
@@ -12,25 +12,20 @@
         </button>
       </div>
     </div>
-  </div>
+  </Menu>
 </template>
 
 <script lang="ts">
-import { useStore } from '@/store';
 import { computed, defineComponent } from 'vue';
 
+import Menu from '@/components/Menu.vue';
 import OnStatusCtrl from './OnStatusCtrl.vue';
 import VideoMicHoloCtrl from './VideoMicHoloCtrl.vue';
+import { useStore } from '@/store';
 
 export default defineComponent({
-  components: { OnStatusCtrl, VideoMicHoloCtrl },
+  components: { OnStatusCtrl, VideoMicHoloCtrl, Menu },
   name: 'OptionsMenu',
-  props: {
-    isOpen: {
-      type: Boolean,
-      default: false,
-    },
-  },
   setup: () => {
     const store = useStore();
 

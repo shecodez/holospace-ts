@@ -1,20 +1,20 @@
 <template>
   <form @submit.prevent="submitDiskSpaceForm" class="pt-4">
-    <TextInput ref="inputNameEl" v-model="name" :label="t(`${l10n}.disk_space_name`)" :max="256" preIcon required>
-      <template v-slot:preIcon>
+    <TextField ref="inputNameEl" v-model="name" :label="t(`${l10n}.disk_space_name`)" :max="256" required>
+      <template v-slot:prepend>
         <i-carbon-vmdk-disk class="text-primary-500" />
       </template>
-    </TextInput>
+    </TextField>
 
-    <TextArea v-model="topic" :label="t(`${l10n}.disk_space_topic`)" :max="512" preIcon>
-      <template v-slot:preIcon>
+    <Textarea v-model="topic" :label="t(`${l10n}.disk_space_topic`)" :max="512">
+      <template v-slot:prepend>
         <i-mdi-note-text class="text-primary-500" />
       </template>
-    </TextArea>
+    </Textarea>
 
     <div class="w-1/2">
-      <Select v-model="type" :label="t(`${l10n}.disk_space_type`)" :options="getDiskSpaceTypeList" preIcon required>
-        <template v-slot:preIcon>
+      <Select v-model="type" :label="t(`${l10n}.disk_space_type`)" :options="getDiskSpaceTypeList" required>
+        <template v-slot:prepend>
           <IconForDiskType :iconFor="type" iconColor="text-primary-500" />
         </template>
       </Select>
@@ -33,14 +33,15 @@
 import { ref, defineComponent, reactive, onMounted, toRefs, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-import TextInput from '../TextInput.vue';
-import Select from '../SelectField.vue';
-import TextArea from '../TextArea.vue';
+import TextField from '@/components/inputs/TextField.vue';
+import Select from '@/components/inputs/Select.vue';
+import Textarea from '@/components/inputs/Textarea.vue';
 import IconForDiskType from '../IconForDiskType.vue';
 import { DiskSpaceType } from '@/store/interfaces';
 
 export default defineComponent({
   name: 'DiskSpaceForm',
+  components: { TextField, Select, Textarea, IconForDiskType },
   props: {
     diskSpaceType: {
       type: String,
@@ -63,7 +64,7 @@ export default defineComponent({
       required: false,
     },
   },
-  components: { TextInput, Select, TextArea, IconForDiskType },
+
   computed: {
     showCreateModal(): boolean {
       return this.$store.state.diskSpaces.showCreateDiskSpaceModal;

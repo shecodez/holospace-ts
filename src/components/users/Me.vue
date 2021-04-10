@@ -22,7 +22,9 @@
               <span class="sr-only">Video Microphone Holo VR Control</span>
             </button>
           </template>
-          <VideoMicHoloCtrl />
+          <Menu>
+            <VideoMicHoloCtrl />
+          </Menu>
         </Popper>
         <button @click="openSettings">
           <i-mdi-cog />
@@ -38,18 +40,19 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 
+import Popper from '@/components/Popper.vue';
+import Menu from '@/components/Menu.vue';
 import UserAvatar from './UserAvatar.vue';
-import Popper from '../Popper.vue';
 import OptionsMenu from './my/OptionsMenu.vue';
-import SettingsModal from './my/SettingsModal.vue';
 import VoIPCtrl from './my/VoIPCtrl.vue';
 import VideoMicHoloCtrl from './my/VideoMicHoloCtrl.vue';
+import SettingsModal from './my/SettingsModal.vue';
 
 //import { useStore } from '@/store';
 import { users } from '@/data/mock';
 
 export default defineComponent({
-  components: { OptionsMenu, UserAvatar, SettingsModal, Popper, VoIPCtrl, VideoMicHoloCtrl },
+  components: { OptionsMenu, UserAvatar, SettingsModal, Popper, VoIPCtrl, VideoMicHoloCtrl, Menu },
   name: 'Me',
   setup: () => {
     //const store = useStore();

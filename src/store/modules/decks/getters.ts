@@ -13,5 +13,7 @@ export const getters: GetterTree<State, IRootState> & Getters = {
   getDeckById: (state) => (id: string) => {
     return state.deckList.find((deck) => deck.id === id);
   },
-  //getDeckMembers
+  getActiveDeckCaptainId: (state) => {
+    return state.activeDeck?.captainId;
+  },
 };

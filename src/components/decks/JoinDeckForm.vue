@@ -1,10 +1,10 @@
 <template>
   <form @submit.prevent="submitJoinDeckForm" class="c-secondary">
-    <TextInput ref="inputKeyEl" v-model="holoKey" label="HoloKey" preIcon class="focus:ring-secondary-500">
-      <template v-slot:preIcon>
+    <TextField ref="inputKeyEl" v-model="holoKey" label="HoloKey">
+      <template v-slot:prepend>
         <i-mdi-key-variant class="text-secondary-500" />
       </template>
-    </TextInput>
+    </TextField>
 
     <button class="btn btn-secondary rounded px-4 py-2 absolute right-0 bottom-2" :disabled="!isValid" type="submit">
       <span class="uppercase">{{ t('join') }}</span>
@@ -16,7 +16,7 @@
 import { ref, defineComponent } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-import TextInput from '../TextInput.vue';
+import TextField from '@/components/inputs/TextField.vue';
 
 export default defineComponent({
   name: 'JoinDeckForm',
@@ -34,7 +34,7 @@ export default defineComponent({
       required: false,
     },
   },
-  components: { TextInput },
+  components: { TextField },
   computed: {
     showJoinDeckModal(): boolean {
       return this.$store.state.decks.showJoinDeckModal;

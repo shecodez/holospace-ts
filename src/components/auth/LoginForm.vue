@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="submitLogin">
-    <TextInput v-model="email" label="auth.email" type="email" />
-    <PasswordInput v-model="password" label="auth.password" />
+    <TextField v-model="email" :label="t('auth.email')" type="email" size="lg" />
+    <PasswordField v-model="password" :label="t('auth.password')" size="lg" />
 
     <div
       class="uppercase font-medium text-sm my-4 text-right cursor-pointer text-gray-300 hover:text-white"
@@ -22,12 +22,12 @@
 import { ref, defineComponent, onMounted, reactive, toRefs } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-import TextInput from '@/components/TextInput.vue';
-import PasswordInput from '../PasswordInput.vue';
+import TextField from '@/components/inputs/TextField.vue';
+import PasswordField from '@/components/inputs/PasswordField.vue';
 
 export default defineComponent({
   name: 'LoginForm',
-  components: { TextInput, PasswordInput },
+  components: { TextField, PasswordField },
   setup: () => {
     const { t } = useI18n();
 

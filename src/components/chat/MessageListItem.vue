@@ -1,5 +1,5 @@
 <template>
-  <div class="flex mx-4 my-2" :class="fromMe ? 'justify-self-end flex-row-reverse' : 'justify-self-start'">
+  <li class="flex mx-4 my-3" :class="fromMe ? 'justify-self-end flex-row-reverse' : 'justify-self-start'">
     <div
       class="w-10 h-10 rounded-full m-2 overflow-hidden flex-shrink-0 hidden md:block"
       :class="fromMe ? 'invisible' : ''"
@@ -15,7 +15,7 @@
       <span v-if="updatedAt" class="italic text-xs">{{ t('edited') }}</span>
       <p>{{ text }}</p>
     </div>
-  </div>
+  </li>
 </template>
 
 <script lang="ts">
