@@ -1,28 +1,27 @@
 <template>
   <ModalDialog :isOpen="showModal" :onClose="closeModal">
-    <div v-show="!isBg" class="relative grid grid-cols-2 divide-x">
+    <div
+      v-show="!isBg"
+      class="relative grid grid-cols-2 divide-x divide-black divide-opacity-10 dark:divide-white dark:divide-opacity-10"
+    >
       <div class="text-center p-4">
         <h3 class="m-4 font-bold text-xl text-indigo-500 uppercase">{{ t('add') }}</h3>
         <i-mdi-layers-plus class="m-auto text-7xl" />
         <p class="py-4">{{ t(`${l10n}.add_a_new_deck_and_`) }}</p>
-        <button
-          class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-2 py-2 font-semibold"
-          @click="showAddDeck"
-        >
+        <button class="btn btn-primary block w-full max-w-xs mx-auto" @click="showAddDeck">
           <span class="uppercase">{{ t(`${l10n}.add_a_deck`) }}</span>
         </button>
       </div>
 
-      <div class="divider-text uppercase">{{ t('or') }}</div>
+      <div class="divider-text absolute border-none bg-white dark:bg-gray-800 rounded-full py-2 px-3 uppercase">
+        {{ t('or') }}
+      </div>
 
       <div class="text-center p-4">
         <h3 class="m-4 font-bold text-xl text-green-500 uppercase">{{ t('join') }}</h3>
         <i-mdi-account-multiple-plus class="m-auto text-7xl" />
         <p class="py-4">{{ t(`${l10n}.enter_a_holokey_and_`) }}</p>
-        <button
-          class="block w-full max-w-xs mx-auto bg-green-500 hover:bg-green-700 focus:bg-green-700 text-white rounded-lg px-2 py-2 font-semibold"
-          @click="showJoinDeck"
-        >
+        <button class="btn btn-secondary block w-full max-w-xs mx-auto" @click="showJoinDeck">
           <span class="uppercase">{{ t(`${l10n}.join_a_deck`) }}</span>
         </button>
       </div>
@@ -88,16 +87,8 @@ export default defineComponent({
 
 <style scoped>
 .divider-text {
-  position: absolute;
   left: 50%;
   bottom: 50%;
   transform: translate(-50%, 50%);
-  border: none;
-  background-color: white;
-  border-radius: 50%;
-  padding: 5px 9px;
-}
-.dark .divider-text {
-  background-color: rgba(31, 41, 55);
 }
 </style>

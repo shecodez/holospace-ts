@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="submitDeckForm">
+  <form @submit.prevent="submitDeckForm" class="w-full">
     <div class="grid grid-cols-2 gap-4">
       <div class="l-col">
         <TextField ref="inputNameEl" v-model="name" :label="t(`${l10n}.deck_name`)" :max="64" required>
@@ -44,8 +44,8 @@
       </div>
     </div>
 
-    <button class="btn btn-primary rounded px-4 py-2 absolute right-0 bottom-2" :disabled="!isValid" type="submit">
-      <span v-if="deck" class="uppercase">{{ t(`${l10n}.update_deck`) }}</span>
+    <button class="btn btn-primary rounded px-4 py-2" :class="btnPos" :disabled="!isValid" type="submit">
+      <span v-if="deckId" class="uppercase">{{ t(`${l10n}.update_deck`) }}</span>
       <span v-else class="uppercase">{{ t('add') }}</span>
     </button>
   </form>
@@ -57,15 +57,16 @@ import { useI18n } from 'vue-i18n';
 
 import TextField from '@/components/inputs/TextField.vue';
 import Select from '@/components/inputs/Select.vue';
-import IconForFlag from '../IconForFlag.vue';
+import IconForFlag from '../iconFors/IconForFlag.vue';
 import { useHashColor } from '@/useables/useHashColor';
-import { Region } from '@/store/interfaces';
+import { IDeck, Region } from '@/store/interfaces';
+import { useStore } from '@/store';
 
 export default defineComponent({
   name: 'DeckForm',
   props: {
-    deck: {
-      type: Object, // IDeck
+    deckId: {
+      type: String,
       required: false,
     },
     onSubmit: {
@@ -79,6 +80,10 @@ export default defineComponent({
     error: {
       type: Object,
       required: false,
+    },
+    btnPos: {
+      type: String,
+      default: '',
     },
   },
   components: { TextField, Select, IconForFlag },
@@ -116,6 +121,8 @@ export default defineComponent({
     const { t } = useI18n();
     const l10n = 'decks.DeckForm';
 
+    const store = useStore();
+
     const isValid = ref(true);
     const state = reactive({
       name: '',
@@ -133,11 +140,12 @@ export default defineComponent({
     );
 
     const setFields = () => {
-      if (props.deck) {
-        const { name, hq, avatarUrl } = props.deck;
+      if (props.deckId) {
+        const deck = computed(() => store.getters.getDeckById(props.deckId as string));
+        const { name, hq, avatarUrl } = deck.value as IDeck;
         state.name = name;
         state.hq = hq;
-        state.avatarUrl = avatarUrl;
+        //state.avatarUrl = avatarUrl;
       }
     };
     onMounted(() => setFields()); //if props.deck? setFields() : resetForm();

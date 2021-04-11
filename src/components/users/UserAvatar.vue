@@ -18,7 +18,7 @@
 <script lang="ts">
 import { computed, defineComponent, watch, ref } from 'vue';
 
-import IconForOnStatus from '@/components/IconForOnStatus.vue';
+import IconForOnStatus from '@/components/iconFors/IconForOnStatus.vue';
 import { useHashColor } from '@/useables/useHashColor';
 import { useStore } from '@/store';
 

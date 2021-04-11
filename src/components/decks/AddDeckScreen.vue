@@ -10,7 +10,7 @@
       {{ t(`${l10n}.by_creating_a_deck_you_`) }}
     </p>
 
-    <DeckForm :onSubmit="createDeck" :onClose="closeScreen" />
+    <DeckForm :onSubmit="createDeck" :onClose="closeScreen" btnPos="absolute right-0 bottom-2" />
 
     <p class="text-xs mt-2">
       {{ t(`${l10n}.by_creating_a_deck_you_agree_`) }}

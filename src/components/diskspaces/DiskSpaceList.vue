@@ -9,9 +9,9 @@
     </template>
 
     <ul>
-      <li v-for="disk in diskSpaces" :key="disk.id">
+      <template v-for="disk in diskSpaces" :key="disk.id">
         <DiskSpaceListItem v-bind="disk" />
-      </li>
+      </template>
     </ul>
   </Expander>
   <CreateDiskSpaceModal :type="type" />

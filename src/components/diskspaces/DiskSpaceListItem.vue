@@ -1,5 +1,5 @@
 <template>
-  <div
+  <li
     class="disk-space relative p-2 border-l-4 hover:bg-gradient-to-r from-gray-600"
     :class="isActive(id) ? 'active font-medium border-primary-500 bg-gradient-to-r' : ' border-transparent'"
   >
@@ -14,7 +14,7 @@
         </button>
       </div>
     </div>
-  </div>
+  </li>
 </template>
 
 <script lang="ts">

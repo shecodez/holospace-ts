@@ -1,14 +1,16 @@
 <template>
-  <router-link :to="`/d/${id}/${ids}`">
-    <div
-      class="deck w-12 h-12 f-center text-white has-tooltip"
-      :class="isActive(id) ? 'active rounded-md' : 'rounded-full'"
-      :style="`background-color: ${useHashColor(name)}`"
-    >
-      <span>{{ name.charAt(0) }}</span>
-      <Tooltip position="-mb-24 md:mb-0 md:-mr-40">{{ name }}</Tooltip>
-    </div>
-  </router-link>
+  <li class="p-2 my-auto md:my-0 md:mx-auto">
+    <router-link :to="`/d/${id}/${ids}`">
+      <div
+        class="deck w-12 h-12 f-center text-white has-tooltip"
+        :class="isActive(id) ? 'active rounded-md' : 'rounded-full'"
+        :style="`background-color: ${useHashColor(name)}`"
+      >
+        <span>{{ name.charAt(0) }}</span>
+        <Tooltip position="-mb-24 md:mb-0 md:-mr-40">{{ name }}</Tooltip>
+      </div>
+    </router-link>
+  </li>
 </template>
 
 <script lang="ts">

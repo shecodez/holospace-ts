@@ -4,8 +4,8 @@
       <div class="w-1/3 bg-gray-300 bg-opacity-80 dark:bg-gray-700 dark:bg-opacity-80 md:pt-20">
         <div class="flex flex-col h-full md:w-2/5 md:float-right overflow-hidden">
           <div class="py-4 mx-2 flex items-center">
-            <i-mdi-cog class="text-xl" />
-            <h3 class="font-bold text-xl uppercase mx-2">{{ t('settings') }}</h3>
+            <i-mdi-cog class="text-xl flex-shrink-0" />
+            <h3 class="font-bold text-xl uppercase mx-2 truncate">{{ t('settings') }}</h3>
           </div>
           <!-- <TextInput label="search..." noLabel preIcon class="px-2">
             <template v-slot:preIcon>
@@ -61,7 +61,7 @@
             <h3 class="font-bold text-xl uppercase mx-2">{{ t(`${l10n}.${settings[activeIdx].id}`) }}</h3>
           </div>
           <div class="flex-1 overflow-y-scroll">
-            <DetailsForSetting :contentFor="settings[activeIdx].id" :profile="userProfile" />
+            <TabForSettingsModal :contentFor="settings[activeIdx].id" :profile="userProfile" />
           </div>
         </div>
         <div class="absolute right-0 md:static my-5 mx-4">
@@ -81,16 +81,15 @@ import { useI18n } from 'vue-i18n';
 
 import ModalFullScreen from '@/components/ModalFullScreen.vue';
 import ToggleTheme from '@/components/ToggleTheme.vue';
-import TextInput from '@/components/TextInput.vue';
-import IconForSetting from '@/components/IconForSetting.vue';
-import DetailsForSetting from './settings/DetailsForSetting.vue';
+import IconForSetting from '@/components/iconFors/IconForSetting.vue';
+import TabForSettingsModal from './settings/TabForSettingsModal.vue';
 
 import { useStore } from '@/store';
 import { users } from '@/data/mock';
 
 export default defineComponent({
   name: 'SettingsModal',
-  components: { ModalFullScreen, ToggleTheme, TextInput, IconForSetting, DetailsForSetting },
+  components: { ModalFullScreen, ToggleTheme, IconForSetting, TabForSettingsModal },
   props: {
     showModal: {
       type: Boolean,

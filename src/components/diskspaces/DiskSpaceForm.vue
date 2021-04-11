@@ -36,7 +36,7 @@ import { useI18n } from 'vue-i18n';
 import TextField from '@/components/inputs/TextField.vue';
 import Select from '@/components/inputs/Select.vue';
 import Textarea from '@/components/inputs/Textarea.vue';
-import IconForDiskType from '../IconForDiskType.vue';
+import IconForDiskType from '../iconFors/IconForDiskType.vue';
 import { DiskSpaceType } from '@/store/interfaces';
 
 export default defineComponent({

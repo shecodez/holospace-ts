@@ -23,12 +23,12 @@
 import { computed, defineComponent } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-import IconForAlert from './IconForAlert.vue';
+import IconForAlert from '../iconFors/IconForAlert.vue';
 import { useStore } from '@/store';
 import AllActionTypes from '@/store/action-types';
 
 export default defineComponent({
-  name: 'Footer',
+  name: 'Banner',
   components: { IconForAlert },
   setup: () => {
     const { t } = useI18n();

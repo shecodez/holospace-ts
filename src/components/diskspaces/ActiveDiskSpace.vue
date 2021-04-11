@@ -48,8 +48,8 @@ import { useI18n } from 'vue-i18n';
 
 import Popper from '@/components/Popper.vue';
 import NotificationMenu from '@/components/users/my/NotificationMenu.vue';
-import SearchModal from '@/components/SearchModal.vue';
-import CalendarModal from '@/components/CalendarModal.vue';
+import SearchModal from '@/components/search/SearchModal.vue';
+import CalendarModal from '@/components/events/CalendarModal.vue';
 import { useStore } from '@/store';
 import AllActionTypes from '@/store/action-types';
 

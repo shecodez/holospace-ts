@@ -1,8 +1,8 @@
 <template>
   <ul class="sm-overflow-x-overlay md-overflow-y-overlay flex md:flex-col">
-    <li v-for="deck in decks" :key="deck.id" class="p-2 my-auto md:my-0 md:mx-auto">
+    <template v-for="deck in decks" :key="deck.id">
       <DeckListItem v-bind="deck" />
-    </li>
+    </template>
   </ul>
   <!-- <EditDeckModal v-show="showEditModal" :id="editDeckId" /> -->
 </template>

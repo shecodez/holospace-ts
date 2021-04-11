@@ -23,7 +23,7 @@
 import { defineComponent, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-import IconForOnStatus from '@/components/IconForOnStatus.vue';
+import IconForOnStatus from '@/components/iconFors/IconForOnStatus.vue';
 import { OnStatus } from '@/store/interfaces';
 import { users } from '@/data/mock';
 

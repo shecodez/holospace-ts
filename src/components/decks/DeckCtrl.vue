@@ -1,12 +1,12 @@
 <template>
   <FixedPanel>
     <div class="my-auto md:my-0 md:mx-auto">
-      <div class="bg-primary-600 w-12 h-12 rounded-full m-2 f-center">
-        <router-link to="/profile">
+      <router-link to="/@me">
+        <div class="bg-primary-500 w-12 h-12 rounded-full m-2 f-center">
           <i-mdi-account-circle />
           <!-- <i-mdi-mail-ru v-else /> -->
-        </router-link>
-      </div>
+        </div></router-link
+      >
     </div>
 
     <div
@@ -29,6 +29,7 @@
     </div>
   </FixedPanel>
   <AddOrJoinDeckModal />
+  <EditDeckModal id="1" />
 </template>
 
 <script lang="ts">
@@ -42,10 +43,11 @@ import AddOrJoinDeckModal from './AddOrJoinDeckModal.vue';
 import { useStore } from '../../store';
 import AllActionTypes from '../../store/action-types';
 import AllMutationTypes from '../../store/mutation-types';
+import EditDeckModal from './EditDeckModal.vue';
 
 export default defineComponent({
   name: 'DeckCtrl',
-  components: { FixedPanel, DeckList, AddOrJoinDeckModal },
+  components: { FixedPanel, DeckList, AddOrJoinDeckModal, EditDeckModal },
   setup: () => {
     const { t } = useI18n();
 

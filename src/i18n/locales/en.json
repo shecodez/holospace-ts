@@ -33,6 +33,7 @@
   "name": "Name",
   "email": "E-mail",
   "bio": "Bio",
+  "danger_zone": "Danger Zone",
 
   "languages": {
     "english": "english",
@@ -68,6 +69,16 @@
     }
   },
   "decks": {
+    "ActiveDeckMenu": {
+      "send_holokey": "Send HoloKey",
+      "contact_captain": "Contact the Captain",
+      "edit_deck": "Edit this Deck",
+      "edit_deck_crew": "Edit Deck Crew",
+      "danger_zone": "@:danger_zone",
+      "leave_deck": "Leave this Deck",
+      "transfer_deck": "Transfer Deck Captaincy",
+      "delete_deck": "Delete this Deck"
+    },
     "AddDeckScreen": {
       "add_new_deck": "Add New Deck",
       "by_creating_a_deck_you_": "By creating a deck, you and your crew can access free VoIP, Text, & Holo chat DiskSpaces. Welcome aboard Captain!",
@@ -86,7 +97,18 @@
       "update_deck": "Update {deck}"
     },
     "EditDeckModal": {
-      "edit_deck": "Edit {deck} Deck"
+      "edit_deck": "Edit {deck} Deck",
+      "deck_management": "Deck Management",
+      "overview": "Overview",
+      "authorization": "Authorization",
+      "logs": "Logs",
+      "roles": "Roles",
+      "authorized_apps": "Authorized Apps",
+      "subroutines": "Subroutines",
+      "crew_management": "Crew Management",
+      "holokeys": "HoloKeys",
+      "crew_members": "Crew Members",
+      "dismissals": "Dismissals"
     },
     "JoinDeckScreen": {
       "join_a_deck": "@:decks.AddOrJoinDeckModal.join_a_deck",

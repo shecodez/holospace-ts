@@ -10,7 +10,7 @@
       </button>
 
       <div class="relative pt-10 w-3/5 m-auto">
-        <TextField :placeholder="t('search...')" size="lg">
+        <TextField v-model="query" :placeholder="t('search...')" size="lg">
           <template v-slot:prepend>
             <i-mdi-magnify />
           </template>
@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, reactive, toRefs } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 import ModalFullScreen from '@/components/ModalFullScreen.vue';
@@ -42,9 +42,12 @@ export default defineComponent({
   },
   setup: () => {
     const { t } = useI18n();
-    const search = ref('');
+    const search = reactive({
+      scope: '',
+      query: '',
+    });
 
-    return { t, search };
+    return { t, ...toRefs(search) };
   },
 });
 </script>

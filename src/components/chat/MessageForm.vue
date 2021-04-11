@@ -12,12 +12,12 @@
 
         <textarea
           v-if="isMultiline"
-          class="chat-box"
+          class="hs-chatbox"
           v-model="message"
           :placeholder="t(`${l10n}.enter_message`)"
           :rows="3"
         />
-        <input v-else class="chat-box" v-model="message" :placeholder="t(`${l10n}.enter_message`)" type="text" />
+        <input v-else class="hs-chatbox" v-model="message" :placeholder="t(`${l10n}.enter_message`)" type="text" />
 
         <button v-if="message.length" class="absolute right-20" @click="clearInput">
           <i-mdi-close />
@@ -71,6 +71,7 @@ export default defineComponent({
     const toggleMarkdownMenu = () => {
       showMarkdownMenu.value = !showMarkdownMenu.value;
       isMultiline.value = !isMultiline.value;
+      // TODO: focus on input/textarea
     };
 
     return {
@@ -87,8 +88,9 @@ export default defineComponent({
 });
 </script>
 
-<style lang="postcss">
-.chat-box {
-  @apply py-3 pl-12 pr-28 w-full bg-gray-400 dark:bg-gray-600 shadow-inner border-none;
+<style lang="postcss" scoped>
+input.hs-chatbox,
+textarea.hs-chatbox {
+  @apply py-3 pl-12 pr-28 w-full bg-gray-400 dark:bg-gray-600 shadow-inner border-none focus:ring-primary-500;
 }
 </style>

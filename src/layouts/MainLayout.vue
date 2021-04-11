@@ -21,7 +21,7 @@
 import { computed, defineComponent, onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-import Banner from '@/components/Banner.vue';
+import Banner from '@/components/alerts/Banner.vue';
 import DeckCtrl from '@/components/decks/DeckCtrl.vue';
 import DiskSpaceCtrl from '@/components/diskspaces/DiskSpaceCtrl.vue';
 import UserCtrl from '@/components/users/UserCtrl.vue';

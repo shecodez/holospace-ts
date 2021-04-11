@@ -1,23 +1,59 @@
 <template>
-  <ModalDialog :isOpen="showModal" :onClose="closeModal">
-    <h1>{{ t(`${l10n}.edit_deck`) }}</h1>
-    <DeckForm :deck="editDeck" :onSubmit="updateDeck" :onClose="closeModal" />
-  </ModalDialog>
+  <ModalFullScreen :isOpen="showModal" :onClose="closeModal">
+    <Modal2ColumnLayout v-if="editDeck">
+      <template v-slot:leftcolheader>
+        <i-mdi-layers-outline class="text-xl flex-shrink-0" />
+        <h3 class="font-bold text-xl uppercase mx-2 truncate">{{ editDeck.name }}</h3>
+      </template>
+      <template v-slot:leftcolbody>
+        <ul class="options">
+          <li v-for="(option, i) in editDeckOptions" :key="`ed-opts-${i}`">
+            <div v-if="option.header" class="py-2 mx-3">
+              <h3 class="text-xs font-bold uppercase">{{ t(`${l10n}.${option.id}`) }}</h3>
+            </div>
+            <div v-else-if="option.divider" class="border-b hs-border mx-2 pb-2" />
+            <div
+              v-else
+              class="option relative p-2 border-l-4 hover:bg-gradient-to-r from-gray-600 cursor-pointer"
+              :class="isActive(i) ? 'active font-medium border-primary-500 bg-gradient-to-r' : 'border-transparent'"
+              @click="setActive(i)"
+            >
+              <div class="ribbon-tail flex items-center overflow-hidden">
+                <span class="mx-2 capitalize truncate">{{ t(`${l10n}.${option.id}`) }}</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </template>
+      <template v-slot:leftcolfooter>
+        <div class="px-2 text-red-500 font-bold">{{ t('danger_zone') }}</div>
+      </template>
+
+      <template v-slot:rightcolheader>
+        <h3 class="font-bold text-xl uppercase mx-2">{{ t(`${l10n}.${editDeckOptions[activeIdx].id}`) }}</h3>
+      </template>
+      <div class="flex-1 overflow-y-scroll">
+        <TabForEditDeckModal :tabFor="editDeckOptions[activeIdx].id" :deckId="editDeck.id" />
+      </div>
+    </Modal2ColumnLayout>
+    <div v-else>Loading...</div>
+  </ModalFullScreen>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue';
+import { computed, defineComponent, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-import ModalDialog from '../ModalDialog.vue';
+import ModalFullScreen from '@/components/ModalFullScreen.vue';
+import Modal2ColumnLayout from '../Modal2ColumnLayout.vue';
+import TabForEditDeckModal from '@/components/decks/tabs/TabForEditDeckModal.vue';
 import DeckForm from './DeckForm.vue';
-
-import { useStore } from '../../store';
-import AllMutationTypes from '../../store/mutation-types';
+import { useStore } from '@/store';
+import AllMutationTypes from '@/store/mutation-types';
 
 export default defineComponent({
   name: 'EditDeckModal',
-  components: { ModalDialog, DeckForm },
+  components: { ModalFullScreen, DeckForm, Modal2ColumnLayout, TabForEditDeckModal },
   props: {
     id: {
       type: String,
@@ -32,9 +68,29 @@ export default defineComponent({
 
     const editDeck = computed(() => store.getters.getDeckById(props.id));
 
-    const updateDeck = () => {
-      console.log(`EditDeckModal.vue > submitUpdateDeck`);
-      //store.commit(AllMutationTypes.UPDATE_Deck, deck);
+    const editDeckOptions = [
+      { divider: true },
+      { id: 'deck_management', header: 'Deck Management' },
+      { id: 'overview', name: 'Overview' },
+      { id: 'authorization', name: 'Authorization' },
+      { id: 'logs', name: 'logs', description: 'Audit Logs' },
+      { id: 'roles', name: 'Roles', description: 'Cmd Crew' },
+      { id: 'authorized_apps', name: 'Authorized Apps', description: 'widgets' },
+      { id: 'subroutines', name: 'Subroutines', description: 'Webhooks' },
+
+      { divider: true },
+      { id: 'crew_management', header: 'crew Management' },
+      { id: 'crew_members', name: 'Crew Members' },
+      { id: 'holokeys', name: 'HoloKeys' },
+      { id: 'dismissals', name: 'Dismissals' },
+    ];
+
+    const activeIdx = ref(2);
+    const isActive = (index: number) => {
+      return index === activeIdx.value;
+    };
+    const setActive = (index: number) => {
+      activeIdx.value = index;
     };
 
     const showModal = computed(() => store.state.decks.showEditDeckModal);
@@ -50,10 +106,24 @@ export default defineComponent({
       t,
       l10n,
       editDeck,
-      updateDeck,
+      editDeckOptions,
       showModal,
       closeModal,
+      isActive,
+      setActive,
+      activeIdx,
     };
   },
 });
 </script>
+
+<style lang="postcss" scoped>
+.option:hover {
+  border-color: var(--hs-primary);
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+}
+.option.active > .ribbon-tail:before {
+  width: 2.5rem;
+  background: rgba(235, 235, 235, 0.1);
+}
+</style>

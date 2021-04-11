@@ -22,7 +22,7 @@
 import { computed, defineComponent } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-import IconForVoIPSignal from '@/components/IconForVoIPSignal.vue';
+import IconForVoIPSignal from '@/components/iconFors/IconForVoIPSignal.vue';
 import { useStore } from '@/store';
 import { DiskSpaceType } from '@/store/interfaces';
 

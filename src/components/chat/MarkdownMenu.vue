@@ -16,7 +16,7 @@ import { defineComponent } from 'vue';
 
 import Menu from '../Menu.vue';
 import Tooltip from '../Tooltip.vue';
-import IconForMarkdown from '@/components/IconForMarkdown.vue';
+import IconForMarkdown from '@/components/iconFors/IconForMarkdown.vue';
 
 export default defineComponent({
   name: 'MarkDownMenu',

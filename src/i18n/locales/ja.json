@@ -33,6 +33,7 @@
   "name": "名前",
   "email": "Eメール",
   "bio": "バイオ",
+  "danger_zone": "危険区域",
 
   "languages": {
     "english": "英語",
@@ -68,6 +69,16 @@
     }
   },
   "decks": {
+    "ActiveDeckMenu": {
+      "send_holokey": "HoloKeyを送信します",
+      "contact_captain": "船長にメッセージを送る",
+      "edit_deck": "このデッキを編集する",
+      "edit_deck_crew": "デッキクルーの編集",
+      "danger_zone": "@:danger_zone",
+      "leave_deck": "このデッキを離れる",
+      "transfer_deck": "デッキキャプテンシーを転送",
+      "delete_deck": "このデッキを削除する"
+    },
     "AddDeckScreen": {
       "add_new_deck": "新しいデッキを追加する",
       "by_creating_a_deck_you_": "デッキを作成することで、あなたとあなたの乗組員は無料のVoIP、テキスト、およびホロチャットディスクスペースにアクセスできます。 キャプテンにようこそ！",
@@ -86,7 +97,18 @@
       "update_deck": "更新 {deck}"
     },
     "EditDeckModal": {
-      "edit_deck": "{deck}のデッキを編集する"
+      "edit_deck": "{deck}のデッキを編集する",
+      "deck_management": "デッキの管理",
+      "overview": "概要",
+      "authorization": "承認",
+      "logs": "ログ",
+      "roles": "役割",
+      "authorized_apps": "承認されたアプリ",
+      "subroutines": "サブルーチン",
+      "crew_management": "クルーの管理",
+      "holokeys": "HoloKeys",
+      "crew_members": "乗務員",
+      "dismissals": "解雇"
     },
     "JoinDeckScreen": {
       "join_a_deck": "@:decks.AddOrJoinDeckModal.join_a_deck",
