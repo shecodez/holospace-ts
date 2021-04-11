@@ -1,8 +1,8 @@
 <template>
-  <div ref="target" class="popper">
-    <div ref="button" @click="togglePopper">
+  <div ref="target" class="popper inline-flex">
+    <button class="popper-activator inline-flex" ref="button" @click="togglePopper">
       <slot name="activator"></slot>
-    </div>
+    </button>
     <div :class="showPopper ? 'block' : 'hidden'">
       <!-- <div ref="overlay" class="absolute w-full h-full z-30 top-0 left-0" /> -->
       <div ref="popper" class="overflow-hidden z-20 shadow-lg">

@@ -61,7 +61,7 @@
             <h3 class="font-bold text-xl uppercase mx-2">{{ t(`${l10n}.${settings[activeIdx].id}`) }}</h3>
           </div>
           <div class="flex-1 overflow-y-scroll">
-            <TabForSettingsModal :contentFor="settings[activeIdx].id" :profile="userProfile" />
+            <IndexForSettingTabs :tabFor="settings[activeIdx].id" :profile="userProfile" />
           </div>
         </div>
         <div class="absolute right-0 md:static my-5 mx-4">
@@ -82,14 +82,14 @@ import { useI18n } from 'vue-i18n';
 import ModalFullScreen from '@/components/ModalFullScreen.vue';
 import ToggleTheme from '@/components/ToggleTheme.vue';
 import IconForSetting from '@/components/iconFors/IconForSetting.vue';
-import TabForSettingsModal from './settings/TabForSettingsModal.vue';
+import IndexForSettingTabs from './tabs/IndexForSettingTabs.vue';
 
 import { useStore } from '@/store';
 import { users } from '@/data/mock';
 
 export default defineComponent({
   name: 'SettingsModal',
-  components: { ModalFullScreen, ToggleTheme, IconForSetting, TabForSettingsModal },
+  components: { ModalFullScreen, ToggleTheme, IconForSetting, IndexForSettingTabs },
   props: {
     showModal: {
       type: Boolean,

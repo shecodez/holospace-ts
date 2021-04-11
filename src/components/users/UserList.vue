@@ -1,35 +1,46 @@
 <template>
-  <div class="on-text my-2 ml-5 w-3/5">{{ t(forUsers) }}</div>
-  <ul class="user-ul" :class="forUsers">
-    <template v-for="user in users" :key="user.id">
-      <UserListItem :user="user" />
-    </template>
-  </ul>
+  <div v-show="userCount">
+    <Badge :content="userCount" :color="color">
+      <div class="on-text text-xs my-2 ml-5 w-4/5">{{ label }}</div>
+    </Badge>
+    <ul class="user-ul" :class="off ? 'offline' : 'on-deck'">
+      <template v-for="user in users" :key="user.id">
+        <UserListItem :user="user" :color="color" />
+      </template>
+    </ul>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { useI18n } from 'vue-i18n';
+import { computed, defineComponent } from 'vue';
 
 import UserListItem from './UserListItem.vue';
+import Badge from '@/components/Badge.vue';
 
 export default defineComponent({
   name: 'UserList',
-  components: { UserListItem },
+  components: { UserListItem, Badge },
   props: {
     users: {
       type: Object,
       required: true,
     },
-    forUsers: {
+    label: {
       type: String,
       required: true,
     },
+    color: {
+      type: String,
+    },
+    off: {
+      type: Boolean,
+      default: false,
+    },
   },
-  setup: () => {
-    const { t } = useI18n();
+  setup: (props) => {
+    const userCount = computed(() => props.users.length);
 
-    return { t };
+    return { userCount };
   },
 });
 </script>

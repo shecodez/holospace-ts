@@ -7,7 +7,7 @@
       </template>
       <UserCard :user="user" />
     </Popper>
-    <span class="d-none truncate flex-grow ml-4">{{ user.name }}</span>
+    <span class="d-none truncate flex-grow ml-4" :class="`text-${color}`">{{ user.name }}</span>
   </li>
 </template>
 
@@ -25,6 +25,10 @@ export default defineComponent({
     user: {
       type: Object,
       required: true,
+    },
+    color: {
+      type: String,
+      default: 'black dark:text-white',
     },
   },
   setup: () => {

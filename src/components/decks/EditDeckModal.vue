@@ -33,7 +33,7 @@
         <h3 class="font-bold text-xl uppercase mx-2">{{ t(`${l10n}.${editDeckOptions[activeIdx].id}`) }}</h3>
       </template>
       <div class="flex-1 overflow-y-scroll">
-        <TabForEditDeckModal :tabFor="editDeckOptions[activeIdx].id" :deckId="editDeck.id" />
+        <IndexForEditDeckTabs :tabFor="editDeckOptions[activeIdx].id" :deckId="editDeck.id" />
       </div>
     </Modal2ColumnLayout>
     <div v-else>Loading...</div>
@@ -46,14 +46,14 @@ import { useI18n } from 'vue-i18n';
 
 import ModalFullScreen from '@/components/ModalFullScreen.vue';
 import Modal2ColumnLayout from '../Modal2ColumnLayout.vue';
-import TabForEditDeckModal from '@/components/decks/tabs/TabForEditDeckModal.vue';
+import IndexForEditDeckTabs from '@/components/decks/tabs/IndexForEditDeckTabs.vue';
 import DeckForm from './DeckForm.vue';
 import { useStore } from '@/store';
 import AllMutationTypes from '@/store/mutation-types';
 
 export default defineComponent({
   name: 'EditDeckModal',
-  components: { ModalFullScreen, DeckForm, Modal2ColumnLayout, TabForEditDeckModal },
+  components: { ModalFullScreen, DeckForm, Modal2ColumnLayout, IndexForEditDeckTabs },
   props: {
     id: {
       type: String,

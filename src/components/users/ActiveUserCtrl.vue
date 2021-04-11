@@ -46,7 +46,7 @@ import UserAvatar from './UserAvatar.vue';
 import OptionsMenu from './my/OptionsMenu.vue';
 import VoIPCtrl from './my/VoIPCtrl.vue';
 import VideoMicHoloCtrl from './my/VideoMicHoloCtrl.vue';
-import SettingsModal from './my/SettingsModal.vue';
+import SettingsModal from './my/settings/SettingsModal.vue';
 
 //import { useStore } from '@/store';
 import { users } from '@/data/mock';

@@ -23,8 +23,10 @@
         </button>
         <Popper placement="bottom">
           <template v-slot:activator>
-            <i-mdi-bell />
-            <span class="sr-only">Notifications Menu</span>
+            <Badge :content="getNotificationsCount">
+              <i-mdi-bell />
+              <span class="sr-only">Notifications Menu</span>
+            </Badge>
           </template>
           <NotificationMenu />
         </Popper>
@@ -50,11 +52,12 @@ import Popper from '@/components/Popper.vue';
 import NotificationMenu from '@/components/users/my/NotificationMenu.vue';
 import SearchModal from '@/components/search/SearchModal.vue';
 import CalendarModal from '@/components/events/CalendarModal.vue';
+import Badge from '@/components/Badge.vue';
 import { useStore } from '@/store';
 import AllActionTypes from '@/store/action-types';
 
 export default defineComponent({
-  components: { Popper, NotificationMenu, SearchModal, CalendarModal },
+  components: { Popper, NotificationMenu, SearchModal, CalendarModal, Badge },
   name: 'ActiveDiskSpace',
   setup() {
     const { t } = useI18n();
@@ -67,6 +70,8 @@ export default defineComponent({
     const toggleSideDrawer = () => {
       store.dispatch(AllActionTypes.TOGGLE_Side_DRAWER);
     };
+
+    const getNotificationsCount = ref(0);
 
     const showSearch = ref(false);
     const openSearch = () => {
@@ -88,6 +93,7 @@ export default defineComponent({
       diskSpace,
       sideDrawerIsOpen,
       toggleSideDrawer,
+      getNotificationsCount,
       showSearch,
       openSearch,
       closeSearch,

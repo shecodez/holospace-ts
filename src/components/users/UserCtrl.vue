@@ -6,8 +6,9 @@
 
     <UserListSkeleton v-if="isLoading" />
     <div v-else class="users flex-1 overflow-y-overlay">
-      <UserList :users="usersOnDeck" forUsers="on_deck" />
-      <UserList :users="usersOffline" forUsers="offline" />
+      <!-- <UserList :users="usersOffline" label="Lt. Cmdrs" color="yellow-500" /> -->
+      <UserList :users="usersOnDeck" :label="t('on_deck')" />
+      <UserList :users="usersOffline" :label="t('offline')" off />
     </div>
 
     <template v-slot:footer>
@@ -19,12 +20,13 @@
 <script lang="ts">
 import { computed, defineComponent, onBeforeMount, watch } from 'vue';
 import { useRoute } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 
 import MetaDrawer from '@/components/panels/MetaDrawer.vue';
 import ActiveUsers from './ActiveUsers.vue';
 import UserListSkeleton from './UserListSkeleton.vue';
 import UserList from './UserList.vue';
-import Me from './Me.vue';
+import Me from './ActiveUserCtrl.vue';
 import { useStore } from '@/store';
 import AllActionTypes from '@/store/action-types';
 
@@ -32,6 +34,8 @@ export default defineComponent({
   name: 'UserCtrl',
   components: { MetaDrawer, ActiveUsers, UserListSkeleton, UserList, Me },
   setup: () => {
+    const { t } = useI18n();
+
     const store = useStore();
 
     const route = useRoute();
@@ -52,7 +56,7 @@ export default defineComponent({
     const usersOnDeck = computed(() => store.getters.membersOnDeck); //if isSsh getters.subscribers
     const usersOffline = computed(() => store.getters.membersOffline);
 
-    return { isLoading, usersOnDeck, usersOffline };
+    return { t, isLoading, usersOnDeck, usersOffline };
   },
 });
 </script>
@@ -61,7 +65,7 @@ export default defineComponent({
 .is-mini .d-none {
   display: none;
 }
-.users .user-ul.on_deck .user-avatar {
+.users .user-ul.on-deck .user-avatar {
   filter: none;
 }
 .users .user-ul.offline .user-avatar {

@@ -3,7 +3,7 @@
     <div class="user-avatar m-auto rounded-full overflow-hidden" :class="`w-${size} h-${size}`">
       <img v-if="avatarUrl" :src="avatarUrl" alt="User Avatar" />
       <div v-else class="h-full f-center" :style="`background-color: ${useHashColor(name)}`">
-        <span :class="toFontSize()">{{ name.charAt(0) }}</span>
+        <span class="text-white" :class="toFontSize()">{{ name.charAt(0) }}</span>
       </div>
     </div>
     <i-mdi-view-headline v-if="isCaptain" class="absolute left-0 top-0 text-yellow-500" :class="toIconSize()" />

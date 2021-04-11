@@ -1,5 +1,5 @@
 <template>
-  <ProfileSettings v-if="contentFor === 'profile'" />
+  <ProfileSettings v-if="tabFor === 'profile'" />
   <UnderConstruction v-else />
 </template>
 
@@ -13,7 +13,7 @@ export default defineComponent({
   name: 'TabForSettingsModal',
   components: { UnderConstruction, ProfileSettings },
   props: {
-    contentFor: {
+    tabFor: {
       type: String,
       default: '',
       required: true,
