@@ -79,10 +79,10 @@ export default defineComponent({
       { id: 'subroutines', name: 'Subroutines', description: 'Webhooks' },
 
       { divider: true },
-      { id: 'crew_management', header: 'crew Management' },
+      { id: 'crew_management', header: 'Crew Management' },
       { id: 'crew_members', name: 'Crew Members' },
       { id: 'holokeys', name: 'HoloKeys' },
-      { id: 'dismissals', name: 'Dismissals' },
+      { id: 'bans', name: 'Bans' },
     ];
 
     const activeIdx = ref(2);

@@ -11,7 +11,8 @@
   "loading...": "読み込み中...",
   "or": "又",
   "back": "バック",
-  "add": "作成する",
+  "add": "追加",
+  "edit": "編集",
   "create": "作る",
   "join": "参加する",
   "recommended": "お勧めします",
@@ -34,6 +35,9 @@
   "email": "Eメール",
   "bio": "バイオ",
   "danger_zone": "危険区域",
+  "show": "公演",
+  "hide": "隠す",
+  "phone_number": "電話番号",
 
   "languages": {
     "english": "英語",
@@ -106,9 +110,9 @@
       "authorized_apps": "承認されたアプリ",
       "subroutines": "サブルーチン",
       "crew_management": "クルーの管理",
+      "crew_members": "クルー",
       "holokeys": "HoloKeys",
-      "crew_members": "乗務員",
-      "dismissals": "解雇"
+      "bans": "禁止"
     },
     "JoinDeckScreen": {
       "join_a_deck": "@:decks.AddOrJoinDeckModal.join_a_deck",
@@ -134,12 +138,34 @@
   "users": {
     "my": {
       "settings": {
-        "ProfileSettings": {
-          "remove": "削除する",
-          "save": "保存する",
-          "delete_account": "アカウントを削除する",
-          "two_factor_authentication": "二要素認証",
-          "coming_soon": "近日公開..."
+        "tabs": {
+          "ProfileSettings": {
+            "remove": "削除する",
+            "upload": "アップロード",
+            "save": "保存する",
+            "delete_account": "アカウントを削除する",
+            "password_and_2fa": "パスワードと2FA",
+            "change_password": "パスワードの変更",
+            "two_factor_authentication": "二要素認証",
+            "protect_your_holospace_account_": "近日公開...",
+            "enable_2fa": "二要素認証を有効にする"
+          }
+        },
+        "SettingsModal": {
+          "account_settings": "アカウント設定",
+          "profile": "＠Me 「プロフィール」",
+          "captains_log": "キャプテンのログ",
+          "privacy_&_security": "プライバシーとセキュリティ",
+          "subscriptions": "サブスクリプション",
+          "memberships": "メンバーシップ",
+          "app_settings": "アプリの設定",
+          "voice_&_visuals": "音声とビジュアル",
+          "notifications": "通知",
+          "appearance_&_themes": "外観とテーマ",
+          "language": "@:language",
+          "get_in_touch": "お問い合わせ",
+          "help_&_support": "ヘルプとサポート",
+          "send_feedback": "フィードバックを送信する"
         }
       },
       "OnStatusList": {
@@ -153,22 +179,6 @@
         "Be_Right_Back": "すぐに戻る",
         "Do_NOT_Disturb": "邪魔しないでください",
         "Invisible": "見えない"
-      },
-      "SettingsModal": {
-        "account_settings": "アカウント設定",
-        "profile": "＠Me 「プロフィール」",
-        "captains_log": "キャプテンのログ",
-        "crew_regs": "@:decks.AddDeckScreen.crew_regs",
-        "subscriptions": "サブスクリプション",
-        "memberships": "メンバーシップ",
-        "app_settings": "アプリの設定",
-        "voice_&_visuals": "音声とビジュアル",
-        "notifications": "通知",
-        "appearance_&_themes": "外観とテーマ",
-        "language": "@:language",
-        "get_in_touch": "お問い合わせ",
-        "help_&_support": "ヘルプとサポート",
-        "send_feedback": "フィードバックを送信する"
       },
       "VoIPCtrl": {
         "voip_comms": "VoIP通信"

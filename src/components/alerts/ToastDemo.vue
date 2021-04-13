@@ -1,5 +1,5 @@
 <template>
-  <div class="absolute left-6 bottom-2 w-64">
+  <div class="absolute right-6 bottom-2 w-64">
     <Toast type="success">
       <template v-slot:header>Success</template>
       <span>Yay, you did a thing!</span>

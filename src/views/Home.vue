@@ -5,6 +5,7 @@
       <I18nDemo />
       <PopperDemo />
       <ToastDemo />
+      <role-list />
     </main>
     <Footer />
   </Layout>
@@ -20,10 +21,11 @@ import Footer from '@/components/Footer.vue';
 import I18nDemo from '@/components/_demos/I18nDemo.vue';
 import PopperDemo from '@/components/_demos/PopperDemo.vue';
 import ToastDemo from '@/components/alerts/ToastDemo.vue';
+import RoleList from '@/components/decks/RoleList.vue';
 
 export default defineComponent({
   name: 'Home',
-  components: { Layout, Header, Footer, I18nDemo, PopperDemo, ToastDemo },
+  components: { Layout, Header, Footer, I18nDemo, PopperDemo, ToastDemo, RoleList },
   setup: () => {
     const { t } = useI18n();
     return { t };

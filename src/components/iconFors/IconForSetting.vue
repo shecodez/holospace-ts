@@ -1,7 +1,7 @@
 <template>
   <i-mdi-account-circle v-if="iconFor === 'profile'" />
   <i-mdi-card-bulleted-settings v-if="iconFor === 'captains_log'" />
-  <i-mdi-book-open-variant v-if="iconFor === 'crew_regs'" />
+  <i-mdi-security v-if="iconFor === 'privacy_&_security'" />
   <i-mdi-contacts v-if="iconFor === 'subscriptions'" />
   <i-mdi-layers-outline v-if="iconFor === 'memberships'" />
   <i-mdi-account-voice v-if="iconFor === 'voice_&_visuals'" />

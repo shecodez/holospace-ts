@@ -12,6 +12,7 @@
   "or": "or",
   "back": "back",
   "add": "add",
+  "edit": "Edit",
   "create": "Create",
   "join": "join",
   "recommended": "Recommended",
@@ -34,6 +35,9 @@
   "email": "E-mail",
   "bio": "Bio",
   "danger_zone": "Danger Zone",
+  "show": "show",
+  "hide": "hide",
+  "phone_number": "Phone Number",
 
   "languages": {
     "english": "english",
@@ -106,9 +110,9 @@
       "authorized_apps": "Authorized Apps",
       "subroutines": "Subroutines",
       "crew_management": "Crew Management",
+      "crew_members": "Crew",
       "holokeys": "HoloKeys",
-      "crew_members": "Crew Members",
-      "dismissals": "Dismissals"
+      "bans": "Bans"
     },
     "JoinDeckScreen": {
       "join_a_deck": "@:decks.AddOrJoinDeckModal.join_a_deck",
@@ -134,12 +138,34 @@
   "users": {
     "my": {
       "settings": {
-        "ProfileSettings": {
-          "remove": "Remove",
-          "save": "Save",
-          "delete_account": "Delete Account",
-          "two_factor_authentication": "Two-Factor Authentication",
-          "coming_soon": "Coming Soon..."
+        "tabs": {
+          "ProfileSettings": {
+            "remove": "Remove",
+            "upload": "Upload",
+            "save": "Save",
+            "delete_account": "Delete Account",
+            "password_and_2fa": "Password and 2FA",
+            "change_password": "Change Password",
+            "two_factor_authentication": "Two-Factor Authentication",
+            "protect_your_holospace_account_": "Coming Soon...",
+            "enable_2fa": "Enable Two-Factor Authentication"
+          }
+        },
+        "SettingsModal": {
+          "account_settings": "Account Settings",
+          "profile": "＠Me (Profile)",
+          "captains_log": "Captain's Log",
+          "privacy_&_security": "Privacy & Security",
+          "subscriptions": "Subscriptions",
+          "memberships": "Memberships",
+          "app_settings": "App Settings",
+          "voice_&_visuals": "Voice & Visuals",
+          "notifications": "Notifications",
+          "appearance_&_themes": "Appearance & Themes",
+          "language": "@:language",
+          "get_in_touch": "Get in Touch",
+          "help_&_support": "Help & Support",
+          "send_feedback": "Send Feedback"
         }
       },
       "OnStatusList": {
@@ -153,22 +179,6 @@
         "Be_Right_Back": "Be Right Back",
         "Do_NOT_Disturb": "Do NOT Disturb",
         "Invisible": "Invisible"
-      },
-      "SettingsModal": {
-        "account_settings": "Account Settings",
-        "profile": "＠Me (Profile)",
-        "captains_log": "Captain's Log",
-        "crew_regs": "@:decks.AddDeckScreen.crew_regs",
-        "subscriptions": "Subscriptions",
-        "memberships": "Memberships",
-        "app_settings": "App Settings",
-        "voice_&_visuals": "Voice & Visuals",
-        "notifications": "Notifications",
-        "appearance_&_themes": "Appearance & Themes",
-        "language": "@:language",
-        "get_in_touch": "Get in Touch",
-        "help_&_support": "Help & Support",
-        "send_feedback": "Send Feedback"
       },
       "VoIPCtrl": {
         "voip_comms": "VoIP Comms"

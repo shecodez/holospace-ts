@@ -6,13 +6,13 @@
       class="badge text-xs px-1 rounded-full font-semibold absolute -right-3 top-0 shadow-md"
       :class="`bg-${color}`"
     >
-      {{ limit99 }}
+      {{ limitMax }}
     </span>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, onMounted } from 'vue';
+import { defineComponent, ref, onMounted } from 'vue';
 
 export default defineComponent({
   name: 'Badge',
@@ -25,19 +25,23 @@ export default defineComponent({
       type: String,
       default: 'primary-500',
     },
+    max: {
+      type: Number,
+      default: 99,
+    },
   },
   setup: (props) => {
     const showBadge = ref(false);
     onMounted(() => (showBadge.value = parseInt(props.content.toString()) > 0));
 
-    const limit99 = ref(props.content);
+    const limitMax = ref(props.content);
     onMounted(() => {
-      if (parseInt(props.content.toString()) > 99) {
-        limit99.value = '99+';
+      if (parseInt(props.content.toString()) > props.max) {
+        limitMax.value = `${props.max}+`;
       }
     });
 
-    return { showBadge, limit99 };
+    return { showBadge, limitMax };
   },
 });
 </script>

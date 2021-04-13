@@ -1,6 +1,7 @@
 <template>
   <div
-    class="flex flex-wrap md:flex-nowrap flex-col md:flex-row h-screen text-gray-800 dark:text-gray-200 bg-blue-500 dark:bg-red-500 overflow-hidden"
+    class="hs-bg-gradient hs-bg-position flex flex-wrap md:flex-nowrap flex-col md:flex-row h-screen text-gray-800 dark:text-gray-200 overflow-hidden"
+    :style="{ backgroundImage: `url(${getBgImageUrl})` }"
   >
     <slot name="FixedSlot"><DeckCtrl /></slot>
     <div class="flex flex-1 flex-col w-full h-full overflow-hidden">
@@ -18,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted } from 'vue';
+import { computed, defineComponent, onMounted, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 import Banner from '@/components/alerts/Banner.vue';
@@ -44,6 +45,9 @@ export default defineComponent({
 
     const store = useStore();
 
+    const getBgImageUrl = ref('/src/assets/images/flat-mountains_1920x1080.jpg');
+    //const getBgGradient = ref('linear-gradient(90deg, rgba(255, 77, 77, 0.6) 10%, rgba(255, 129, 131, 0.6))');
+
     const setConfirmEmailReminder = (): void => {
       // if (!store.getters.authUserEmailConfirmed)
       const banner = {
@@ -63,6 +67,8 @@ export default defineComponent({
     };
 
     return {
+      getBgImageUrl,
+      //getBgGradient,
       useSlideOutDrawer,
       closeDrawer,
     };
@@ -141,5 +147,9 @@ button:hover:before {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.hs-bg-position {
+  background-position: center center;
 }
 </style>

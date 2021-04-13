@@ -1,5 +1,5 @@
 <template>
-  <div class="relative my-3 mx-6 md:mx-24">
+  <div class="relative mb-4 mx-6 md:mx-24">
     <MarkdownMenu v-if="showMarkdownMenu" />
     <form @submit.prevent="submitChatMessageForm">
       <div class="flex relative items-center justify-between">
