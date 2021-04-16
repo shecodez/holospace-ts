@@ -20,19 +20,22 @@
     <div
       class="flex w-full md:w-2/3 bg-gray-400 bg-opacity-80 dark:bg-gray-600 dark:bg-opacity-80 md:pt-20 overflow-hidden"
     >
-      <div class="flex flex-col h-full w-full md:w-2/3 md:mx-4">
-        <div class="py-4 mx-2">
-          <slot name="rightcolheader"></slot>
+      <div class="flex flex-col w-full h-full overflow-y-scroll">
+        <div class="relative w-full md:w-2/3 md:mx-4">
+          <div class="py-4 mx-2">
+            <slot name="rightcolheader"></slot>
+          </div>
+          <div class="flex-1">
+            <slot></slot>
+          </div>
+
+          <div class="absolute md:fixed top-0 md:top-20 right-0 md:right-96 mt-3 ml-3 md:-mr-3">
+            <button class="flex flex-col items-center text-white" @click="closeModal">
+              <i-mdi-close />
+              <span class="text-sm">{{ t('ModalDialog.esc') }}</span>
+            </button>
+          </div>
         </div>
-        <div class="flex-1 overflow-y-scroll">
-          <slot></slot>
-        </div>
-      </div>
-      <div class="absolute right-0 md:static my-5 mx-4">
-        <button class="flex flex-col items-center text-white" @click="closeModal">
-          <i-mdi-close />
-          <span class="text-sm">{{ t('ModalDialog.esc') }}</span>
-        </button>
       </div>
     </div>
   </div>
@@ -44,6 +47,12 @@ import { useI18n } from 'vue-i18n';
 
 export default defineComponent({
   name: 'Modal2ColumnLayout',
+  props: {
+    closeModal: {
+      type: Function,
+      required: true,
+    },
+  },
   setup: () => {
     const { t } = useI18n();
 

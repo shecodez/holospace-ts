@@ -1,6 +1,6 @@
 <template>
   <div class="form-group" :class="hint || max ? '' : 'mb-2'">
-    <label v-show="label" class="text-xs font-medium ml-2" :class="error && 'text-error-500'">
+    <label v-show="label" class="hs-label" :class="error && 'text-error-500'">
       {{ label }}
       <span v-if="required" class="text-error-500">*</span>
     </label>
@@ -22,7 +22,7 @@
       </slot>
       <div class="mr-2"><slot name="append"></slot></div>
     </div>
-    <div class="text-xs mx-2">
+    <div class="text-xs">
       <span v-if="error" class="text-error-500">{{ error }}</span>
       <div v-else class="flex justify-between">
         <slot name="hint">
@@ -109,6 +109,7 @@ textarea:focus,
 select:focus {
   outline: none;
 }
+
 .form-group:focus-within label {
   color: var(--hs-primary);
 }
@@ -120,5 +121,9 @@ select:focus {
 }
 .c-secondary .form-group:focus-within .input-group {
   @apply border-secondary-500 ring-1 ring-secondary-500;
+}
+
+.hs-label {
+  @apply text-xs font-semibold uppercase my-2 block;
 }
 </style>

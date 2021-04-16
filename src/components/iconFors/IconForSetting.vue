@@ -1,10 +1,11 @@
 <template>
   <i-mdi-account-circle v-if="iconFor === 'profile'" />
-  <i-mdi-card-bulleted-settings v-if="iconFor === 'captains_log'" />
+  <i-mdi-hololens v-if="iconFor === 'vr'" />
   <i-mdi-security v-if="iconFor === 'privacy_&_security'" />
-  <i-mdi-contacts v-if="iconFor === 'subscriptions'" />
+  <i-pixelarticons-subscriptions v-if="iconFor === 'subscriptions'" />
   <i-mdi-layers-outline v-if="iconFor === 'memberships'" />
-  <i-mdi-account-voice v-if="iconFor === 'voice_&_visuals'" />
+  <i-carbon-app-connectivity v-if="iconFor === 'subroutines'" />
+  <i-ri-sound-module-fill v-if="iconFor === 'audio_&_video'" />
   <i-mdi-bell-ring-outline v-if="iconFor === 'notifications'" />
   <i-mdi-theme-light-dark v-if="iconFor === 'appearance_&_themes'" />
   <i-mdi-web v-if="iconFor === 'language'" />

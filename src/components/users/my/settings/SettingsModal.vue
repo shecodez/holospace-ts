@@ -1,6 +1,6 @@
 <template>
   <ModalFullScreen :isOpen="showModal" :onClose="closeModal">
-    <Modal2ColumnLayout v-if="userProfile">
+    <Modal2ColumnLayout v-if="userProfile" :closeModal="closeModal">
       <template v-slot:leftcolheader>
         <i-mdi-cog class="text-xl flex-shrink-0" />
         <h3 class="font-bold text-xl uppercase mx-2 truncate">{{ t('settings') }}</h3>
@@ -11,16 +11,21 @@
             <div v-if="setting.header" class="py-2 mx-3">
               <h3 class="text-xs font-bold uppercase">{{ t(`${l10n}.${setting.id}`) }}</h3>
             </div>
-            <div v-else-if="setting.divider" class="border-b hs-border mx-2 pb-2" />
+            <div v-else-if="setting.divider" class="border-b hs-border mx-2 p-0" />
             <div
               v-else
               class="setting relative p-2 border-l-4 hover:bg-gradient-to-r from-gray-600 cursor-pointer"
               :class="isActive(i) ? 'active font-medium border-primary-500 bg-gradient-to-r' : 'border-transparent'"
               @click="setActive(i)"
             >
-              <div class="ribbon-tail flex items-center overflow-hidden">
+              <div
+                class="ribbon-tail flex items-center overflow-hidden"
+                :class="setting.color && `text-${setting.color}`"
+              >
                 <IconForSetting :iconFor="setting.id" />
-                <span class="mx-2 capitalize truncate">{{ t(`${l10n}.${setting.id}`) }}</span>
+                <span class="mx-2 capitalize truncate">
+                  {{ t(`${l10n}.${setting.id}`) }}
+                </span>
               </div>
             </div>
           </li>
@@ -49,7 +54,12 @@
         <h3 class="font-bold text-xl uppercase mx-2">{{ t(`${l10n}.${settings[activeIdx].id}`) }}</h3>
       </template>
 
-      <IndexForSettingTabs :tabFor="settings[activeIdx].id" :profile="{ ...userProfile, email: 'test@example.com' }" />
+      <div class="mx-4">
+        <IndexForSettingCtrl
+          :tabFor="settings[activeIdx].id"
+          :profile="{ ...userProfile, email: 'test@example.com' }"
+        />
+      </div>
     </Modal2ColumnLayout>
     <div v-else>Loading...</div>
   </ModalFullScreen>
@@ -62,14 +72,14 @@ import { useI18n } from 'vue-i18n';
 import ModalFullScreen from '@/components/ModalFullScreen.vue';
 import ToggleTheme from '@/components/ToggleTheme.vue';
 import IconForSetting from '@/components/iconFors/IconForSetting.vue';
-import IndexForSettingTabs from './tabs/IndexForSettingTabs.vue';
+import IndexForSettingCtrl from './tabs/IndexForSettingCtrl.vue';
 import Modal2ColumnLayout from '@/components/Modal2ColumnLayout.vue';
 import { useStore } from '@/store';
 import { users } from '@/data/mock';
 
 export default defineComponent({
   name: 'SettingsModal',
-  components: { ModalFullScreen, ToggleTheme, IconForSetting, IndexForSettingTabs, Modal2ColumnLayout },
+  components: { ModalFullScreen, ToggleTheme, IconForSetting, IndexForSettingCtrl, Modal2ColumnLayout },
   props: {
     showModal: {
       type: Boolean,
@@ -93,14 +103,16 @@ export default defineComponent({
       { divider: true },
       { id: 'account_settings', header: 'Account Settings' },
       { id: 'profile', name: '@Me (profile)' },
-      { id: 'captains_log', name: "Captain's Log" },
       { id: 'privacy_&_security', name: 'Privacy & Security' },
       { id: 'subscriptions', name: 'Subscriptions' },
       { id: 'memberships', name: 'Memberships' },
+      { id: 'subroutines', name: 'Subroutine' },
       //{ link: 'exe.holospace-app.com', id: "", name: "HoloSpace-X" },
       { divider: true },
+      { id: 'vr', name: 'VR', color: 'primary-500' },
+      { divider: true },
       { id: 'app_settings', header: 'App Settings' },
-      { id: 'voice_&_visuals', name: 'Voice & Visuals' },
+      { id: 'audio_&_video', name: 'Audio & Video' },
       { id: 'notifications', name: 'Notifications' },
       { id: 'appearance_&_themes', name: 'Appearance & Themes' },
       { id: 'language', name: 'Language' },
@@ -134,5 +146,11 @@ export default defineComponent({
 }
 .hs-border {
   @apply border-black border-opacity-10 dark:border-white dark:border-opacity-10;
+}
+.hs-h3 {
+  @apply text-xs font-bold uppercase;
+}
+.hs-h4 {
+  @apply text-sm font-semibold capitalize;
 }
 </style>

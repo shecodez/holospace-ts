@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-4 text-center">
+  <div class="text-center">
     <img class="w-auto" src="@/assets/images/site-under-construction.png" alt="Under Construction" />
     <h3 class="text-2xl mb-3">{{ t('UnderConstruction.under_construction_message') }}</h3>
     <p>{{ t('UnderConstruction.we_are_working_') }}</p>

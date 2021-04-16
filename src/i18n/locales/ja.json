@@ -38,6 +38,7 @@
   "show": "公演",
   "hide": "隠す",
   "phone_number": "電話番号",
+  "vr": "VR",
 
   "languages": {
     "english": "英語",
@@ -105,7 +106,7 @@
       "deck_management": "デッキの管理",
       "overview": "概要",
       "authorization": "承認",
-      "logs": "ログ",
+      "captains_log": "キャプテンのログ",
       "roles": "役割",
       "authorized_apps": "承認されたアプリ",
       "subroutines": "サブルーチン",
@@ -154,18 +155,19 @@
         "SettingsModal": {
           "account_settings": "アカウント設定",
           "profile": "＠Me 「プロフィール」",
-          "captains_log": "キャプテンのログ",
           "privacy_&_security": "プライバシーとセキュリティ",
           "subscriptions": "サブスクリプション",
           "memberships": "メンバーシップ",
+          "subroutines": "サブルーチン",
           "app_settings": "アプリの設定",
-          "voice_&_visuals": "音声とビジュアル",
+          "audio_&_video": "オーディオビデオ",
           "notifications": "通知",
           "appearance_&_themes": "外観とテーマ",
           "language": "@:language",
           "get_in_touch": "お問い合わせ",
           "help_&_support": "ヘルプとサポート",
-          "send_feedback": "フィードバックを送信する"
+          "send_feedback": "フィードバックを送信する",
+          "vr": "@:vr"
         }
       },
       "OnStatusList": {

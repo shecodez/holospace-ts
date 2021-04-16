@@ -3,7 +3,7 @@
     <slot></slot>
     <span
       v-show="showBadge"
-      class="badge text-xs px-1 rounded-full font-semibold absolute -right-3 top-0 shadow-md"
+      class="badge absolute -right-3 top-0 px-1 rounded-full text-xs font-semibold shadow-md"
       :class="`bg-${color}`"
     >
       {{ limitMax }}

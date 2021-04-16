@@ -2,13 +2,14 @@
   <TextField :label="label" v-model="localValue" :required="required" :hint="hint" :error="error">
     <slot name="prepend"></slot>
     <select
-      class="flex-1 bg-transparent border-none focus:ring-transparent"
+      class="w-full bg-transparent border-none focus:ring-transparent"
       :class="setSize(size)"
       v-bind="$attrs"
       v-model="localValue"
       @change="$emit('update:modelValue', $event.target.value)"
       :required="required"
     >
+      <option v-if="defaultOption" value="">{{ defaultOption }}</option>
       <option v-for="opt in options" :key="opt.id" :value="opt.id" class="dark:bg-gray-800">
         {{ opt.name }}
       </option>
@@ -39,6 +40,9 @@ export default defineComponent({
     options: {
       type: Array,
       required: true,
+    },
+    defaultOption: {
+      type: String,
     },
     size: {
       type: String,

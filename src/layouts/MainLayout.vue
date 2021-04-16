@@ -120,9 +120,20 @@ button:before {
 button:hover:before {
   opacity: 0.08;
 }
+input:disabled,
+textarea:disabled,
+select:disabled,
+button:disabled,
+.disabled {
+  cursor: not-allowed;
+  pointer-events: all !important;
+  filter: grayscale(1);
+}
+
 .hover-border-solid:hover {
   border-style: solid;
 }
+
 .ribbon-tail:before {
   content: '';
   position: absolute;

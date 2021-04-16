@@ -9,7 +9,7 @@
       </slot>
       <!-- max character count 200 + click ...modal of full text -->
       <div class="flex-grow mx-4">
-        <span>{{ text }}</span>
+        <p class="line-clamp-3">{{ text }}</p>
         <button v-show="onClickAction" class="px-2">{{ actionBtnText }}</button>
       </div>
       <button class="mr-6" v-show="isDismissible" @click="dismissBanner">

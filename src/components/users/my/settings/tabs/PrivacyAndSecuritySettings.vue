@@ -1,29 +1,27 @@
 <template>
-  <div class="mx-4">
-    <div class="text-sm font-bold">
-      <ul class="options flex-grow overflow-y-overlay">
-        <li v-for="(option, i) in options" :key="`ps-${i}`">
-          <h3 v-if="option.header" class="text-xs font-bold uppercase pt-4">{{ option.header }}</h3>
+  <div class="text-sm font-bold">
+    <ul class="options flex-grow overflow-y-overlay">
+      <li v-for="(option, i) in options" :key="`ps-${i}`">
+        <h3 v-if="option.header" class="text-xs font-bold uppercase pt-4">{{ option.header }}</h3>
 
-          <div v-else-if="option.divider" class="my-8" />
+        <div v-else-if="option.divider" class="my-8" />
 
-          <div v-else class="option relative py-4 flex items-center border-b hs-border">
-            <div class="flex-grow">
-              <h3 class="capitalize truncate">{{ option.name }}</h3>
-              <p v-if="option.description" class="text-xs text-gray-500">{{ option.description }}</p>
-            </div>
-            <button class="btn">{{ option.toggle }}</button>
+        <div v-else class="option relative py-4 flex items-center border-b hs-border">
+          <div class="w-full">
+            <h3 class="capitalize">{{ option.name }}</h3>
+            <p v-if="option.description" class="text-xs text-gray-500">{{ option.description }}</p>
           </div>
-        </li>
-      </ul>
-    </div>
+          <button class="btn">{{ option.toggle }}</button>
+        </div>
+      </li>
+    </ul>
+  </div>
 
-    <div class="mt-10 rounded bg-gray-300 dark:bg-gray-700 p-6">
-      <p>
-        Please view our <a class="text-primary-500">Crew Regs</a> and <a class="text-primary-500">Privacy Policy</a> for
-        more information.
-      </p>
-    </div>
+  <div class="mt-10 rounded bg-gray-300 dark:bg-gray-700 p-6">
+    <p>
+      Please view our <a class="text-primary-500">Crew Regs</a> and <a class="text-primary-500">Privacy Policy</a> for
+      more information.
+    </p>
   </div>
 </template>
 

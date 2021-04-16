@@ -32,6 +32,7 @@
             class="absolute right-0 bottom-0 bg-white dark:bg-gray-700 border-2 border-dashed rounded-full w-9 h-9 f-center"
           >
             <i-mdi-arrow-up-bold-hexagon-outline />
+            <input type="file" class="hidden" accept="image/*" />
           </button>
         </div>
 

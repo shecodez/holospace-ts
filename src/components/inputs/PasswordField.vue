@@ -9,16 +9,18 @@
   </TextField>
 
   <div v-show="showMeter" class="pw-str-meter mx-2" :class="passwordStrength">
-    <svg
-      v-for="i in 4"
-      :key="i"
-      :class="`pw-strength-${i}`"
-      preserveAspectRatio="none"
-      :data-strength="i"
-      viewBox="0 0 2 1"
-    >
-      <rect width="100%" height="100%"></rect>
-    </svg>
+    <div class="flex w-full">
+      <template v-for="(v, i) in 4" :key="i">
+        <div class="w-1/4 px-1">
+          <div
+            class="h-1 rounded-xl transition-colors"
+            :class="
+              i < score ? (score <= 2 ? 'bg-red-400' : score <= 3 ? 'bg-yellow-400' : 'bg-green-500') : 'bg-gray-200'
+            "
+          ></div>
+        </div>
+      </template>
+    </div>
   </div>
 </template>
 
@@ -80,7 +82,15 @@ export default defineComponent({
       inputType.value = type;
     };
 
-    return { localValue, inputPasswordEl, toggleShowPassword, inputType };
+    const score = ref(0);
+    watch(
+      () => localValue.value,
+      (input) => {
+        score.value = input.toString().length;
+      }
+    );
+
+    return { localValue, inputPasswordEl, toggleShowPassword, inputType, score };
   },
 });
 </script>

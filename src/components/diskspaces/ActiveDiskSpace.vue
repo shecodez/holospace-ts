@@ -47,6 +47,7 @@
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { useTitle } from '@vueuse/core';
 
 import Popper from '@/components/Popper.vue';
 import NotificationMenu from '@/components/users/my/NotificationMenu.vue';
@@ -65,6 +66,12 @@ export default defineComponent({
     const store = useStore();
 
     const diskSpace = computed(() => store.state.diskSpaces.activeDiskSpace);
+
+    const title = computed(() => {
+      const diskSpaceName = diskSpace.value?.name || '···';
+      return `${diskSpaceName} | HoloSpace`;
+    });
+    useTitle(title);
 
     const sideDrawerIsOpen = computed(() => store.state.app.sideDrawerIsOpen);
     const toggleSideDrawer = () => {

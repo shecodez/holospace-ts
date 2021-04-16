@@ -95,3 +95,5 @@ module.exports = {
     }),
   ],
 };
+
+// npx tailwindcss init tailwind-full.config.js --full

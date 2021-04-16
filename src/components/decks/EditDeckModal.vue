@@ -1,6 +1,6 @@
 <template>
   <ModalFullScreen :isOpen="showModal" :onClose="closeModal">
-    <Modal2ColumnLayout v-if="editDeck">
+    <Modal2ColumnLayout v-if="editDeck" :closeModal="closeModal">
       <template v-slot:leftcolheader>
         <i-mdi-layers-outline class="text-xl flex-shrink-0" />
         <h3 class="font-bold text-xl uppercase mx-2 truncate">{{ editDeck.name }}</h3>
@@ -73,7 +73,7 @@ export default defineComponent({
       { id: 'deck_management', header: 'Deck Management' },
       { id: 'overview', name: 'Overview' },
       { id: 'authorization', name: 'Authorization' },
-      { id: 'logs', name: 'logs', description: 'Audit Logs' },
+      { id: 'captains_log', name: "Captain's Log", description: 'Audit Logs' },
       { id: 'roles', name: 'Roles', description: 'Cmd Crew' },
       { id: 'authorized_apps', name: 'Authorized Apps', description: 'widgets' },
       { id: 'subroutines', name: 'Subroutines', description: 'Webhooks' },

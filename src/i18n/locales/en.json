@@ -38,6 +38,7 @@
   "show": "show",
   "hide": "hide",
   "phone_number": "Phone Number",
+  "vr": "VR",
 
   "languages": {
     "english": "english",
@@ -105,7 +106,7 @@
       "deck_management": "Deck Management",
       "overview": "Overview",
       "authorization": "Authorization",
-      "logs": "Logs",
+      "captains_log": "Captain's Log",
       "roles": "Roles",
       "authorized_apps": "Authorized Apps",
       "subroutines": "Subroutines",
@@ -154,18 +155,19 @@
         "SettingsModal": {
           "account_settings": "Account Settings",
           "profile": "＠Me (Profile)",
-          "captains_log": "Captain's Log",
           "privacy_&_security": "Privacy & Security",
           "subscriptions": "Subscriptions",
           "memberships": "Memberships",
+          "subroutines": "Subroutines",
           "app_settings": "App Settings",
-          "voice_&_visuals": "Voice & Visuals",
+          "audio_&_video": "Audio and Video",
           "notifications": "Notifications",
           "appearance_&_themes": "Appearance & Themes",
           "language": "@:language",
           "get_in_touch": "Get in Touch",
           "help_&_support": "Help & Support",
-          "send_feedback": "Send Feedback"
+          "send_feedback": "Send Feedback",
+          "vr": "@:vr"
         }
       },
       "OnStatusList": {
