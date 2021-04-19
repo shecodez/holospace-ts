@@ -36,7 +36,8 @@ module.exports = {
         error: colors.red,
         info: colors.blue,
         success: colors.green,
-        warning: colors.yellow
+        warning: colors.yellow,
+        danger: colors.red,
       },
       borderWidth: {
         3: '3px',

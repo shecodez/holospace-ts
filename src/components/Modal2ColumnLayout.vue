@@ -18,14 +18,14 @@
     </div>
 
     <div
-      class="flex w-full md:w-2/3 bg-gray-400 bg-opacity-80 dark:bg-gray-600 dark:bg-opacity-80 md:pt-20 overflow-hidden"
+      class="flex w-full h-full md:w-2/3 bg-gray-400 bg-opacity-80 dark:bg-gray-600 dark:bg-opacity-80 md:pt-20 overflow-hidden"
     >
       <div class="flex flex-col w-full h-full overflow-y-scroll">
-        <div class="relative w-full md:w-2/3 md:mx-4">
+        <div class="relative w-full h-full md:w-2/3 md:mx-4">
           <div class="py-4 mx-2">
             <slot name="rightcolheader"></slot>
           </div>
-          <div class="flex-1">
+          <div class="flex-1 h-full">
             <slot></slot>
           </div>
 

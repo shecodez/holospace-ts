@@ -9,7 +9,7 @@
       <div class="flex h-full overflow-hidden">
         <slot name="SideSlot"><DiskSpaceCtrl /></slot>
         <slot></slot>
-        <slot name="MetaSlot"><UserCtrl /></slot>
+        <slot name="MetaSlot"><UsersCtrl /></slot>
       </div>
     </div>
   </div>
@@ -25,14 +25,14 @@ import { useI18n } from 'vue-i18n';
 import Banner from '@/components/alerts/Banner.vue';
 import DeckCtrl from '@/components/decks/DeckCtrl.vue';
 import DiskSpaceCtrl from '@/components/diskspaces/DiskSpaceCtrl.vue';
-import UserCtrl from '@/components/users/UserCtrl.vue';
+import UsersCtrl from '@/components/users/UsersCtrl.vue';
 import SlideOutDrawer from '@/components/panels/SlideOutDrawer.vue';
 import { useStore } from '@/store';
 import AllActionTypes from '@/store/action-types';
 import { AlertTypes, IBanner } from '@/store/interfaces';
 
 export default defineComponent({
-  components: { Banner, DeckCtrl, DiskSpaceCtrl, UserCtrl, SlideOutDrawer },
+  components: { Banner, DeckCtrl, DiskSpaceCtrl, UsersCtrl, SlideOutDrawer },
   name: 'MainLayout',
   props: {
     view: {

@@ -1,9 +1,11 @@
 <template>
   <Layout view="Home">
     <Header />
-    <main class="flex-1">
+    <main class="flex-1 flex flex-col">
       <I18nDemo />
-      <PopperDemo />
+      <div>
+        <PopperDemo />
+      </div>
       <ToastDemo />
     </main>
     <Footer />

@@ -26,12 +26,12 @@ import MetaDrawer from '@/components/panels/MetaDrawer.vue';
 import ActiveUsers from './ActiveUsers.vue';
 import UserListSkeleton from './UserListSkeleton.vue';
 import UserList from './UserList.vue';
-import Me from './ActiveUserCtrl.vue';
+import Me from './MeCtrl.vue';
 import { useStore } from '@/store';
 import AllActionTypes from '@/store/action-types';
 
 export default defineComponent({
-  name: 'UserCtrl',
+  name: 'UsersCtrl',
   components: { MetaDrawer, ActiveUsers, UserListSkeleton, UserList, Me },
   setup: () => {
     const { t } = useI18n();

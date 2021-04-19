@@ -1,4 +1,5 @@
 import { createApp } from 'vue';
+//import adapter from 'webrtc-adapter'
 
 import App from './App.vue';
 import { store } from './store';

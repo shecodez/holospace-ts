@@ -44,7 +44,8 @@
     </div>
   </section>
 
-  <section class="py-6 mb-4 border-t hs-border">
+  <section class="input-mode py-6 mb-4 border-t hs-border">
+    <!-- v-if input.mode.active === 'VOICE_ACTIVATED' -->
     <label class="hs-label mb-4">Audio Input Sensitivity</label>
     <div v-if="microphone.error" class="bg-error-500 bg-opacity-30 border-l-4 border-error-500">
       <p class="p-2 flex items-center">
@@ -59,6 +60,7 @@
       progressColor="transparent"
       :disabled="!!microphone.error"
     />
+    <!-- v-else-if input.mode.active === 'PUSH_TO_TALK' -->
   </section>
 
   <section class="pt-6 border-t hs-border">
@@ -125,6 +127,37 @@ export default defineComponent({
     const { microphone, microphones, microphoneError } = useMicrophone();
     const { speaker, speakers, speakerError } = useSpeaker();
 
+    const formatError = (error: any, deviceName: string) => {
+      switch (error.name) {
+        case 'NotFoundError':
+        case 'DevicesNotFoundError':
+          // required track is missing
+          return `Device not found. Please make sure your ${deviceName} is connected and powered on.`;
+        case 'NotReadableError':
+        case 'TrackStartError':
+          // camera or microphone are already in use
+          return `Your ${deviceName} is already in use by another application.`;
+        case 'OverconstrainedError':
+        case 'ConstraintNotSatisfiedError':
+          // constraints can not be satisfied by avb. devices
+          // const v = constraints.video;
+          // return `The resolution ${v.width.exact}x${v.height.exact} px is not supported by your device.`
+          return `${deviceName} unsupported resolution: ${error.constraintName}`;
+        case 'NotAllowedError':
+        case 'PermissionDeniedError':
+          // permission denied in browser
+          // return t(`${l10n}.${deviceName}.permission_denied_error_message`)
+          return `Permission has not been granted to HoloSpace to access to your ${deviceName}.`;
+        case 'TypeError':
+          // empty constraints object
+          return `constraints object passed to getUserMedia() is empty, 
+            or has all tracks (audio, video or both) set to false`;
+        default:
+          console.log(error);
+          return error;
+      }
+    };
+
     // profile.settings.audio_and_video
     const devices = reactive({
       input: {
@@ -133,6 +166,8 @@ export default defineComponent({
           active: AudioInputMode.VOICE_ACTIVATED,
           list: computed(() => getInputModeList()),
         },
+        pttKey: '',
+        pttKeyReleaseDelay: 0,
       },
       microphone: {
         active: microphone,
@@ -143,20 +178,20 @@ export default defineComponent({
           }))
         ),
         volume: 70, // get from profile
-        error: microphoneError,
+        error: formatError(microphoneError, 'microphone'),
       },
 
       camera: {
         active: camera,
         list: computed(() => cameras.value.map((i) => ({ id: i.deviceId, name: i.label }))),
-        error: cameraError,
+        error: formatError(cameraError, 'camera'),
       },
 
       speaker: {
         active: speaker,
         list: computed(() => speakers.value.map((o) => ({ id: o.deviceId, name: o.label }))),
         volume: 75, // get from profile
-        error: speakerError,
+        error: formatError(speakerError, 'speaker'),
       },
     });
 

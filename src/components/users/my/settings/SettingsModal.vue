@@ -54,7 +54,7 @@
         <h3 class="font-bold text-xl uppercase mx-2">{{ t(`${l10n}.${settings[activeIdx].id}`) }}</h3>
       </template>
 
-      <div class="mx-4">
+      <div class="mx-4 h-full">
         <IndexForSettingCtrl
           :tabFor="settings[activeIdx].id"
           :profile="{ ...userProfile, email: 'test@example.com' }"
