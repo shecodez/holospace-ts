@@ -4,8 +4,9 @@ import { ActionTypes as AppATypes } from './modules/app/actions';
 import { ActionTypes as DeckATypes } from './modules/decks/actions';
 import { ActionTypes as LocaleATypes } from './modules/locale/actions';
 import { ActionTypes as DiskSpaceATypes } from './modules/diskSpaces/actions';
-import { ActionTypes as ChatATypes } from './modules/chat/actions'
-import { ActionTypes as UserATypes } from './modules/users/actions'
+import { ActionTypes as ChatATypes } from './modules/chat/actions';
+import { ActionTypes as UserATypes } from './modules/users/actions';
+import { ActionTypes as AuthATypes } from './modules/auth/actions';
 
 const AllActionTypes = {
   ...RootATypes,
@@ -15,7 +16,8 @@ const AllActionTypes = {
   ...LocaleATypes,
   ...DiskSpaceATypes,
   ...ChatATypes,
-  ...UserATypes
+  ...UserATypes,
+  ...AuthATypes,
 };
 
 export default AllActionTypes;

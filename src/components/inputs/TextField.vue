@@ -15,6 +15,7 @@
           :class="setSize(size)"
           v-bind="$attrs"
           :type="type"
+          :name="name"
           v-model="localValue"
           :required="required"
           autocomplete="off"
@@ -47,6 +48,9 @@ export default defineComponent({
     modelValue: {
       type: [String, Number],
       default: '',
+    },
+    name: {
+      type: String,
     },
     label: {
       type: String,

@@ -10,6 +10,8 @@ import { useStore } from '@/store';
 import AllActionTypes from '@/store/action-types';
 import { AppTheme } from '@/store/interfaces';
 import useBreakpoints from '@/useables/useBreakpoints';
+import AllMutationTypes from '@/store/mutation-types';
+import useApi from '@/use/api';
 
 export default defineComponent({
   name: 'App',
@@ -57,6 +59,25 @@ export default defineComponent({
       },
       { immediate: true }
     );
+
+    const token = localStorage.holospaceJWT; // localStorage.getItem(AUTH_KEY)
+    if (token) {
+      const { isLoading, error, data, get } = useApi('/auth/@me');
+
+      store.commit(AllMutationTypes.SET_AUTHENTICATING, true);
+
+      get({}, { headers: { Authorization: `Bearer ${token}` } });
+
+      watch([isLoading], () => {
+        if (error.value) {
+          localStorage.removeItem('holospaceJWT'); // localStorage.removeItem(AUTH_KEY);
+        } else if (data.value) {
+          store.commit(AllMutationTypes.SET_AUTH_User, data.value);
+        }
+
+        store.commit(AllMutationTypes.SET_AUTHENTICATING, false);
+      });
+    }
 
     return {
       theme,

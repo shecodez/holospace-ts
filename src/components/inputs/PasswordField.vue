@@ -1,5 +1,13 @@
 <template>
-  <TextField ref="inputPasswordEl" v-model="localValue" :label="label" :type="type" :size="size">
+  <TextField
+    ref="inputPasswordEl"
+    v-model="localValue"
+    :label="label"
+    :name="name"
+    :type="type"
+    :size="size"
+    :error="error"
+  >
     <template v-slot:append>
       <div @click="toggleShowPassword" class="text-gray-300 hover:text-white cursor-pointer">
         <i-mdi-eye v-if="inputType === 'text'" />
@@ -8,7 +16,7 @@
     </template>
   </TextField>
 
-  <div v-show="showMeter" class="pw-str-meter mx-2" :class="passwordStrength">
+  <div v-show="showMeter" class="pw-str-meter" :class="passwordStrength">
     <div class="flex w-full">
       <template v-for="(v, i) in 4" :key="i">
         <div class="w-1/4 px-1">
@@ -44,6 +52,9 @@ export default defineComponent({
     modelValue: {
       type: [String, Number],
       default: '',
+    },
+    name: {
+      type: String,
     },
     required: {
       type: Boolean,

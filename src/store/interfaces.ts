@@ -16,6 +16,8 @@ import { ActionTypes as ChatATypes } from './modules/chat/actions';
 import { MutationTypes as ChatMTypes } from './modules/chat/mutations';
 import { ActionTypes as UserATypes } from './modules/users/actions';
 import { MutationTypes as UserMTypes } from './modules/users/mutations';
+import { ActionTypes as AuthATypes } from './modules/auth/actions';
+import { MutationTypes as AuthMTypes } from './modules/auth/mutations';
 
 export interface IRootState {
   root: boolean;
@@ -30,6 +32,7 @@ export interface IMergedState extends IRootState {
   diskSpaces: IDiskSpaceState;
   chat: IChatState;
   users: IUserState;
+  auth: IAuthState;
 }
 
 export interface IRootMutations<S = IRootState> {
@@ -179,6 +182,61 @@ export interface IAppGetters {
   showBanner(state: IAppState): boolean;
   showToast(state: IAppState): boolean;
   isDarkTheme(state: IAppState): boolean;
+}
+
+/************************ AUTH MODULE TYPES **************************/
+
+export interface RegisterPayload {
+  name: string;
+  email: string;
+  password: string;
+  //acceptTsAndCs: boolean;
+}
+
+export interface LoginPayload {
+  email: string;
+  password: string;
+}
+
+export interface ForgotPasswordPayload {
+  email: string;
+}
+
+export interface IAuthUser extends IUser {
+  email: string;
+  membershipIds: string[];
+  memberships?: IDeck[];
+  subscriptionIds: string[];
+  subscriptions?: DiskSpace[];
+  //profile: IProfile
+}
+
+export interface IAuthState {
+  isAuthenticating: boolean;
+  me?: IAuthUser;
+  error?: Error;
+}
+
+export interface IAuthMutations<S = IAuthState> {
+  //[AuthMTypes.SET_AUTH_User](state: S, payload: { payload: RegisterPayload; remember: boolean }): void;
+  [AuthMTypes.SET_AUTHENTICATING](state: S, payload: boolean): void;
+  [AuthMTypes.SET_AUTH_User](state: S, payload: IAuthUser): void;
+}
+
+export interface IAuthGetters {
+  isAuthenticated(state: IAuthState): boolean;
+}
+
+// prettier-ignore
+type AugmentedActionCtxAuth = Omit<ActionContext<IAuthState, IRootState>, 'commit'> & {
+  commit<K extends keyof IAuthMutations>(
+    key: K,
+    payload: Parameters<IAuthMutations[K]>[1]
+  ): ReturnType<IAuthMutations[K]>;
+};
+
+export interface IAuthActions {
+  [AuthATypes.REGISTER]({ commit }: AugmentedActionCtxAuth, payload: RegisterPayload): void;
 }
 
 /************************ DECK MODULE TYPES **************************/
@@ -493,8 +551,9 @@ export interface IStoreActions
     ILocaleActions,
     IDeckActions,
     IDiskSpaceActions,
-    IChatActions, 
-    IUserActions {}
+    IChatActions,
+    IUserActions,
+    IAuthActions {}
 
 export interface IStoreGetters
   extends IRootGetters,
@@ -503,5 +562,6 @@ export interface IStoreGetters
     ILocaleGetters,
     IDeckGetters,
     IDiskSpaceGetters,
-    IChatGetters, 
-    IUserGetters {}
+    IChatGetters,
+    IUserGetters,
+    IAuthGetters {}

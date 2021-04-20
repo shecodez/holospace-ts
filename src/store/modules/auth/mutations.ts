@@ -1,13 +1,16 @@
-/*
+import { MutationTree } from 'vuex';
+import { IAuthState as State, IAuthMutations as Mutations } from '../../interfaces';
+
 export enum MutationTypes {
-  LOGIN = 'LOGIN',
-  REGISTER = 'REGISTER',
-  LOGOUT = 'LOGOUT',
+  SET_AUTH_User = 'SET_AUTH_User',
+  SET_AUTHENTICATING = 'SET_AUTHENTICATING',
 }
-*/
-//login (email: string, password: string)
-//logout ()
-//register(username: string, email: string, password: string)
-//changePassword(oldPassword:string, newPassword: string)
-//forgotPassword(email: string)
-//updatePassword(token:string, newPassword: string)
+
+export const mutations: MutationTree<State> & Mutations = {
+  [MutationTypes.SET_AUTH_User](state, payload) {
+    state.me = payload;
+  },
+  [MutationTypes.SET_AUTHENTICATING](state, payload) {
+    state.isAuthenticating = payload;
+  },
+};

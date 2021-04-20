@@ -2,12 +2,12 @@
   <div class="relative grid grid-flow-col overflow-y-overlay">
     <ul>
       <li v-for="lang in languages" :key="lang.id">
-        <div v-if="lang.header" class="">
-          <h3 class="hs-h3">{{ lang.header }}</h3>
+        <div v-if="lang.header" class="border-t hs-border">
+          <h3 class="hs-h3 py-1">{{ lang.header }}</h3>
         </div>
         <div
           v-else
-          class="hs-bg-opacity-80 p-2 hover:bg-gray-600 border-l-4 hover:border-primary-500"
+          class="hs-bg-opacity-80 px-2 py-1 hover:bg-gray-600 border-l-4 hover:border-primary-500"
           :class="
             lang.id === locale
               ? 'bg-gray-400 dark:bg-gray-600 border-l-4 border-primary-500'
@@ -22,19 +22,9 @@
       </li>
     </ul>
 
-    <div ref="resizeDivEl" class="hidden md:flex items-center h-full w-full bg-gray-400 dark:bg-gray-600">
+    <div ref="chartDivEl" class="hidden md:flex items-center bg-gray-400 dark:bg-gray-600">
       <span class="absolute top-0 right-2">{{ `width: ${width} | height: ${height}` }}</span>
-      <svg ref="chartSvgEl" width="500" height="500">
-        <g
-          class="lang"
-          v-for="node in d3Nodes.children"
-          :key="node.data.id"
-          :style="{ transform: `translate(${node.x}px, ${node.y}px)` }"
-        >
-          <circle class="lang__circle" :r="node.r" :fill="useHashColor(node.data.name)" />
-          <text class="lang__label">{{ node.data.name }}</text>
-        </g>
-      </svg>
+      <BubbleChart :data="formatData" packed />
     </div>
   </div>
 </template>
@@ -42,11 +32,9 @@
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue';
 import { useElementSize } from '@vueuse/core';
-import { hierarchy, pack } from 'd3';
 import { useI18n } from 'vue-i18n';
 
-//import useChart from '@/use/chart';
-import { useHashColor } from '@/useables/useHashColor';
+import BubbleChart from '@/components/charts/BubbleChart.vue';
 
 export enum SUPPORTED_LOCALE {
   ENGLISH = 'en',
@@ -65,6 +53,7 @@ export enum SUPPORTED_LOCALE {
 }
 
 export default defineComponent({
+  components: { BubbleChart },
   name: 'LanguageSettings',
   props: {
     profile: {
@@ -75,9 +64,8 @@ export default defineComponent({
   setup: () => {
     const { locale } = useI18n();
 
-    const resizeDivEl = ref(null);
-    const chartSvgEl = ref(null); // <SVGSVGElement>
-    const { width, height } = useElementSize(resizeDivEl);
+    const chartDivEl = ref(null);
+    const { width, height } = useElementSize(chartDivEl);
 
     const languages = ref([
       { id: 'north_america', header: 'North America' }, // TODO: create Region.NORTH_AMERICA Enum
@@ -90,61 +78,32 @@ export default defineComponent({
       { id: 'europe', header: 'Europe' },
       { id: SUPPORTED_LOCALE.NORWEGIAN, name: 'Norsk', speakers: 5 },
       { id: SUPPORTED_LOCALE.DUTCH, name: 'Nederlands', speakers: 3 },
-      { id: SUPPORTED_LOCALE.PORTUGUESE, name: 'Brazilian', speakers: 1 },
       { id: SUPPORTED_LOCALE.FRENCH, name: 'Français', speakers: 19 },
       { id: SUPPORTED_LOCALE.SWEDISH, name: 'Svenska', speakers: 14 },
       { id: SUPPORTED_LOCALE.UKRAINIAN, name: 'Українська', speakers: 2 },
       { id: SUPPORTED_LOCALE.GERMAN, name: 'Deutsch', speakers: 22 },
       { id: 'latin_america', header: 'Latin America' },
       { id: SUPPORTED_LOCALE.SPANISH, name: 'Español', speakers: 8 },
+      { id: SUPPORTED_LOCALE.PORTUGUESE, name: 'Brazilian', speakers: 1 },
     ]);
 
     // for D3 to correctly parse the data it has to be in a specific format.
-    const formattedData = computed(() => {
+    const formatData = computed(() => {
       return {
         name: 'Top Level',
         children: languages.value
-          .filter((l) => !!l.name)
+          .filter((x) => !!x.name) // filter out headers
           .map((language) => ({
             ...language,
             size: language.speakers,
             parent: 'Top Level',
           })),
-      };
+      } as any; // TODO: figure out this type
     });
 
-    const d3Nodes = computed(() => {
-      // Generate a D3 hierarchy
-
-      const rootHierarchy = hierarchy(formattedData.value)
-        .sum((d) => d.size)
-        .sort((a, b) => {
-          return b.value! - a.value!;
-        });
-
-      // Pack the circles inside the viewbox
-      return pack().size([500, 500]).padding(10)(rootHierarchy);
-    });
-
-    return { locale, languages, resizeDivEl, chartSvgEl, width, height, d3Nodes, useHashColor };
+    return { locale, languages, formatData, width, height };
   },
 });
 
 //const totalSpeakers = languages.reduce((sum, { amount }) => sum + amount, 0);
 </script>
-
-<style scoped>
-svg {
-  display: block;
-  margin: 0 auto;
-}
-
-.lang {
-  text-anchor: middle;
-}
-.lang__label {
-  fill: #fff;
-  font-weight: bold;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-</style>

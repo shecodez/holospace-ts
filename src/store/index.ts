@@ -10,6 +10,7 @@ import { LocaleStoreModuleTypes } from './modules/locale/types';
 import { DiskSpaceStoreModuleTypes } from './modules/diskSpaces/types';
 import { ChatStoreModuleTypes } from './modules/chat/types';
 import { UserStoreModuleTypes } from './modules/users/types';
+import { AuthStoreModuleTypes } from './modules/auth/types';
 
 import root from './modules/root';
 
@@ -18,9 +19,10 @@ export type Store = RootStoreModuleTypes<Pick<IMergedState, 'root'>> &
   AppStoreModuleTypes<Pick<IMergedState, 'app'>> &
   DeckStoreModuleTypes<Pick<IMergedState, 'decks'>> &
   LocaleStoreModuleTypes<Pick<IMergedState, 'locale'>> &
-  DiskSpaceStoreModuleTypes<Pick<IMergedState, 'diskSpaces' >> &
-  ChatStoreModuleTypes<Pick<IMergedState, 'chat' >> &
-  UserStoreModuleTypes<Pick<IMergedState, 'users' >>;
+  DiskSpaceStoreModuleTypes<Pick<IMergedState, 'diskSpaces'>> &
+  ChatStoreModuleTypes<Pick<IMergedState, 'chat'>> &
+  UserStoreModuleTypes<Pick<IMergedState, 'users'>> &
+  AuthStoreModuleTypes<Pick<IMergedState, 'auth'>>;
 
 // Plug in logger when in development environment
 const isDebug = process.env.NODE_ENV !== 'production';

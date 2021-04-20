@@ -8,5 +8,7 @@
   "eslint.validate": ["typescript", "vue"],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
-  }
+  },
+  "i18n-ally.localesPaths": "src/i18n/locales",
+  "i18n-ally.sourceLanguage": "en"
 }
