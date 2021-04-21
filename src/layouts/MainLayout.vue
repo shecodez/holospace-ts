@@ -1,27 +1,30 @@
 <template>
-  <div
-    class="hs-bg-gradient hs-bg-position flex flex-wrap md:flex-nowrap flex-col md:flex-row h-screen text-gray-800 dark:text-gray-200 overflow-hidden"
-    :style="{ backgroundImage: `url(${getBgImageUrl})` }"
-  >
-    <slot name="FixedSlot"><DeckCtrl /></slot>
-    <div class="flex flex-1 flex-col w-full h-full overflow-hidden">
-      <Banner />
-      <div class="flex h-full overflow-hidden">
-        <slot name="SideSlot"><DiskSpaceCtrl /></slot>
-        <slot></slot>
-        <slot name="MetaSlot"><UsersCtrl /></slot>
+  <LayoutCtrl view="MAIN_LAYOUT">
+    <div
+      class="hs-bg-gradient hs-bg-position flex flex-wrap md:flex-nowrap flex-col md:flex-row h-screen text-gray-800 dark:text-gray-200 overflow-hidden"
+      :style="{ backgroundImage: `url(${getBgImageUrl})` }"
+    >
+      <slot name="FixedSlot"><DeckCtrl /></slot>
+      <div class="flex flex-1 flex-col w-full h-full overflow-hidden">
+        <Banner />
+        <div class="flex h-full overflow-hidden">
+          <slot name="SideSlot"><DiskSpaceCtrl /></slot>
+          <slot></slot>
+          <slot name="MetaSlot"><UsersCtrl /></slot>
+        </div>
       </div>
     </div>
-  </div>
-  <SlideOutDrawer :isOpen="useSlideOutDrawer" :onClose="closeDrawer">
-    <DiskSpaceCtrl useDrawer />
-  </SlideOutDrawer>
+    <SlideOutDrawer :isOpen="useSlideOutDrawer" :onClose="closeDrawer">
+      <DiskSpaceCtrl useDrawer />
+    </SlideOutDrawer>
+  </LayoutCtrl>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, onMounted, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
+import LayoutCtrl from './LayoutCtrl.vue';
 import Banner from '@/components/alerts/Banner.vue';
 import DeckCtrl from '@/components/decks/DeckCtrl.vue';
 import DiskSpaceCtrl from '@/components/diskspaces/DiskSpaceCtrl.vue';
@@ -32,7 +35,7 @@ import AllActionTypes from '@/store/action-types';
 import { AlertTypes, IBanner } from '@/store/interfaces';
 
 export default defineComponent({
-  components: { Banner, DeckCtrl, DiskSpaceCtrl, UsersCtrl, SlideOutDrawer },
+  components: { LayoutCtrl, Banner, DeckCtrl, DiskSpaceCtrl, UsersCtrl, SlideOutDrawer },
   name: 'MainLayout',
   props: {
     view: {

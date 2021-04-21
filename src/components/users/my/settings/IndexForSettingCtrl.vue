@@ -1,5 +1,5 @@
 <template>
-  <AccountAndAppSettings v-if="tabFor === 'profile'" :profile="profile" />
+  <AccountSettings v-if="tabFor === 'profile'" :profile="profile" />
   <ApperanceAndThemeSettings v-else-if="tabFor === 'appearance_&_themes'" :profile="profile" />
   <AudioAndVideoSettings v-else-if="tabFor === 'audio_&_video'" :profile="profile" />
   <LanguageSettings v-else-if="tabFor === 'language'" :profile="profile" />
@@ -11,19 +11,19 @@
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from 'vue';
 
-import AccountAndAppSettings from './AccountAndAppSettings.vue';
+import AccountSettings from './tabs/AccountSettings.vue';
 import UnderConstruction from '@/components/UnderConstruction.vue';
-import PrivacyAndSecuritySettings from './PrivacyAndSecuritySettings.vue';
-import ApperanceAndThemeSettings from './ApperanceAndThemeSettings.vue';
-import AudioAndVideoSettings from './AudioAndVideoSettings.vue';
-import NotificationSettings from './NotificationSettings.vue';
-import LanguageSettings from './LanguageSettings.vue';
+import PrivacyAndSecuritySettings from './tabs/PrivacyAndSecuritySettings.vue';
+import ApperanceAndThemeSettings from './tabs/ApperanceAndThemeSettings.vue';
+import AudioAndVideoSettings from './tabs/AudioAndVideoSettings.vue';
+import NotificationSettings from './tabs/NotificationSettings.vue';
+import LanguageSettings from './tabs/LanguageSettings.vue';
 
 export default defineComponent({
   name: 'IndexForSettingTabs',
   components: {
     UnderConstruction,
-    AccountAndAppSettings,
+    AccountSettings,
     PrivacyAndSecuritySettings,
     ApperanceAndThemeSettings,
     AudioAndVideoSettings,

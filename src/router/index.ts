@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory, Router, RouteRecordRaw } from 'vue-router';
-import {  I18n } from 'vue-i18n';
+import { I18n } from 'vue-i18n';
 
 //import { setI18nLang, loadLocaleMessages, SUPPORTED_LOCALES } from '@/i18n';
 
 import Home from '@/views/Home.vue';
 import Login from '@/views/Login.vue';
 import Register from '@/views/Register.vue';
-import Chat from '@/views/Chat.vue';
+import Comms from '@/views/Comms.vue';
 import NotFound from '@/views/NotFound.vue';
 import Test from '@/views/Test.vue';
 
@@ -39,8 +39,8 @@ export function setupRouter(i18n: I18n): Router {
     },
     {
       path: '/d/:deckId/:diskSpaceId',
-      name: 'Chat',
-      component: Chat,
+      name: 'Comms',
+      component: Comms,
     },
     {
       path: '/login',
@@ -107,8 +107,8 @@ export function setupRouter(i18n: I18n): Router {
 //   },
 //   {
 //     path: '/d/:deckId/:diskspaceId',
-//     name: 'Chat',
-//     component: Chat,
+//     name: 'Comms',
+//     component: Comms,
 //   },
 //   {
 //     path: '/login',

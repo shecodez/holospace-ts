@@ -237,6 +237,8 @@ type AugmentedActionCtxAuth = Omit<ActionContext<IAuthState, IRootState>, 'commi
 
 export interface IAuthActions {
   [AuthATypes.REGISTER]({ commit }: AugmentedActionCtxAuth, payload: RegisterPayload): void;
+  [AuthATypes.LOGIN]({ commit }: AugmentedActionCtxAuth, payload: LoginPayload): void;
+  [AuthATypes.LOGOUT]({ commit }: AugmentedActionCtxAuth): void;
 }
 
 /************************ DECK MODULE TYPES **************************/
@@ -253,11 +255,17 @@ export type IDeck = {
   captainId: string; // guid
   //user?: IUser;
   idsId: string; // (Init Disk Space) Id - guid
+  ids?: DiskSpace;
   hq: Region;
   //members?: User[];
   //lastModById: string; // guid
   //createdAt: serverTimestamp;
   //updatedAt: null;
+};
+
+export type EditDeckPayload = {
+  isOpen: boolean;
+  deckId: string;
 };
 
 export interface IDeckState {
@@ -281,7 +289,7 @@ export interface IDeckMutations<S = IDeckState> {
 
   [DeckMTypes.SET_LOADING_Decks](state: S, payload: boolean): void;
   [DeckMTypes.SET_CREATE_Deck_MODAL](state: S, payload: boolean): void;
-  [DeckMTypes.SET_EDIT_Deck_MODAL](state: S, payload: { isOpen: boolean; deckId: string | undefined }): void;
+  [DeckMTypes.SET_EDIT_Deck_MODAL](state: S, payload: EditDeckPayload): void;
   [DeckMTypes.SET_ADD_OR_JOIN_Deck_MODAL](state: S, payload: boolean): void;
   [DeckMTypes.SET_JOIN_Deck_MODAL](state: S, payload: boolean): void;
 }
@@ -305,7 +313,7 @@ export interface IDeckActions {
   [DeckATypes.GET_ACTIVE_Deck]({ commit, state }: AugmentedActionCtxDeck, deckId: String): void;
 
   [DeckATypes.SET_CREATE_Deck_MODAL]({ commit }: AugmentedActionCtxDeck): void;
-  [DeckATypes.SET_EDIT_Deck_MODAL]({ commit }: AugmentedActionCtxDeck): void;
+  [DeckATypes.SET_EDIT_Deck_MODAL]({ commit }: AugmentedActionCtxDeck, { isOpen, deckId }: EditDeckPayload): void;
   [DeckATypes.SET_ADD_OR_JOIN_Deck_MODAL]({ commit }: AugmentedActionCtxDeck): void;
   [DeckATypes.SET_JOIN_Deck_MODAL]({ commit }: AugmentedActionCtxDeck): void;
 }
@@ -391,7 +399,8 @@ export type IChatMessage = {
   id: string; // guid
   text: string;
   isMarkdown?: boolean;
-  media?: string;
+  media?: string; // .mp3 .wav .img .png .jpg .gfb
+  hologram?: string; // .holo file
   authorId: string; // [UserId | DiskSpaceId] guid
   author?: {}; //IUser;
   diskSpaceId: string; // guid

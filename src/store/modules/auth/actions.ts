@@ -14,8 +14,8 @@ import { users } from '../../../data/mock';
 export enum ActionTypes {
   REGISTER = 'REGISTER',
   LOGIN = 'LOGIN',
-  FORGOT_PASSWORD = 'FORGOT_PASSWORD',
-  CHANGE_PASSWORD = 'CHANGE_PASSWORD',
+  //FORGOT_PASSWORD = 'FORGOT_PASSWORD',
+  //CHANGE_PASSWORD = 'CHANGE_PASSWORD',
   LOGOUT = 'LOGOUT',
 }
 

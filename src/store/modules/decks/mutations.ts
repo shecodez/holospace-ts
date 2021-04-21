@@ -1,9 +1,5 @@
 import { MutationTree } from 'vuex';
-import {
-  IDeckState as State,
-  IDeckMutations as Mutations,
-  IDeck,
-} from '../../interfaces';
+import { IDeckState as State, IDeckMutations as Mutations, IDeck } from '../../interfaces';
 
 export enum MutationTypes {
   SET_ACTIVE_Deck = 'SET_ACTIVE_Deck',

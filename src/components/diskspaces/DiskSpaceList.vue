@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
+import { defineComponent, computed, watch, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 import Expander from '@/components/Expander.vue';
@@ -37,15 +37,16 @@ export default defineComponent({
       type: String as () => DiskSpaceType,
       required: true,
     },
+    isOpen: {
+      type: Boolean,
+      default: true,
+    },
   },
   setup: (props) => {
     const { t } = useI18n();
     const l10n = 'diskSpaces.DiskSpaceList';
 
     const store = useStore();
-
-    //TODO: Fix: should open the expander for the active disk space
-    const isOpen = computed(() => store.getters.getActiveDiskSpaceType === props.type);
 
     const diskSpaces = computed(() => store.getters.getDiskSpacesByType(props.type as DiskSpaceType));
 
@@ -61,7 +62,6 @@ export default defineComponent({
     return {
       t,
       l10n,
-      isOpen,
       diskSpaces,
       showCreateDiskSpaceModal,
     };

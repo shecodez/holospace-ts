@@ -1,7 +1,7 @@
 <template>
   <Menu customize="max-w-sm">
     <ul class="py-2">
-      <li v-for="(option, i) in menuOptions" :key="`adm-${i}`">
+      <li v-for="(option, i) in menuOptions" :key="`adm-${i}`" @click="option.onClick">
         <div v-if="option.header" class="py-2 mx-3" :class="option.color">
           <h4 class="text-xs font-bold uppercase">{{ t(`${l10n}.${option.id}`) }}</h4>
         </div>
@@ -20,10 +20,12 @@
 <script lang="ts">
 import { computed, defineComponent, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { useRoute } from 'vue-router';
 
 import Menu from '@/components/Menu.vue';
 import { useStore } from '@/store';
 import { users } from '@/data/mock';
+import AllActionTypes from '@/store/action-types';
 
 export default defineComponent({
   name: 'ActiveDeckMenu',
@@ -33,6 +35,8 @@ export default defineComponent({
     const l10n = 'decks.ActiveDeckMenu';
 
     const store = useStore();
+
+    const route = useRoute();
 
     const captainId = computed(() => store.getters.getActiveDeckCaptainId);
     const meId = computed(() => users[1].id);
@@ -45,10 +49,14 @@ export default defineComponent({
       { immediate: true }
     );
 
+    const setEditModal = () => {
+      store.dispatch(AllActionTypes.SET_EDIT_Deck_MODAL, { isOpen: true, deckId: route.params.deckId });
+    };
+
     const menuOptions = [
       { id: 'send_holokey', name: 'Send HoloKey' }, // if role canSendHolokey
       { id: 'contact_captain', name: 'Contact the Captain', disabled: isCaptain.value },
-      { id: 'edit_deck', name: 'Edit Deck' }, // role canEditDeck
+      { id: 'edit_deck', name: 'Edit Deck', onClick: setEditModal }, // role canEditDeck
       { id: 'edit_deck_crew', name: 'Edit Deck Crew' }, // role canEditDeckCrew
       { divider: true, color: 'border-red-500 border-opacity-30' },
       { id: 'danger_zone', header: 'Danger Zone', color: 'text-red-500' },

@@ -18,8 +18,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onBeforeMount, watch } from 'vue';
-import { useRoute } from 'vue-router';
+import { computed, defineComponent } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 import MetaDrawer from '@/components/panels/MetaDrawer.vue';
@@ -28,7 +27,6 @@ import UserListSkeleton from './UserListSkeleton.vue';
 import UserList from './UserList.vue';
 import Me from './MeCtrl.vue';
 import { useStore } from '@/store';
-import AllActionTypes from '@/store/action-types';
 
 export default defineComponent({
   name: 'UsersCtrl',
@@ -38,21 +36,7 @@ export default defineComponent({
 
     const store = useStore();
 
-    const route = useRoute();
-
     const isLoading = computed(() => store.state.users.isLoading);
-    onBeforeMount(() => store.dispatch(AllActionTypes.GET_DECK_Members, route.params.deckId as string));
-
-    watch(
-      () => route.params,
-      (newParams) => {
-        store.dispatch(AllActionTypes.GET_DECK_Members, newParams.deckId as string);
-        // if isSsh
-        //store.dispatch(AllActionTypes.GET_DISKSPACE_Subscribers, newParams.diskSpaceId as string);
-      },
-      { immediate: true }
-    );
-
     const usersOnDeck = computed(() => store.getters.membersOnDeck); //if isSsh getters.subscribers
     const usersOffline = computed(() => store.getters.membersOffline);
 

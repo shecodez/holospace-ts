@@ -22,28 +22,26 @@
     <div class="sticky right-0 md:bottom-0 p-2 my-auto md:my-0 md:mx-auto">
       <button
         class="border-3 border-dashed hover-border-solid border-black dark:border-white w-12 h-12 rounded-full f-center"
-        @click="setModal"
+        @click="setAddOrJoinModal"
       >
         <i-mdi-plus />
       </button>
     </div>
   </FixedPanel>
   <AddOrJoinDeckModal />
-  <EditDeckModal id="1" />
+  <EditDeckModal :deckId="editDeckId" />
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onBeforeMount, watch } from 'vue';
+import { computed, defineComponent } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { useRoute } from 'vue-router';
 
 import FixedPanel from '../panels/FixedPanel.vue';
 import DeckList from './DeckList.vue';
 import AddOrJoinDeckModal from './AddOrJoinDeckModal.vue';
 import { useStore } from '../../store';
-import AllActionTypes from '../../store/action-types';
 import AllMutationTypes from '../../store/mutation-types';
-import EditDeckModal from './EditDeckModal.vue';
+import EditDeckModal from './settings/EditDeckModal.vue';
 
 export default defineComponent({
   name: 'DeckCtrl',
@@ -54,19 +52,9 @@ export default defineComponent({
     const store = useStore();
 
     const isLoading = computed(() => store.state.decks.isLoading);
-    onBeforeMount(() => store.dispatch(AllActionTypes.GET_AUTH_USER_Decks));
+    const editDeckId = computed(() => store.state.decks.editDeckId);
 
-    const route = useRoute();
-
-    watch(
-      () => route.params,
-      (newParams) => {
-        store.dispatch(AllActionTypes.GET_ACTIVE_Deck, newParams.deckId as string);
-      },
-      { immediate: true }
-    );
-
-    const setModal = () => {
+    const setAddOrJoinModal = () => {
       store.commit(AllMutationTypes.SET_ADD_OR_JOIN_Deck_MODAL, true);
     };
 
@@ -75,7 +63,8 @@ export default defineComponent({
     return {
       t,
       isLoading,
-      setModal,
+      editDeckId,
+      setAddOrJoinModal,
       deckCnt,
     };
   },

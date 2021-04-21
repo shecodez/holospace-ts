@@ -11,7 +11,7 @@
         </button>
       </div>
     </div>
-    <div class="expander-content mb-2">
+    <div class="expander-content">
       <slot></slot>
     </div>
   </div>

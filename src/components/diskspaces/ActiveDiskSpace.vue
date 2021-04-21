@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-400 dark:bg-gray-600 h-14">
+  <div v-if="diskSpace" class="bg-gray-400 dark:bg-gray-600 h-14 flex-shrink-0">
     <div class="flex items-center h-full mx-4">
       <button
         class="p-2 rounded-full"
@@ -10,13 +10,12 @@
       </button>
       <div
         class="flex flex-grow mx-4 divide-x divide-black divide-opacity-10 dark:divide-white dark:divide-opacity-10 truncate"
-        v-if="diskSpace"
       >
         <span class="font-medium pr-2">{{ diskSpace.name }}</span>
-        <span class="font-thin pl-2">{{ diskSpace.topic }}</span>
+        <span v-if="diskSpace.topic" class="font-thin pl-2">{{ diskSpace.topic }}</span>
       </div>
 
-      <div class="hidden md:grid grid-flow-col grid-cols-3 gap-3 mr-4">
+      <div class="hidden md:grid grid-flow-col grid-cols-3 gap-3 mr-4 ml-auto">
         <button @click="openSearch">
           <i-mdi-magnify />
           <span class="sr-only">Search Modal</span>
@@ -40,12 +39,13 @@
       </button>
     </div>
   </div>
+  <div v-else>Loading...</div>
   <SearchModal :isOpen="showSearch" :closeModal="closeSearch" />
   <CalendarModal :isOpen="showCalendar" :closeModal="closeCalendar" />
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue';
+import { computed, defineComponent, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useTitle } from '@vueuse/core';
 
@@ -66,12 +66,14 @@ export default defineComponent({
     const store = useStore();
 
     const diskSpace = computed(() => store.state.diskSpaces.activeDiskSpace);
-
-    const title = computed(() => {
-      const diskSpaceName = diskSpace.value?.name || '···';
-      return `${diskSpaceName} | HoloSpace`;
-    });
-    useTitle(title);
+    watch(
+      () => diskSpace.value,
+      (diskSpace) => {
+        const title = diskSpace ? `${diskSpace?.name} | HoloSpace` : 'HoloSpace';
+        useTitle(title);
+      },
+      { immediate: true }
+    );
 
     const sideDrawerIsOpen = computed(() => store.state.app.sideDrawerIsOpen);
     const toggleSideDrawer = () => {

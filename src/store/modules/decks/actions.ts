@@ -1,10 +1,6 @@
 import { ActionTree } from 'vuex';
 
-import {
-  IRootState,
-  IDeckState as State,
-  IDeckActions as Actions,
-} from '../../interfaces';
+import { IRootState, IDeckState as State, IDeckActions as Actions } from '../../interfaces';
 import { MutationTypes } from './mutations';
 
 import { decks } from '../../../data/mock';
@@ -33,11 +29,11 @@ export const actions: ActionTree<State, IRootState> & Actions = {
 
   async [ActionTypes.GET_ACTIVE_Deck]({ commit, state }, deckId) {
     if (state.deckList.length) {
-      const deck = state.deckList.find((deck) => deck.id === deckId)
-      commit(MutationTypes.SET_ACTIVE_Deck, deck)
-    } else  {
+      const deck = state.deckList.find((deck) => deck.id === deckId);
+      commit(MutationTypes.SET_ACTIVE_Deck, deck);
+    } else {
       // Fetch active deck from db
-      const deck = decks.find((deck) => deck.id === deckId)
+      const deck = decks.find((deck) => deck.id === deckId);
       await sleep(1000);
       commit(MutationTypes.SET_ACTIVE_Deck, deck);
     }
@@ -47,8 +43,8 @@ export const actions: ActionTree<State, IRootState> & Actions = {
     commit(MutationTypes.SET_CREATE_Deck_MODAL, true);
   },
 
-  [ActionTypes.SET_EDIT_Deck_MODAL]({ commit }) {
-    commit(MutationTypes.SET_EDIT_Deck_MODAL, { isOpen: true, deckId: '1' });
+  [ActionTypes.SET_EDIT_Deck_MODAL]({ commit }, payload) {
+    commit(MutationTypes.SET_EDIT_Deck_MODAL, { isOpen: payload.isOpen, deckId: payload.deckId });
   },
 
   [ActionTypes.SET_ADD_OR_JOIN_Deck_MODAL]({ commit }) {

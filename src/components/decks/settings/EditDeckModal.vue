@@ -33,7 +33,7 @@
         <h3 class="font-bold text-xl uppercase mx-2">{{ t(`${l10n}.${editDeckOptions[activeIdx].id}`) }}</h3>
       </template>
       <div class="flex-1 overflow-y-scroll">
-        <IndexForEditDeckTabs :tabFor="editDeckOptions[activeIdx].id" :deckId="editDeck.id" />
+        <IndexForEditDeckCtrl :tabFor="editDeckOptions[activeIdx].id" :deck="editDeck" />
       </div>
     </Modal2ColumnLayout>
     <div v-else>Loading...</div>
@@ -41,32 +41,37 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue';
+import { computed, defineComponent, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 import ModalFullScreen from '@/components/ModalFullScreen.vue';
-import Modal2ColumnLayout from '../Modal2ColumnLayout.vue';
-import IndexForEditDeckTabs from '@/components/decks/tabs/IndexForEditDeckTabs.vue';
-import DeckForm from './DeckForm.vue';
+import Modal2ColumnLayout from '@/components/Modal2ColumnLayout.vue';
+import IndexForEditDeckCtrl from '@/components/decks/settings/IndexForEditDeckCtrl.vue';
 import { useStore } from '@/store';
 import AllMutationTypes from '@/store/mutation-types';
 
 export default defineComponent({
   name: 'EditDeckModal',
-  components: { ModalFullScreen, DeckForm, Modal2ColumnLayout, IndexForEditDeckTabs },
+  components: { ModalFullScreen, Modal2ColumnLayout, IndexForEditDeckCtrl },
   props: {
-    id: {
+    deckId: {
       type: String,
-      required: true,
+      //required: true,
     },
   },
   setup: (props) => {
     const { t } = useI18n();
-    const l10n = 'decks.EditDeckModal';
+    const l10n = 'decks.settings.EditDeckModal';
 
     const store = useStore();
-
-    const editDeck = computed(() => store.getters.getDeckById(props.id));
+    const editDeck = ref(store.getters.getDeckById(props.deckId));
+    watch(
+      () => props.deckId,
+      (deckId) => {
+        editDeck.value = store.getters.getDeckById(deckId);
+      },
+      { immediate: true }
+    );
 
     const editDeckOptions = [
       { divider: true },
@@ -75,12 +80,12 @@ export default defineComponent({
       { id: 'authorization', name: 'Authorization' },
       { id: 'captains_log', name: "Captain's Log", description: 'Audit Logs' },
       { id: 'roles', name: 'Roles', description: 'Cmd Crew' },
-      { id: 'authorized_apps', name: 'Authorized Apps', description: 'widgets' },
+      { id: 'widgets', name: 'Widgets', description: 'widgets' },
       { id: 'subroutines', name: 'Subroutines', description: 'Webhooks' },
 
       { divider: true },
       { id: 'crew_management', header: 'Crew Management' },
-      { id: 'crew_members', name: 'Crew Members' },
+      { id: 'crew', name: 'Crew' },
       { id: 'holokeys', name: 'HoloKeys' },
       { id: 'bans', name: 'Bans' },
     ];

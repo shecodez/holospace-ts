@@ -74,6 +74,22 @@
     }
   },
   "decks": {
+    "settings": {
+      "EditDeckModal": {
+        "edit_deck": "Edit {deck} Deck",
+        "deck_management": "Deck Management",
+        "overview": "Overview",
+        "authorization": "Authorization",
+        "captains_log": "Captain's Log",
+        "roles": "Roles",
+        "authorized_apps": "Authorized Apps",
+        "subroutines": "Subroutines",
+        "crew_management": "Crew Management",
+        "crew": "Crew",
+        "holokeys": "HoloKeys",
+        "bans": "Bans"
+      }
+    },
     "ActiveDeckMenu": {
       "send_holokey": "Send HoloKey",
       "contact_captain": "Contact the Captain",
@@ -101,20 +117,7 @@
       "deck_hq": "Deck HQ",
       "update_deck": "Update {deck}"
     },
-    "EditDeckModal": {
-      "edit_deck": "Edit {deck} Deck",
-      "deck_management": "Deck Management",
-      "overview": "Overview",
-      "authorization": "Authorization",
-      "captains_log": "Captain's Log",
-      "roles": "Roles",
-      "authorized_apps": "Authorized Apps",
-      "subroutines": "Subroutines",
-      "crew_management": "Crew Management",
-      "crew_members": "Crew",
-      "holokeys": "HoloKeys",
-      "bans": "Bans"
-    },
+
     "JoinDeckScreen": {
       "join_a_deck": "@:decks.AddOrJoinDeckModal.join_a_deck",
       "enter_a_holokey_to_": "Enter a HoloKey to join an existing Deck. Your key should look something like this:"

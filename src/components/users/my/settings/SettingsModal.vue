@@ -72,7 +72,7 @@ import { useI18n } from 'vue-i18n';
 import ModalFullScreen from '@/components/ModalFullScreen.vue';
 import ToggleTheme from '@/components/ToggleTheme.vue';
 import IconForSetting from '@/components/iconFors/IconForSetting.vue';
-import IndexForSettingCtrl from './tabs/IndexForSettingCtrl.vue';
+import IndexForSettingCtrl from './IndexForSettingCtrl.vue';
 import Modal2ColumnLayout from '@/components/Modal2ColumnLayout.vue';
 import { useStore } from '@/store';
 import { users } from '@/data/mock';

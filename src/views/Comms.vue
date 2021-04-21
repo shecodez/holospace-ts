@@ -1,6 +1,6 @@
 <template>
-  <Layout view="Chat">
-    <ChatCtrl />
+  <Layout view="Comms">
+    <CommsCtrl />
   </Layout>
 </template>
 
@@ -8,12 +8,10 @@
 import { defineComponent } from 'vue';
 import Layout from '../layouts/MainLayout.vue';
 
-import ChatCtrl from '@/components/chat/ChatCtrl.vue';
+import CommsCtrl from '@/components/comms/CommsCtrl.vue';
 
 export default defineComponent({
-  name: 'Chat',
-  components: { Layout, ChatCtrl },
+  name: 'Comms',
+  components: { Layout, CommsCtrl },
 });
 </script>
-
-<style></style>

@@ -20,4 +20,16 @@ const AllActionTypes = {
   ...AuthATypes,
 };
 
+export const NamedActionTypes = {
+  RootATypes,
+  counterATypes,
+  AppATypes,
+  DeckATypes,
+  LocaleATypes,
+  DiskSpaceATypes,
+  ChatATypes,
+  UserATypes,
+  AuthATypes,
+};
+
 export default AllActionTypes;

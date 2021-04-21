@@ -1,10 +1,6 @@
 import { ActionTree } from 'vuex';
 
-import {
-  IRootState,
-  IDiskSpaceState as State,
-  IDiskSpaceActions as Actions,
-} from '@/store/interfaces';
+import { IRootState, IDiskSpaceState as State, IDiskSpaceActions as Actions } from '@/store/interfaces';
 import { MutationTypes } from './mutations';
 
 import { diskSpaces } from '@/data/mock';
@@ -24,14 +20,14 @@ export const actions: ActionTree<State, IRootState> & Actions = {
     commit(MutationTypes.SET_LOADING_DiskSpaces, true);
 
     await sleep(1000);
-    const _diskSpaces = diskSpaces.filter((diskSpace) => diskSpace.ownerId === deckId)
+    const _diskSpaces = diskSpaces.filter((diskSpace) => diskSpace.ownerId === deckId);
 
     commit(MutationTypes.SET_LOADING_DiskSpaces, false);
     commit(MutationTypes.SET_DECK_DiskSpaces, _diskSpaces);
   },
 
   async [ActionTypes.GET_ACTIVE_DiskSpace]({ commit, state }, diskSpaceId) {
-    if (state.diskSpaceList.length) {
+    /*if (state.diskSpaceList.length) { // 
       const diskSpace = state.diskSpaceList.find((diskSpace) => diskSpace.id === diskSpaceId)
       commit(MutationTypes.SET_ACTIVE_DiskSpace, diskSpace)
     } else  {
@@ -39,7 +35,11 @@ export const actions: ActionTree<State, IRootState> & Actions = {
       const diskSpace = diskSpaces.find((diskSpace) => diskSpace.id === diskSpaceId)
       await sleep(1000);
       commit(MutationTypes.SET_ACTIVE_DiskSpace, diskSpace);
-    }
+    }*/
+    // Always Fetch active diskSpace from db ? b/c store.diskSpaceList could be from prev active deck
+    const diskSpace = diskSpaces.find((diskSpace) => diskSpace.id === diskSpaceId);
+    await sleep(1000);
+    commit(MutationTypes.SET_ACTIVE_DiskSpace, diskSpace);
   },
 
   [ActionTypes.SET_CREATE_DiskSpace_MODAL]({ commit }) {

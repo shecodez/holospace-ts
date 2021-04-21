@@ -18,24 +18,22 @@
     </template>
     <div class="flex-grow overflow-y-overlay">
       <div class="grid grid-cols-1 divide-y divide-white divide-opacity-10">
-        <DiskSpaceList :type="type.TEXT" />
-        <DiskSpaceList :type="type.VOIP" />
-        <DiskSpaceList :type="type.HOLO" />
+        <DiskSpaceList :type="DiskSpaceType.TEXT" :isOpen="isOpen.TEXT" />
+        <DiskSpaceList :type="DiskSpaceType.VOIP" :isOpen="isOpen.VOIP" />
+        <DiskSpaceList :type="DiskSpaceType.HOLO" :isOpen="isOpen.HOLO" />
       </div>
     </div>
   </SidePanel>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onBeforeMount, watch } from 'vue';
+import { computed, defineComponent, reactive, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { useRoute } from 'vue-router';
 
 import ActiveDeck from '@/components/decks/ActiveDeck.vue';
 import SidePanel from '@/components/panels/SidePanel.vue';
 import SideDrawer from '@/components/panels/SideDrawer.vue';
 import DiskSpaceList from './DiskSpaceList.vue';
-import AllActionTypes from '@/store/action-types';
 import { useStore } from '@/store';
 import { DiskSpaceType } from '@/store/interfaces';
 
@@ -53,26 +51,29 @@ export default defineComponent({
 
     const store = useStore();
 
-    const route = useRoute();
-
     const isLoading = computed(() => store.state.diskSpaces.isLoading);
-    onBeforeMount(() => store.dispatch(AllActionTypes.GET_DECK_DiskSpaces, route.params.deckId as string));
 
+    const diskSpace = computed(() => store.state.diskSpaces.activeDiskSpace);
+    const isOpen = reactive({
+      TEXT: true,
+      VOIP: true,
+      HOLO: true,
+    });
     watch(
-      () => route.params,
-      (newParams) => {
-        store.dispatch(AllActionTypes.GET_DECK_DiskSpaces, newParams.deckId as string);
-        store.dispatch(AllActionTypes.GET_ACTIVE_DiskSpace, newParams.diskSpaceId as string);
+      () => diskSpace.value,
+      (diskSpace) => {
+        isOpen.TEXT = diskSpace?.type === DiskSpaceType.TEXT;
+        isOpen.VOIP = diskSpace?.type === DiskSpaceType.VOIP;
+        isOpen.HOLO = diskSpace?.type === DiskSpaceType.HOLO;
       },
       { immediate: true }
     );
 
-    const type = DiskSpaceType;
-
     return {
       t,
       isLoading,
-      type,
+      DiskSpaceType,
+      isOpen,
     };
   },
 });

@@ -1,6 +1,6 @@
 <template>
   <li class="p-2 my-auto md:my-0 md:mx-auto">
-    <router-link :to="`/d/${id}/${ids}`">
+    <router-link :to="`/d/${id}/${idsId}`">
       <div
         class="deck w-12 h-12 f-center text-white has-tooltip"
         :class="isActive(id) ? 'active rounded-md' : 'rounded-full'"
@@ -26,7 +26,7 @@ export default defineComponent({
   props: {
     id: { type: String, required: true },
     name: { type: String, required: true },
-    ids: { type: String, required: true },
+    idsId: { type: String, required: true },
   },
   setup: () => {
     const route = useRoute();

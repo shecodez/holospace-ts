@@ -1,5 +1,5 @@
 <template>
-  <DeckOverviewTab v-if="tabFor === 'overview'" :deckId="deckId" />
+  <DeckOverview v-if="tabFor === 'overview'" :deck="deck" />
   <UnderConstruction v-else />
 </template>
 
@@ -7,19 +7,20 @@
 import { defineComponent } from 'vue';
 
 import UnderConstruction from '@/components/UnderConstruction.vue';
-import DeckOverviewTab from './DeckOverview.vue';
+import DeckOverview from './tabs/DeckOverview.vue';
 
 export default defineComponent({
-  name: 'TabForEditDeckModal',
-  components: { UnderConstruction, DeckOverviewTab },
+  name: 'IndexForEditDeckCtrl',
+  components: { UnderConstruction, DeckOverview },
   props: {
     tabFor: {
       type: String,
       required: true,
       default: '',
     },
-    deckId: {
-      type: String,
+    deck: {
+      type: Object,
+      required: true,
     },
   },
   setup: () => {},

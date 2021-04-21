@@ -74,6 +74,22 @@
     }
   },
   "decks": {
+    "settings": {
+      "EditDeckModal": {
+        "edit_deck": "{deck}のデッキを編集する",
+        "deck_management": "デッキの管理",
+        "overview": "概要",
+        "authorization": "承認",
+        "captains_log": "キャプテンのログ",
+        "roles": "役割",
+        "widgets": "ウィジェット",
+        "subroutines": "サブルーチン",
+        "crew_management": "クルーの管理",
+        "crew": "クルー",
+        "holokeys": "HoloKeys",
+        "bans": "禁止"
+      }
+    },
     "ActiveDeckMenu": {
       "send_holokey": "HoloKeyを送信します",
       "contact_captain": "船長にメッセージを送る",
@@ -101,20 +117,7 @@
       "deck_hq": "デッキ本部",
       "update_deck": "更新 {deck}"
     },
-    "EditDeckModal": {
-      "edit_deck": "{deck}のデッキを編集する",
-      "deck_management": "デッキの管理",
-      "overview": "概要",
-      "authorization": "承認",
-      "captains_log": "キャプテンのログ",
-      "roles": "役割",
-      "authorized_apps": "承認されたアプリ",
-      "subroutines": "サブルーチン",
-      "crew_management": "クルーの管理",
-      "crew_members": "クルー",
-      "holokeys": "HoloKeys",
-      "bans": "禁止"
-    },
+
     "JoinDeckScreen": {
       "join_a_deck": "@:decks.AddOrJoinDeckModal.join_a_deck",
       "enter_a_holokey_to_": "HoloKeyを入力して、既存のデッキに参加します。 キーは次のようになります。"

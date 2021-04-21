@@ -59,7 +59,7 @@ enum THEME_COLOR {
   GRAY = 'gray',
   GOLD = 'yellow',
   BLUE = 'blue',
-  PINK = 'pink',
+  ROSE = 'pink',
 }
 
 export default defineComponent({
@@ -81,7 +81,7 @@ export default defineComponent({
     const themeColors = [
       { id: THEME_COLOR.GRAY, name: 'gray (default)', checked: true },
       { id: THEME_COLOR.BLUE, name: 'blue', checked: false },
-      { id: THEME_COLOR.PINK, name: 'pink', checked: false },
+      { id: THEME_COLOR.ROSE, name: 'pink', checked: false },
       { id: THEME_COLOR.GOLD, name: 'gold', checked: false },
     ];
 

@@ -46,7 +46,7 @@
     </div>
 
     <button class="btn btn-primary rounded px-4 py-2" :class="btnPos" :disabled="!isValid" type="submit">
-      <span v-if="deckId" class="uppercase">{{ t(`${l10n}.update_deck`) }}</span>
+      <span v-if="deck" class="uppercase">{{ t(`${l10n}.update_deck`) }}</span>
       <span v-else class="uppercase">{{ t('add') }}</span>
     </button>
   </form>
@@ -66,8 +66,8 @@ import { useStore } from '@/store';
 export default defineComponent({
   name: 'DeckForm',
   props: {
-    deckId: {
-      type: String,
+    deck: {
+      type: Object as () => IDeck,
       required: false,
     },
     onSubmit: {
@@ -141,12 +141,11 @@ export default defineComponent({
     );
 
     const setFields = () => {
-      if (props.deckId) {
-        const deck = computed(() => store.getters.getDeckById(props.deckId as string));
-        const { name, hq, avatarUrl } = deck.value as IDeck;
+      if (props.deck) {
+        const { name, hq, avatarUrl } = props.deck;
         state.name = name;
         state.hq = hq;
-        //state.avatarUrl = avatarUrl;
+        state.avatarUrl = avatarUrl || '';
       }
     };
     onMounted(() => setFields()); //if props.deck? setFields() : resetForm();
