@@ -1,11 +1,9 @@
 <template>
-  <div class="mx-4">
-    <div class="flex flex-wrap rounded bg-gray-300 dark:bg-gray-700 p-2 md:p-6">
-      <div class="flex w-full items-center">
-        <DeckForm :deck="deck" :onSubmit="updateDeck" :onClose="noClose" />
-      </div>
+  <section class="flex flex-wrap rounded bg-gray-300 dark:bg-gray-700 p-2 md:p-6">
+    <div class="flex w-full items-center">
+      <DeckForm :deck="deck" :onSubmit="updateDeck" :onClose="noClose" />
     </div>
-  </div>
+  </section>
 </template>
 
 <script lang="ts">
@@ -15,8 +13,8 @@ import DeckForm from '@/components/decks/DeckForm.vue';
 import { useStore } from '@/store';
 
 export default defineComponent({
-  components: { DeckForm },
   name: 'DeckOverviewTab',
+  components: { DeckForm },
   props: {
     deck: {
       type: Object,

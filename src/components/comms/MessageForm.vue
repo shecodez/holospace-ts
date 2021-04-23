@@ -30,6 +30,10 @@
             <i-mdi-format-textbox />
             <span class="sr-only">Toggle Markdown Menu</span>
           </button>
+          <!-- <button>
+            <i-clarity-microphone-solid />
+            <span class="sr-only">Toggle Voice Comms</span>
+          </button> -->
           <button class="text-primary-500 px-2" type="submit">
             <i-fa-paper-plane />
             <span class="sr-only">Send Message</span>
@@ -62,6 +66,15 @@ export default defineComponent({
       clearInput();
     };
 
+    const commands = [
+      { id: 'emoji', name: 'Emoji', cmd: '/emo' },
+      { id: 'gif', name: 'Gif', cmd: '/gif' },
+      { id: 'holo', name: 'Holo', cmd: '/holo' },
+      { id: 'voco', name: 'Voice Comm', cmd: '/voco' },
+      { id: 'md', name: 'Markdown', cmd: '/md' },
+      { id: 'afk', name: 'AFK', cmd: '/afk' },
+    ];
+
     const clearInput = () => {
       message.value = '';
     };
@@ -69,6 +82,7 @@ export default defineComponent({
     const isMultiline = ref(false);
     const showMarkdownMenu = ref(false);
     const toggleMarkdownMenu = () => {
+      // TODO: if (!sm screen)
       showMarkdownMenu.value = !showMarkdownMenu.value;
       isMultiline.value = !isMultiline.value;
       // TODO: focus on input/textarea

@@ -500,8 +500,11 @@ export interface IUserActions {
 }
 
 /************************* ME MODULE TYPES ***************************/
+export interface IMe extends IUser {
+  avatarJson?: JSON;
+}
 
-export interface IProfile extends IUser {
+export interface IProfile extends IMe {
   email: string;
   friends: IUser[];
   subscriptionIds: string[];

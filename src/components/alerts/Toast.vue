@@ -1,6 +1,6 @@
 <template>
   <div
-    class="toast relative w-64 py-2 border border-gray-600 m-0.5 rounded-lg shadow-md overflow-hidden"
+    class="hs-toast relative w-64 py-2 border border-gray-600 m-0.5 rounded-lg shadow-md overflow-hidden"
     :class="`${type}-toast bg-${type}-500`"
   >
     <div class="flex justify-end space-x-1 p-1 mr-2">
@@ -38,16 +38,15 @@ export default defineComponent({
 });
 </script>
 
-<style>
-.toast {
+<style lang="postcss">
+.hs-toast {
   min-height: 5rem;
 }
 .message {
   @apply cursor-default;
 }
 .message h4 {
-  @apply text-sm;
-  @apply text-gray-200;
+  @apply text-sm text-gray-200;
   letter-spacing: 3px;
   text-shadow: 1px 1px #777;
 }
@@ -58,11 +57,7 @@ export default defineComponent({
 }
 
 .eye {
-  @apply absolute;
-  @apply w-1;
-  @apply h-1;
-  @apply bg-gray-900;
-  @apply rounded-full;
+  @apply absolute w-1 h-1 bg-gray-900 rounded-full;
 }
 .eye {
   top: 40%;
